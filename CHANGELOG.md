@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/guizimo/cover-craft/compare/v0.0.11...v0.0.12) (2025-03-06)
+
+
+### Features
+
+* (docs) 新增文档页面 ([37e61e6](https://github.com/guizimo/cover-craft/commit/37e61e604165f5cebcebb861e5b261c91e279e57))
+* (generator) 新增配置缓存功能 ([893d81e](https://github.com/guizimo/cover-craft/commit/893d81e07ad770fbfee6e0c30c63e700820f9b66))
+* (Logo) 更新 Logo ([cf7a63d](https://github.com/guizimo/cover-craft/commit/cf7a63d17103f93fb44bb2de9e25c35316107f35))
+* (MD) 新增英文 MD ([2a2ac8e](https://github.com/guizimo/cover-craft/commit/2a2ac8e40241ddf4a5d9579382a500f707442a99))
+* (title) 标题支持换行并支持调整行高（issue [#8](https://github.com/guizimo/cover-craft/issues/8)） ([23939fe](https://github.com/guizimo/cover-craft/commit/23939fe22d0affadc207095374d569ed0da29e67))
+
 ### [0.0.11](https://github.com/guizimo/cover-craft/compare/v0.0.10...v0.0.11) (2025-02-11)
 
 
