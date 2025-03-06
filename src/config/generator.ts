@@ -25,6 +25,7 @@ export const FONT_FAMILIES = [
     { value: '"ZCOOL XiaoWei", serif', label: '站酷小薇' },
     { value: '"ZCOOL KuHei", serif', label: '站酷酷黑体' },
     { value: '"ZCOOL QingKe HuangYou", cursive', label: '站酷庆科黄油体' },
+    { value: '"SmileySans-Oblique"', label: '得意黑'},
     { value: '"Ma Shan Zheng", cursive', label: '马善政楷书' }
 ];
 
