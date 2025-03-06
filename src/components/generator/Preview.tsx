@@ -23,6 +23,7 @@ export function Preview() {
     fontWeight,
     fontStyle,
     textColor,
+    lineHeight,
     letterSpacing,
     showIcon,
     iconPosition,
@@ -122,6 +123,8 @@ export function Preview() {
                 letterSpacing: `${letterSpacing}px`,
                 width: '100%',
                 textAlign: 'center',
+                whiteSpace: 'pre-wrap',
+                lineHeight: lineHeight,
                 zIndex: 1
               }}
             >

@@ -97,6 +97,11 @@ pnpm preview # 预览生产构建
 pnpm lint # 运行 ESLint 检查
 ```
 
+### 添加新的组件
+```bash
+pnpm dlx shadcn@latest add <component-name>
+```
+
 ### 开发环境要求
 
 - Node.js >= 18.x

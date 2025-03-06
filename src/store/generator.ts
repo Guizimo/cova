@@ -30,6 +30,8 @@ interface GeneratorState {
   setTextColor: (color: string) => void;
   fontStyle: string;
   setFontStyle: (style: string) => void;
+  lineHeight: number;
+  setLineHeight: (height: number) => void;
   
   // 背景
   backgroundColor: string;
@@ -104,6 +106,8 @@ export const useGeneratorStore = create<GeneratorState>()(
       setTextColor: (color) => set({ textColor: color }),
       fontStyle: 'normal',
       setFontStyle: (style) => set({ fontStyle: style }),
+      lineHeight: 1.5, // 默认行高
+      setLineHeight: (height) => set({ lineHeight: height }),
       
       // 背景
       backgroundColor: DEFAULT_SETTINGS.backgroundColor,
