@@ -17,6 +17,14 @@ jobs:
         with:
           fetch-depth: 0
       
+      - name: Get version changelog
+        id: get_changelog
+        run: |
+          version=$(echo "${{ github.ref }}" | sed 's/refs\/tags\/v//')
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          sed -n "/## \[$version\]/,/## \[/p" CHANGELOG.md | sed '$d' >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -45,7 +53,6 @@ jobs:
           files: cover-craft.zip
           draft: false
           prerelease: false
-          generate_release_notes: true
-          body_path: CHANGELOG.md
+          body: ${{ env.CHANGELOG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
