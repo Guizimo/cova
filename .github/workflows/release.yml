@@ -5,6 +5,11 @@ on:
     tags:
       - 'v*'
 
+# 添加权限配置
+permissions:
+  contents: write
+  discussions: write
+
 jobs:
   release:
     runs-on: ubuntu-latest

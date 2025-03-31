@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   # 触发条件：push 到 main 分支时
   push:
-    branches: [ main ]
+    tags:
+      - 'v*'  # 当推送 v 开头的 tag 时触发
   # 允许手动触发部署
   workflow_dispatch:
 
@@ -64,6 +65,6 @@ jobs:
         with:
           path: dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
