@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useGeneratorStore } from '@/store/generator';
 import { exportImage } from '@/utils/generator';
+import pkg from '../../../package.json';
 
 export function Header() {
   const { resetSettings, backgroundType, setIsExporting } = useGeneratorStore();
@@ -15,7 +16,7 @@ export function Header() {
   return (
     <div className="border-b">
       <div className="flex h-16 justify-between items-center gap-4 px-4">
-        <div className="text-sm text-lg font-bold">封面生成器</div>
+        <div className="text-lg font-bold">CoverCraft封面生成器<span className="ml-2 text-sm text-muted-foreground">v{pkg.version}</span></div>
         <div className="flex items-center space-x-2">
           <Button
             variant="ghost"
