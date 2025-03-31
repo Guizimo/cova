@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Download, Github, ListRestart, Share2 } from 'lucide-react';
+import { Download, ListRestart, Share2 } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
