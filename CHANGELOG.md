@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/guizimo/cover-craft/compare/v0.0.12...v0.0.13) (2025-03-31)
+
+
+### Features
+
+* (Font) 新增字体“得意黑“ ([6846bf6](https://github.com/guizimo/cover-craft/commit/6846bf6b980fb9ed78fa1cdfdf4868b235ec70e5))
+* (Icon)更新图标并添加 Discord ([926faba](https://github.com/guizimo/cover-craft/commit/926fabaf1a2f4f7eb6c6eae04906275d6137c1c6))
+
 ### [0.0.12](https://github.com/guizimo/cover-craft/compare/v0.0.11...v0.0.12) (2025-03-06)
 
 
