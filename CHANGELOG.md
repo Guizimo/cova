@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/guizimo/cover-craft/compare/v0.0.17...v0.0.18) (2025-04-01)
+
+
+### Features
+
+* **IconConfig:** 添加图标背景颜色和内边距配置 ([a471b0b](https://github.com/guizimo/cover-craft/commit/a471b0b4f8cab96b805e280bd014b0bfa76d3884))
+
+
+### Bug Fixes
+
+* **generator:** 修复部分配置无法缓存以及重置部分配置不生效 ([a0f9f72](https://github.com/guizimo/cover-craft/commit/a0f9f72e55fcd97ce5617a9f432c08e3d189689a))
+
 ### [0.0.17](https://github.com/guizimo/cover-craft/compare/v0.0.16...v0.0.17) (2025-03-31)
 
 
