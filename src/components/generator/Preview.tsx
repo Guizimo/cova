@@ -32,6 +32,8 @@ export function Preview() {
     iconShadow,
     backdropBlur,
     iconImage,
+    iconBgColor,
+    iconPadding,
     isExporting
   } = useGeneratorStore();
 
@@ -67,7 +69,7 @@ export function Preview() {
     <div className="flex h-[calc(100vh-4rem)] flex-col">
       <div className="flex-1 overflow-auto bg-muted/40">
         <div className="flex h-full items-center justify-center p-6">
-           {/* 导出加载层 */}
+          {/* 导出加载层 */}
           {isExporting && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
               <div className="flex flex-col items-center space-y-2">
@@ -133,23 +135,27 @@ export function Preview() {
 
             {/* 图标层 */}
             {showIcon && iconImage && (
-              <img
-                src={iconImage}
-                alt="Icon"
+              <div
                 style={{
                   position: 'absolute',
                   width: `${iconSize}px`,
                   height: `${iconSize}px`,
                   borderRadius: `${iconBorderRadius}px`,
-                  boxShadow: iconShadow > 0 ? `0 ${iconShadow/2}px ${iconShadow}px rgba(0, 0, 0, 0.08),
-                  0 ${iconShadow/3}px ${iconShadow/2}px rgba(0, 0, 0, 0.06),
-                  0 ${iconShadow/4}px ${iconShadow/3}px rgba(0, 0, 0, 0.04)` : 'none',
-                  overflow: 'hidden',
-                  objectFit: 'cover',
-                  zIndex: 2,
-                  ...getIconPosition()
+                  boxShadow: iconShadow ? `0 0 ${iconShadow}px rgba(0, 0, 0, 0.2)` : 'none',
+                  padding: `${iconPadding}px`,
+                  backgroundColor: iconBgColor,
+                  ...getIconPosition(),
                 }}
-              />
+              >
+                <img
+                  src={iconImage}
+                  alt="Icon"
+                  className="w-full h-full object-contain"
+                  style={{
+                    borderRadius: `${iconBorderRadius}px`,
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

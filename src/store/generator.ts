@@ -6,7 +6,7 @@ interface GeneratorState {
   // 标题
   title: string;
   setTitle: (title: string) => void;
-  
+
   // 尺寸
   selectedSize: CoverSize;
   setSelectedSize: (size: CoverSize) => void;
@@ -16,7 +16,7 @@ interface GeneratorState {
   setCustomHeight: (height: number) => void;
   isCustomSize: boolean;
   setIsCustomSize: (isCustom: boolean) => void;
-  
+
   // 字体
   fontSize: number;
   setFontSize: (size: number) => void;
@@ -32,7 +32,7 @@ interface GeneratorState {
   setFontStyle: (style: string) => void;
   lineHeight: number;
   setLineHeight: (height: number) => void;
-  
+
   // 背景
   backgroundColor: string;
   setBackgroundColor: (color: string) => void;
@@ -68,10 +68,14 @@ interface GeneratorState {
   setIconShadow: (shadow: number) => void;
   iconImage: string;
   setIconImage: (image: string) => void;
+  iconBgColor: string;
+  setIconBgColor: (color: string) => void;
+  iconPadding: number;
+  setIconPadding: (padding: number) => void;
 
   isExporting: boolean;
   setIsExporting: (value: boolean) => void;
-  
+
   // 重置
   resetSettings: () => void;
 }
@@ -82,7 +86,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       // 标题
       title: DEFAULT_SETTINGS.title,
       setTitle: (title) => set({ title }),
-      
+
       // 尺寸
       selectedSize: DEFAULT_SETTINGS.selectedSize,
       setSelectedSize: (size) => set({ selectedSize: size }),
@@ -92,7 +96,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       setCustomHeight: (height) => set({ customHeight: height }),
       isCustomSize: false,
       setIsCustomSize: (isCustom) => set({ isCustomSize: isCustom }),
-      
+
       // 字体
       fontSize: DEFAULT_SETTINGS.fontSize,
       setFontSize: (size) => set({ fontSize: size }),
@@ -108,7 +112,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       setFontStyle: (style) => set({ fontStyle: style }),
       lineHeight: 1.5, // 默认行高
       setLineHeight: (height) => set({ lineHeight: height }),
-      
+
       // 背景
       backgroundColor: DEFAULT_SETTINGS.backgroundColor,
       setBackgroundColor: (color) => set({ backgroundColor: color }),
@@ -130,7 +134,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       setBackgroundPosition: (position) => set({ backgroundPosition: position }),
       backdropBlur: 0,
       setBackdropBlur: (blur) => set({ backdropBlur: blur }),
-    
+
       // 图标设置
       showIcon: false,
       setShowIcon: (show) => set({ showIcon: show }),
@@ -144,10 +148,14 @@ export const useGeneratorStore = create<GeneratorState>()(
       setIconShadow: (shadow) => set({ iconShadow: shadow }),
       iconImage: '',
       setIconImage: (image) => set({ iconImage: image }),
-    
+      iconBgColor: 'transparent',
+      setIconBgColor: (color) => set({ iconBgColor: color }),
+      iconPadding: 0,
+      setIconPadding: (padding) => set({ iconPadding: padding }),
+
       isExporting: false,
       setIsExporting: (value) => set({ isExporting: value }),
-      
+
       // 重置
       resetSettings: () => set({
         title: DEFAULT_SETTINGS.title,
