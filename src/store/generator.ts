@@ -158,21 +158,8 @@ export const useGeneratorStore = create<GeneratorState>()(
 
       // 重置
       resetSettings: () => set({
-        title: DEFAULT_SETTINGS.title,
-        fontSize: DEFAULT_SETTINGS.fontSize,
-        letterSpacing: DEFAULT_SETTINGS.letterSpacing,
-        fontFamily: DEFAULT_SETTINGS.fontFamily,
-        backgroundColor: DEFAULT_SETTINGS.backgroundColor,
-        textColor: DEFAULT_SETTINGS.textColor,
-        gradientStart: DEFAULT_SETTINGS.gradientStart,
-        gradientEnd: DEFAULT_SETTINGS.gradientEnd,
-        gradientAngle: DEFAULT_SETTINGS.gradientAngle,
-        backgroundType: DEFAULT_SETTINGS.backgroundType,
-        borderRadius: DEFAULT_SETTINGS.borderRadius,
+        ...DEFAULT_SETTINGS,
         backgroundImage: '',
-        backgroundSize: DEFAULT_SETTINGS.backgroundSize,
-        backgroundPosition: DEFAULT_SETTINGS.backgroundPosition,
-        fontWeight: DEFAULT_SETTINGS.fontWeight
       })
     }),
     {
@@ -224,6 +211,10 @@ export const useGeneratorStore = create<GeneratorState>()(
         iconSize: state.iconSize,
         iconBorderRadius: state.iconBorderRadius,
         iconShadow: state.iconShadow,
+        lineHeight: state.lineHeight,
+        iconImage: state.iconImage,
+        iconBgColor: state.iconBgColor,
+        iconPadding: state.iconPadding,
       }),
     }
   )
