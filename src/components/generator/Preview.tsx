@@ -150,7 +150,7 @@ export function Preview() {
                 <img
                   src={iconImage}
                   alt="Icon"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   style={{
                     borderRadius: `${iconBorderRadius}px`,
                   }}
