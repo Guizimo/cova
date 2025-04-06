@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://github.com/guizimo/cover-craft/compare/v0.0.18...v0.0.19) (2025-04-06)
+
+
+### Bug Fixes
+
+* **Preview:** 修复图标填充不完整 ([e03bd63](https://github.com/guizimo/cover-craft/commit/e03bd638e127aed4e6214322c7b5e8f50d35c9d1))
+
 ### [0.0.18](https://github.com/guizimo/cover-craft/compare/v0.0.17...v0.0.18) (2025-04-01)
 
 
