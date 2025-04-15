@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Image, Wand2, Share2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+import logo from '@/assets/logo.png';
 
 export default function Home() {
   return (
