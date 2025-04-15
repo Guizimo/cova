@@ -54,7 +54,7 @@ export function SizeConfig() {
               <div className="space-y-2">
                 <Label className="text-muted-foreground">宽度</Label>
                 <div className="flex space-x-2">
-                <Input
+                  <Input
                     type="number"
                     value={customWidth}
                     onChange={(e) => setCustomWidth(Number(e.target.value))}

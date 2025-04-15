@@ -14,9 +14,7 @@ export default function Home() {
               {/* 这里放置 Logo */}
               <img src={logo} alt="Cova Logo" className="w-full h-full" />
             </div>
-            <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary">
-              Cova
-            </h1>
+            <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary">Cova</h1>
           </div>
           <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
             快速生成精美的

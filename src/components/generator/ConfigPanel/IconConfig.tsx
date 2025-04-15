@@ -21,10 +21,10 @@ export function IconConfig() {
     setIconShadow,
     iconImage,
     setIconImage,
-    iconBgColor,         
-    setIconBgColor,     
-    iconPadding,         
-    setIconPadding     
+    iconBgColor,
+    setIconBgColor,
+    iconPadding,
+    setIconPadding
   } = useGeneratorStore();
 
   return (
@@ -151,11 +151,7 @@ export function IconConfig() {
               <div className="col-span-2">
                 <Label className="text-muted-foreground">图标链接</Label>
                 <div className="mt-2">
-                  <Input
-                    placeholder="输入图标链接"
-                    value={iconImage}
-                    onChange={(e) => setIconImage(e.target.value)}
-                  />
+                  <Input placeholder="输入图标链接" value={iconImage} onChange={(e) => setIconImage(e.target.value)} />
                 </div>
               </div>
             </div>

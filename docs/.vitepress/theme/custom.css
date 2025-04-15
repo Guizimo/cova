@@ -1,272 +1,273 @@
 :root {
-    --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
-    --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #4c09b9 50%);
-    --vp-home-hero-image-filter: blur(40px);
-    --vp-home-hero-background-image: linear-gradient(135deg,
-            rgba(189, 52, 254, 0.8) 0%,
-            rgba(76, 9, 185, 0.7) 50%,
-            rgba(65, 209, 255, 0.8) 100%);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #4c09b9 50%);
+  --vp-home-hero-image-filter: blur(40px);
+  --vp-home-hero-background-image: linear-gradient(
+    135deg,
+    rgba(189, 52, 254, 0.8) 0%,
+    rgba(76, 9, 185, 0.7) 50%,
+    rgba(65, 209, 255, 0.8) 100%
+  );
 }
 
 .dark {
-    --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #4c09b9 50%);
-    --vp-home-hero-background-image: linear-gradient(135deg,
-            rgba(189, 52, 254, 0.7) 0%,
-            rgba(76, 9, 185, 0.6) 50%,
-            rgba(65, 209, 255, 0.7) 100%);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #4c09b9 50%);
+  --vp-home-hero-background-image: linear-gradient(
+    135deg,
+    rgba(189, 52, 254, 0.7) 0%,
+    rgba(76, 9, 185, 0.6) 50%,
+    rgba(65, 209, 255, 0.7) 100%
+  );
 }
 
 .VPHome {
-    min-height: 100vh;
-    /* background-image: var(--vp-home-hero-background-image); */
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+  min-height: 100vh;
+  /* background-image: var(--vp-home-hero-background-image); */
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
 
-    50% {
-        background-position: 100% 50%;
-    }
+  50% {
+    background-position: 100% 50%;
+  }
 
-    100% {
-        background-position: 0% 50%;
-    }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
 
 .VPNavBar {
-    border: none;
-    backdrop-filter: blur(20px);
-    background: unset !important;
+  border: none;
+  backdrop-filter: blur(20px);
+  background: unset !important;
   box-shadow: unset;
-    transition: border-color 0.5s, background-color 0.5s;
+  transition:
+    border-color 0.5s,
+    background-color 0.5s;
 }
 
-
 .VPHero {
-    min-height: calc(100vh + 10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    position: relative;
-    z-index: 1;
+  min-height: calc(100vh + 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .VPHero .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    color: var(--vp-c-text-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  color: var(--vp-c-text-1);
 }
 
 .VPHero .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 14rem;
 }
 
 .VPHero .name,
 .VPHero .text {
-    font-size: 72px;
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0;
-    background: linear-gradient(to right, var(--vp-c-text-1) 3%, rgba(0, 0, 0, 0.5) 40%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: shine 3s linear infinite;
+  font-size: 72px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  background: linear-gradient(to right, var(--vp-c-text-1) 3%, rgba(0, 0, 0, 0.5) 40%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
 }
 
 .dark .VPHero .name,
 .dark .VPHero .text {
-    margin: 0;
-    background: linear-gradient(to right, #fff 20%, rgba(255, 255, 255, 0.7) 40%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: shine 3s linear infinite;
+  margin: 0;
+  background: linear-gradient(to right, #fff 20%, rgba(255, 255, 255, 0.7) 40%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
 }
 
 @keyframes shine {
-    to {
-        background-position: 200% center;
-    }
+  to {
+    background-position: 200% center;
+  }
 }
 
 .VPHero .tagline {
-    padding-top: 8px;
-    max-width: 480px;
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--vp-c-text-1)
+  padding-top: 8px;
+  max-width: 480px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
 }
 
 .VPHero .actions {
-    display: flex;
-    gap: 1rem;
-    padding-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  padding-top: 2rem;
 }
 
 .VPHero .image {
-    width: 200px;
-    height: 200px;
-    border-radius: 30px;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(20px);
+  width: 200px;
+  height: 200px;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(20px);
 }
 
 .VPHero .image:hover {
-    transform: translateY(-5px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-5px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .VPHero .image-bg {
-    border-radius: 30px;
-    opacity: 0.8;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 30px;
+  opacity: 0.8;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .VPHero .image-container:hover .image-bg {
-    filter: var(--vp-home-hero-image-filter) brightness(1.1);
-    /* transform: scale(1.05); */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: var(--vp-home-hero-image-filter) brightness(1.1);
+  /* transform: scale(1.05); */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .VPFeatures {
-    background: var(--vp-c-bg);
-    padding: 4rem 0;
+  background: var(--vp-c-bg);
+  padding: 4rem 0;
 }
 
 .VPFeatures .container {
-    margin: 0 auto;
-    max-width: 1152px;
-    padding: 0 24px;
+  margin: 0 auto;
+  max-width: 1152px;
+  padding: 0 24px;
 }
 
 .VPFeatures .title {
-    font-size: 48px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 1rem;
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .VPFeatures .subtitle {
-    font-size: 18px;
-    color: var(--vp-c-text-2);
-    text-align: center;
-    margin-bottom: 4rem;
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
 .VPFeatures .items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .VPFeatures .item {
-    background: var(--vp-c-bg-soft);
-    border-radius: 12px;
-    padding: 24px;
-    transition: all 0.3s ease;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
 }
 
 .VPFeatures .item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .VPFeatures .item .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
 .VPFeatures .item .name {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .VPFeatures .item .username {
-    font-size: 14px;
-    color: var(--vp-c-text-2);
-    margin-bottom: 1rem;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  margin-bottom: 1rem;
 }
 
 .VPFeatures .item .description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--vp-c-text-1);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
 }
 
 @media (max-width: 768px) {
-    .VPFeatures .items {
-        grid-template-columns: 1fr;
-    }
-    
-    .VPFeatures .title {
-        font-size: 36px;
-    }
+  .VPFeatures .items {
+    grid-template-columns: 1fr;
+  }
+
+  .VPFeatures .title {
+    font-size: 36px;
+  }
 }
 
 .vp-doc div[class*='language-'] {
-    background-color: rgba(125, 125, 125, 0.04);
+  background-color: rgba(125, 125, 125, 0.04);
 }
 
-
 @media (max-width: 960px) {
+  .VPHero .name,
+  .VPHero .text {
+    font-size: 48px;
+  }
 
-    .VPHero .name,
-    .VPHero .text {
-        font-size: 48px;
-    }
+  .VPHero .tagline {
+    font-size: 20px;
+  }
 
-    .VPHero .tagline {
-        font-size: 20px;
-    }
-
-    .VPHero .image {
-        width: 200px;
-        height: 200px;
-    }
+  .VPHero .image {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 @media (max-width: 640px) {
+  .VPHero .name,
+  .VPHero .text {
+    font-size: 38px;
+  }
 
-    .VPHero .name,
-    .VPHero .text {
-        font-size: 38px;
-    }
+  .VPHero .tagline {
+    font-size: 18px;
+  }
 
-    .VPHero .tagline {
-        font-size: 18px;
-    }
-
-    .VPHero .actions {
-        flex-direction: column;
-    }
+  .VPHero .actions {
+    flex-direction: column;
+  }
 }

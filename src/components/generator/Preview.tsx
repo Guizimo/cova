@@ -144,7 +144,7 @@ export function Preview() {
                   boxShadow: iconShadow ? `0 0 ${iconShadow}px rgba(0, 0, 0, 0.2)` : 'none',
                   padding: `${iconPadding}px`,
                   backgroundColor: iconBgColor,
-                  ...getIconPosition(),
+                  ...getIconPosition()
                 }}
               >
                 <img
@@ -152,7 +152,7 @@ export function Preview() {
                   alt="Icon"
                   className="w-full h-full object-cover"
                   style={{
-                    borderRadius: `${iconBorderRadius}px`,
+                    borderRadius: `${iconBorderRadius}px`
                   }}
                 />
               </div>

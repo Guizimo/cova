@@ -1,8 +1,8 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  title: "Cova",
-  description: "现代化的封面设计工具",
+  title: 'Cova',
+  description: '现代化的封面设计工具',
 
   locales: {
     root: {
@@ -52,9 +52,7 @@ export default defineConfig({
       ]
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/guizimo/cova' }
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/guizimo/cova' }],
 
     footer: {
       message: 'Released under the GPL-3.0 License.',
@@ -75,4 +73,4 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#646cff' }]
   ]
-})
+});

@@ -19,8 +19,8 @@ export function FontConfig() {
     setTextColor,
     fontStyle,
     setFontStyle,
-    lineHeight,        
-    setLineHeight 
+    lineHeight,
+    setLineHeight
   } = useGeneratorStore();
 
   return (
@@ -45,19 +45,19 @@ export function FontConfig() {
           </Select>
         </div>
         <div className="space-y-2">
-        <Label className="text-muted-foreground">行高</Label>
-        <div className="flex items-center space-x-2">
-          <Slider
-            value={[lineHeight]}
-            onValueChange={([value]) => setLineHeight(value)}
-            min={1}
-            max={3}
-            step={0.1}
-            className="flex-1"
-          />
-          <span className="w-12 text-sm text-muted-foreground text-right">{lineHeight}</span>
+          <Label className="text-muted-foreground">行高</Label>
+          <div className="flex items-center space-x-2">
+            <Slider
+              value={[lineHeight]}
+              onValueChange={([value]) => setLineHeight(value)}
+              min={1}
+              max={3}
+              step={0.1}
+              className="flex-1"
+            />
+            <span className="w-12 text-sm text-muted-foreground text-right">{lineHeight}</span>
+          </div>
         </div>
-      </div>
         <div className="space-y-2">
           <Label className="text-muted-foreground">字体倾斜</Label>
           <Select value={fontStyle} onValueChange={setFontStyle}>

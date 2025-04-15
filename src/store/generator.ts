@@ -157,10 +157,11 @@ export const useGeneratorStore = create<GeneratorState>()(
       setIsExporting: (value) => set({ isExporting: value }),
 
       // 重置
-      resetSettings: () => set({
-        ...DEFAULT_SETTINGS,
-        backgroundImage: '',
-      })
+      resetSettings: () =>
+        set({
+          ...DEFAULT_SETTINGS,
+          backgroundImage: ''
+        })
     }),
     {
       name: 'cova-storage', // 存储的键名
@@ -173,7 +174,7 @@ export const useGeneratorStore = create<GeneratorState>()(
             // 合并默认值，确保版本更新时新增的字段有默认值
             return {
               ...DEFAULT_SETTINGS,
-              ...state,
+              ...state
             };
           } catch (e) {
             return null;
@@ -182,7 +183,7 @@ export const useGeneratorStore = create<GeneratorState>()(
         setItem: (name, value) => {
           localStorage.setItem(name, JSON.stringify(value));
         },
-        removeItem: (name) => localStorage.removeItem(name),
+        removeItem: (name) => localStorage.removeItem(name)
       },
       partialize: (state: GeneratorState): Partial<GeneratorState> => ({
         // 只缓存这些字段
@@ -214,8 +215,8 @@ export const useGeneratorStore = create<GeneratorState>()(
         lineHeight: state.lineHeight,
         iconImage: state.iconImage,
         iconBgColor: state.iconBgColor,
-        iconPadding: state.iconPadding,
-      }),
+        iconPadding: state.iconPadding
+      })
     }
   )
-)
+);

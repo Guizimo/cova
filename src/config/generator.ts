@@ -59,7 +59,7 @@ export const DEFAULT_SETTINGS = {
   iconShadow: 0,
   iconImage: '',
   iconBgColor: 'transparent',
-  iconPadding: 0,
+  iconPadding: 0
 };
 
 export const PRESET_COLORS = [

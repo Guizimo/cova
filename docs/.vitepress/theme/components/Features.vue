@@ -22,7 +22,7 @@ const features = {
       content: '完美集成到我的工作流程中，节省了大量时间。'
     }
   ]
-}
+};
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const features = {
     <p class="subtitle">{{ features.subtitle }}</p>
     <div class="items">
       <div v-for="item in features.items" :key="item.name" class="item">
-        <img :src="item.avatar" :alt="item.name" class="avatar">
+        <img :src="item.avatar" :alt="item.name" class="avatar" />
         <h3 class="name">{{ item.name }}</h3>
         <p class="role">{{ item.role }}</p>
         <p class="content">{{ item.content }}</p>
