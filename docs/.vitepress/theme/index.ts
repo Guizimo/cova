@@ -16,7 +16,7 @@ export default {
         h('img', {
           src: '/logo.png',
           class: 'image',
-          alt: 'Cover Craft Logo'
+          alt: 'Cova Logo'
         })
       ])
     })

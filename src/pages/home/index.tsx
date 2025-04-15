@@ -12,10 +12,10 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 mb-32">
             <div className="w-64 h-64 mb-4">
               {/* 这里放置 Logo */}
-              <img src={logo} alt="Cover Craft Logo" className="w-full h-full" />
+              <img src={logo} alt="Cova Logo" className="w-full h-full" />
             </div>
             <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary">
-              Cover Craft
+              Cova
             </h1>
           </div>
           <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
@@ -32,7 +32,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <a href="https://github.com/guizimo/cover-craft" target="_blank">
+            <a href="https://github.com/guizimo/cova" target="_blank">
               <Button variant="outline" size="lg">
                 GitHub
               </Button>
@@ -111,7 +111,7 @@ export default function Home() {
             </a>
             . The source code is available on{' '}
             <a
-              href="https://github.com/guizimo/cover-craft"
+              href="https://github.com/guizimo/cova"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"

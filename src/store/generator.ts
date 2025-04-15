@@ -163,7 +163,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       })
     }),
     {
-      name: 'cover-craft-storage', // 存储的键名
+      name: 'cova-storage', // 存储的键名
       storage: {
         getItem: (name) => {
           const str = localStorage.getItem(name);

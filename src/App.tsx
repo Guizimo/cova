@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router basename={import.meta.env.DEV ? '/' : '/cover-craft'}>
+    <Router basename={import.meta.env.DEV ? '/' : '/cova'}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/generator" element={<Generator />} />

@@ -1,9 +1,9 @@
-# 🎨 Cover Craft
+# 🎨 Cova
 
 English | [简体中文](./README.zh-CN.md)
 
 <div align="center">
-  <img src="public/logo.png" alt="Cover Craft Logo" width="180" />
+  <img src="public/logo.png" alt="Cova Logo" width="180" />
   
   <p><em>A modern cover design tool that makes creation simple</em></p>
 
@@ -53,10 +53,10 @@ Make sure you have [Node.js](https://nodejs.org/) (v18+ recommended) and [pnpm](
 
 ```bash
 # Clone the repository
-git clone https://github.com/guizimo/cover-craft.git
+git clone https://github.com/guizimo/cova.git
 
 # Enter the project directory
-cd cover-craft
+cd co'va
 
 # Install dependencies
 pnpm install
@@ -66,7 +66,7 @@ pnpm dev
 ```
 ## 📁 Project Structure
 ```plaintext
-cover-craft/
+cova/
 ├── src/
 │ ├── components/ # React components
 │ ├── pages/ # Page components
@@ -131,4 +131,4 @@ If you have any questions or suggestions, please feel free to reach out:
 
 - Email : 17680262548@163.com
 - GitHub Issues : Here
-Thank you for using cover-craft ! If you find it helpful, please consider giving it a star ⭐️
+Thank you for using cova ! If you find it helpful, please consider giving it a star ⭐️

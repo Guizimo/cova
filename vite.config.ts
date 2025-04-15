@@ -6,7 +6,7 @@ import path from 'path';
 export default defineConfig(({ command }) => ({
   plugins: [react()],
   // 只在生产环境下设置 base
-  base: command === 'serve' ? '/' : '/cover-craft/',
+  base: command === 'serve' ? '/' : '/cova/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

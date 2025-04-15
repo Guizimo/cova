@@ -1,9 +1,9 @@
-# 🎨 Cover Craft
+# 🎨 Cova
 
 [English](./README.md) | 简体中文
 
 <div align="center">
-  <img src="public/logo.jpg" alt="Cover Craft Logo" width="180" />
+  <img src="public/logo.jpg" alt="Cova Logo" width="180" />
   
   <p><em>一个现代化的封面设计工具，让创作更简单</em></p>
 
@@ -56,10 +56,10 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/guizimo/cover-craft.git
+git clone https://github.com/guizimo/cova.git
 
 # 进入项目目录
-cd cover-craft
+cd cova
 
 # 安装依赖
 pnpm install
@@ -70,7 +70,7 @@ pnpm dev
 
 ## 📁 项目结构
 ```
-cover-craft/
+cova/
 ├── src/
 │ ├── components/ # React 组件
 │ ├── pages/ # 页面组件
@@ -149,10 +149,10 @@ pnpm dlx shadcn@latest add <component-name>
 
 - **Email**:  17680262548@163.com
 
-- **GitHub Issues**: [这里](https://github.com/guizimo/cover-craft/issues)
+- **GitHub Issues**: [这里](https://github.com/guizimo/cova/issues)
 
 
 
-感谢你使用`cover-craft`！希望它能对您有所帮助，别忘了点点星星哦。
+感谢你使用`cova`！希望它能对您有所帮助，别忘了点点星星哦。
 
 

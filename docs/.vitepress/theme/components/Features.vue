@@ -1,7 +1,7 @@
 <script setup>
 const features = {
   title: 'Loved by the Community',
-  subtitle: 'See what our users have to say about Cover Craft',
+  subtitle: 'See what our users have to say about Cova',
   items: [
     {
       avatar: '/avatars/user1.jpg',

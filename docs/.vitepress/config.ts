@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: "Cover Craft",
+  title: "Cova",
   description: "现代化的封面设计工具",
 
   locales: {
@@ -53,7 +53,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/guizimo/cover-craft' }
+      { icon: 'github', link: 'https://github.com/guizimo/cova' }
     ],
 
     footer: {
@@ -66,7 +66,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/guizimo/cover-craft/edit/main/docs/:path',
+      pattern: 'https://github.com/guizimo/cova/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     }
   },
