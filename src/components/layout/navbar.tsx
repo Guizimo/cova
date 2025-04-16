@@ -1,5 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { Menu, X, Globe, Check } from 'lucide-react';
@@ -19,7 +24,7 @@ interface NavbarProps {
 export function Navbar({ items = [] }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
-  
+
   const toggleLanguage = () => {
     const newLang = i18n.language === 'zh' ? 'en' : 'zh';
     i18n.changeLanguage(newLang);
@@ -28,28 +33,28 @@ export function Navbar({ items = [] }: NavbarProps) {
   const defaultItems: NavItem[] = [
     {
       label: t('nav.features'),
-      href: '/features',
+      href: '/features'
     },
     {
       label: t('nav.template'),
-      href: '/template',
+      href: '/template'
     },
     {
       label: t('nav.docs'),
-      href: '/docs',
+      href: '/docs'
     },
     {
       label: t('nav.faq'),
-      href: '/faq',
+      href: '/faq'
     },
     {
       label: t('nav.blog'),
-      href: '/blog',
+      href: '/blog'
     },
     {
       label: t('nav.contact'),
-      href: '/contact',
-    },
+      href: '/contact'
+    }
   ];
 
   const navItems = items.length ? items : defaultItems;
@@ -62,16 +67,16 @@ export function Navbar({ items = [] }: NavbarProps) {
             <img src={logo} alt="Cova Logo" className="h-[22px] w-[22px]" />
             <span className="text-lg font-medium">Cova</span>
           </Link>
-          
+
           {/* 桌面端菜单 */}
           <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className="flex items-center gap-1">
               {navItems.map((item, index) => (
-                <a 
+                <a
                   key={index}
                   href={item.href}
-                  target={item.isExternal ? "_blank" : undefined}
-                  rel={item.isExternal ? "noreferrer" : undefined}
+                  target={item.isExternal ? '_blank' : undefined}
+                  rel={item.isExternal ? 'noreferrer' : undefined}
                   className="rounded-md px-3 py-2 text-sm text-white/50 transition-colors hover:text-white hover:bg-white/[0.08]"
                 >
                   {item.label}
@@ -79,7 +84,7 @@ export function Navbar({ items = [] }: NavbarProps) {
               ))}
             </div>
           </div>
-          
+
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -87,13 +92,13 @@ export function Navbar({ items = [] }: NavbarProps) {
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            
+
             <div className="hidden md:flex items-center gap-3">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     className="h-8 text-sm text-white/50 hover:text-white hover:bg-white/[0.08]"
                   >
                     <Globe className="h-4 w-4" />
@@ -101,14 +106,14 @@ export function Navbar({ items = [] }: NavbarProps) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem 
+                  <DropdownMenuItem
                     onClick={() => i18n.changeLanguage('zh')}
                     className="flex items-center justify-between"
                   >
                     中文
                     {i18n.language === 'zh' && <Check className="h-4 w-4" />}
                   </DropdownMenuItem>
-                  <DropdownMenuItem 
+                  <DropdownMenuItem
                     onClick={() => i18n.changeLanguage('en')}
                     className="flex items-center justify-between"
                   >
@@ -118,9 +123,7 @@ export function Navbar({ items = [] }: NavbarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link to="/signup">
-                <Button 
-                  className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/90"
-                >
+                <Button className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/90">
                   {t('nav.getStarted')}
                 </Button>
               </Link>
@@ -136,8 +139,8 @@ export function Navbar({ items = [] }: NavbarProps) {
                 <a
                   key={index}
                   href={item.href}
-                  target={item.isExternal ? "_blank" : undefined}
-                  rel={item.isExternal ? "noreferrer" : undefined}
+                  target={item.isExternal ? '_blank' : undefined}
+                  rel={item.isExternal ? 'noreferrer' : undefined}
                   className="block px-3 py-2 text-base text-white/50 hover:text-white hover:bg-white/[0.08] rounded-md"
                   onClick={() => setIsOpen(false)}
                 >
@@ -147,8 +150,8 @@ export function Navbar({ items = [] }: NavbarProps) {
               <div className="pt-4 space-y-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="w-full h-10 text-white/50 hover:text-white hover:bg-white/[0.08] justify-start"
                     >
                       <Globe className="h-4 w-4" />
@@ -156,14 +159,14 @@ export function Navbar({ items = [] }: NavbarProps) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem 
+                    <DropdownMenuItem
                       onClick={() => i18n.changeLanguage('zh')}
                       className="flex items-center justify-between"
                     >
                       中文
                       {i18n.language === 'zh' && <Check className="h-4 w-4" />}
                     </DropdownMenuItem>
-                    <DropdownMenuItem 
+                    <DropdownMenuItem
                       onClick={() => i18n.changeLanguage('en')}
                       className="flex items-center justify-between"
                     >
@@ -173,11 +176,7 @@ export function Navbar({ items = [] }: NavbarProps) {
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <Link to="/signup" onClick={() => setIsOpen(false)}>
-                  <Button 
-                    className="w-full h-10 bg-white text-black hover:bg-white/90"
-                  >
-                    {t('nav.getStarted')}
-                  </Button>
+                  <Button className="w-full h-10 bg-white text-black hover:bg-white/90">{t('nav.getStarted')}</Button>
                 </Link>
               </div>
             </div>

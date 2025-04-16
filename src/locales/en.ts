@@ -16,7 +16,8 @@ export default {
   },
   features: {
     title: 'Built for Modern Creators',
-    description: 'Cova is shaped by creators\' practices and principles, focused on delivering the ultimate design experience.',
+    description:
+      "Cova is shaped by creators' practices and principles, focused on delivering the ultimate design experience.",
     learnMore: 'Learn More',
     cards: [
       {
