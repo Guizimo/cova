@@ -3,50 +3,14 @@ import { ArrowRight, Image, Wand2, Share2, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { Navbar } from '@/components/layout/navbar';
+import { Hero } from '@/components/layout/hero';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* 导航栏 */}
+    <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-
-      {/* Hero 部分 */}
-      <section className="container flex flex-col items-center justify-center py-20 md:py-32 text-center relative">
-        {/* 红色光晕背景效果 */}
-        <div className="absolute w-[600px] h-[600px] bg-red-600/30 rounded-full blur-[150px] opacity-50 -z-10"></div>
-        
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-3xl">
-          <span className="text-white">你的捷径，通往</span>
-          <br />
-          <span className="text-red-500">一切。</span>
-        </h1>
-        
-        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10">
-          强大生产力工具的集合，尽在一个可扩展的启动器中。快速、符合人体工程学且可靠。
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 mb-16">
-          <Button size="lg" className="w-full sm:w-auto bg-white text-black hover:bg-gray-200">
-            下载 Mac 版
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="lg" className="w-full sm:w-auto border-gray-700 hover:bg-gray-800 text-white">
-            加入 Windows 候补名单
-          </Button>
-        </div>
-        
-        <div className="text-sm text-gray-500">
-          v1.65.0 • 下载量 13万+ • 通过 Homebrew 安装
-        </div>
-        
-        <div className="mt-8 inline-flex items-center rounded-full border border-gray-700 px-4 py-2 text-sm bg-gray-900/80 backdrop-blur-sm">
-          <Sparkles className="mr-2 h-4 w-4 text-red-500" />
-          <span>引入 AI 扩展</span>
-          <span className="ml-2 text-gray-500">|</span>
-          <a href="#learn-more" className="ml-2 text-red-500 hover:text-red-400">了解更多 →</a>
-        </div>
-      </section>
-
+      <Hero />
+      
       {/* 特性部分 */}
       <section id="features" className="container py-20">
         <div className="text-center mb-16">
