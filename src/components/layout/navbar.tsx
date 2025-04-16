@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.png';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe, Check } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface NavItem {
   label: string;
@@ -16,29 +18,36 @@ interface NavbarProps {
 
 export function Navbar({ items = [] }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'zh' ? 'en' : 'zh';
+    i18n.changeLanguage(newLang);
+  };
+
   const defaultItems: NavItem[] = [
     {
-      label: 'Product',
-      href: '/product',
+      label: t('nav.features'),
+      href: '/features',
     },
     {
-      label: 'Resources',
-      href: '/resources',
+      label: t('nav.template'),
+      href: '/template',
     },
     {
-      label: 'Pricing',
-      href: '/pricing',
+      label: t('nav.docs'),
+      href: '/docs',
     },
     {
-      label: 'Customers',
-      href: '/customers',
+      label: t('nav.faq'),
+      href: '/faq',
     },
     {
-      label: 'Blog',
+      label: t('nav.blog'),
       href: '/blog',
     },
     {
-      label: 'Contact',
+      label: t('nav.contact'),
       href: '/contact',
     },
   ];
@@ -46,7 +55,7 @@ export function Navbar({ items = [] }: NavbarProps) {
   const navItems = items.length ? items : defaultItems;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-black/50 backdrop-blur-lg">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-black">
       <div className="mx-auto max-w-[1000px] px-6">
         <nav className="relative flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2 shrink-0">
@@ -72,28 +81,47 @@ export function Navbar({ items = [] }: NavbarProps) {
           </div>
           
           <div className="flex items-center gap-3 shrink-0">
-            {/* 移动端菜单按钮 */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-white/50 hover:text-white hover:bg-white/[0.08] rounded-md"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-
+            
             <div className="hidden md:flex items-center gap-3">
-              <Link to="/login">
-                <Button 
-                  variant="ghost" 
-                  className="h-8 text-sm text-white/50 hover:text-white hover:bg-white/[0.08]"
-                >
-                  Log in
-                </Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="h-8 text-sm text-white/50 hover:text-white hover:bg-white/[0.08]"
+                  >
+                    <Globe className="h-4 w-4" />
+                    {i18n.language === 'zh' ? '中文' : 'English'}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem 
+                    onClick={() => i18n.changeLanguage('zh')}
+                    className="flex items-center justify-between"
+                  >
+                    中文
+                    {i18n.language === 'zh' && <Check className="h-4 w-4" />}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => i18n.changeLanguage('en')}
+                    className="flex items-center justify-between"
+                  >
+                    English
+                    {i18n.language === 'en' && <Check className="h-4 w-4" />}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Link to="/signup">
                 <Button 
                   className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/90"
                 >
-                  Sign up
+                  {t('nav.getStarted')}
                 </Button>
               </Link>
             </div>
@@ -102,7 +130,7 @@ export function Navbar({ items = [] }: NavbarProps) {
 
         {/* 移动端菜单面板 */}
         {isOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden bg-black">
             <div className="px-2 py-4 space-y-1 border-t border-white/[0.08]">
               {navItems.map((item, index) => (
                 <a
@@ -117,19 +145,38 @@ export function Navbar({ items = [] }: NavbarProps) {
                 </a>
               ))}
               <div className="pt-4 space-y-2">
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full h-10 text-white/50 hover:text-white hover:bg-white/[0.08]"
-                  >
-                    Log in
-                  </Button>
-                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      className="w-full h-10 text-white/50 hover:text-white hover:bg-white/[0.08] justify-start"
+                    >
+                      <Globe className="h-4 w-4" />
+                      {i18n.language === 'zh' ? '中文' : 'English'}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem 
+                      onClick={() => i18n.changeLanguage('zh')}
+                      className="flex items-center justify-between"
+                    >
+                      中文
+                      {i18n.language === 'zh' && <Check className="h-4 w-4" />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
+                      onClick={() => i18n.changeLanguage('en')}
+                      className="flex items-center justify-between"
+                    >
+                      English
+                      {i18n.language === 'en' && <Check className="h-4 w-4" />}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Link to="/signup" onClick={() => setIsOpen(false)}>
                   <Button 
                     className="w-full h-10 bg-white text-black hover:bg-white/90"
                   >
-                    Sign up
+                    {t('nav.getStarted')}
                   </Button>
                 </Link>
               </div>
