@@ -28,10 +28,6 @@ export const router = createBrowserRouter([
     element: <div>Blog</div>
   },
   {
-    path: '/contact',
-    element: <div>Contact</div>
-  },
-  {
     path: '/generator',
     element: <Generator />
   },
