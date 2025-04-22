@@ -3,9 +3,9 @@
 [English](./README.md) | 简体中文
 
 <div align="center">
-  <img src="public/logo.jpg" alt="Cova Logo" width="180" />
+  <img src="public/logo.png" alt="Cova Logo" width="180" />
   
-  <p><em>一个现代化的封面设计工具，让创作更简单</em></p>
+  <p><em>一款让创作变得简单的现代封面设计工具</em></p>
 
   <p align="center">
     <img src="https://img.shields.io/badge/React-18.3.1-61dafb?style=flat-square&logo=react" alt="React" />
@@ -16,25 +16,22 @@
 
   <p>
     <a href="#预览">预览</a> •
-    <a href="#特性介绍">特性介绍</a> •
+    <a href="#特性">特性</a> •
     <a href="#技术栈">技术栈</a> •
     <a href="#快速开始">快速开始</a> •
-    <a href="#开发指南">开发指南</a>
+    <a href="#开发">开发</a>
   </p>
-
 </div>
-
----
 
 ## 📸 预览
 
 <div align="center">
   <img src="public/preview-1.jpg" alt="编辑器界面" width="800" />
-  <p><em>极简主义</em></p>
+  <p><em>极简设计</em></p>
 </div>
 
 <div align="center">
-  <img src="public/preview-2.jpg" alt="导出效果" width="800" />
+  <img src="public/preview-2.jpg" alt="导出结果" width="800" />
   <p><em>强大的编辑器界面</em></p>
 </div>
 
@@ -46,16 +43,16 @@
 - ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.17-38bdf8)
 
 ### UI 组件
-- Radix UI - 无障碍的 React UI 原语
-- Lucide React - 美观的图标库
+- Radix UI - 可访问的 React UI 原语
+- Lucide React - 精美的图标库
 - React Resizable Panels - 可调整大小的面板组件
 
 ## 🚀 快速开始
 
-确保你的开发环境中已安装 [Node.js](https://nodejs.org/) (推荐 v18+) 和 [pnpm](https://pnpm.io/)。
+确保您的开发环境中已安装 [Node.js](https://nodejs.org/)（推荐 v18+）和 [pnpm](https://pnpm.io/)。
 
 ```bash
-# 克隆项目
+# 克隆仓库
 git clone https://github.com/guizimo/cova.git
 
 # 进入项目目录
@@ -69,7 +66,7 @@ pnpm dev
 ```
 
 ## 📁 项目结构
-```
+```plaintext
 cova/
 ├── src/
 │ ├── components/ # React 组件
@@ -79,17 +76,21 @@ cova/
 ├── public/ # 静态资源
 └── package.json # 项目配置
 ```
-## 🎯 功能特性
 
-- 现代化的用户界面
+## 🎯 特性
+- 现代用户界面
 - 响应式设计
 - 可调整布局
-- 图片导出功能
+- 图像导出功能
 - 实时预览
+- 多种预设模板
+- 自定义尺寸支持
+- 背景自定义
+- 文本样式选项
+- 图标管理
 
-## 💻 开发指南
-
-### 可用的脚本命令
+## 💻 开发
+### 可用脚本
 ```bash
 pnpm dev # 启动开发服务器
 pnpm build # 构建生产版本
@@ -97,62 +98,47 @@ pnpm preview # 预览生产构建
 pnpm lint # 运行 ESLint 检查
 ```
 
-### 添加新的组件
-```bash
-pnpm dlx shadcn@latest add <component-name>
-```
-
-### 开发环境要求
-
+### 要求
 - Node.js >= 18.x
 - pnpm >= 9.15.0
 
-## 📦 依赖说明
-
-### 核心依赖
-- `react` & `react-dom`: React 核心库
-- `vite`: 现代前端构建工具
-- `typescript`: JavaScript 的超集，提供类型支持
+## 📦 依赖
+### 核心
+- react & react-dom：React 核心库
+- vite：现代前端构建工具
+- typescript：带类型支持的 JavaScript 超集
 
 ### UI 组件
-- `@radix-ui/*`: 无障碍的 React UI 组件
-- `lucide-react`: 图标库
-- `react-resizable-panels`: 可调整大小的面板
+- @radix-ui/*：可访问的 React UI 组件
+- lucide-react：图标库
+- react-resizable-panels：可调整大小的面板
 
 ### 工具库
-- `file-saver`: 文件保存功能
-- `html2canvas`: HTML 转换为 canvas
-- `clsx` & `tailwind-merge`: 样式工具
-
+- file-saver：文件保存功能
+- html2canvas：HTML 转 canvas 转换
+- clsx & tailwind-merge：样式工具
 
 ## 更新日志
-
-[**Changelog**](./CHANGELOG.md) - 查看项目的更新日志
+详情请查看 CHANGELOG.md。
 
 ## 贡献
+欢迎贡献！以下是贡献方式：
 
-欢迎任何形式的贡献！你可以通过以下方式贡献代码：
+1. Fork 仓库
+2. 创建功能分支（`git checkout -b feature/amazing-feature`）
+3. 提交更改（`git commit -am 'Add some amazing feature'`）
+4. 推送到分支（`git push origin feature/amazing-feature`）
+5. 开启 Pull Request
 
-1. Fork 此仓库
-2. 创建你的功能分支 (git checkout -b feature/fooBar)
-3. 提交你的更改 (git commit -am 'Add some fooBar')
-4. 推送到分支 (git push origin feature/fooBar)
-5. 创建一个新的Pull Request
+## 许可证
+本项目采用 GPL-3.0 许可证 - 详情请查看 LICENSE 文件。
 
-## 许可
+## 联系方式
+如果您有任何问题或建议，请随时联系：
 
-该项目基于 GPL-3.0 License 许可证。详情请参阅 [LICENSE](LICENSE) 文件。
+- 邮箱：17680262548@163.com
+- GitHub Issues：[这里](https://github.com/guizimo/cova/issues)
 
-## 联系
+感谢您使用 Cova！如果您觉得它有用，请考虑给它一个星标 ⭐️
 
-如果你有任何问题或建议，请通过以下方式联系我：
-
-- **Email**:  17680262548@163.com
-
-- **GitHub Issues**: [这里](https://github.com/guizimo/cova/issues)
-
-
-
-感谢你使用`cova`！希望它能对您有所帮助，别忘了点点星星哦。
-
-
+        
