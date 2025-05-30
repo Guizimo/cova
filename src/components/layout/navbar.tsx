@@ -25,11 +25,6 @@ export function Navbar({ items = [] }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'zh' ? 'en' : 'zh';
-    i18n.changeLanguage(newLang);
-  };
-
   const defaultItems: NavItem[] = [
     {
       label: t('nav.features'),
