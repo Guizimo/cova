@@ -4,10 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig(({}) => ({
   plugins: [react(), tailwindcss()],
-  // 只在生产环境下设置 base
-  base: command === 'serve' ? '/' : '/cova/',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
