@@ -54,5 +54,12 @@ export default {
     privacy: 'Privacy Policy',
     copyright: '© 2024 Cova. All rights reserved.',
     builtBy: 'Built by Guizimo'
+  },
+  notFound: {
+    title: 'Page Not Found',
+    subtitle: '404',
+    description: "Sorry, the page you're looking for doesn't exist. It may have been moved, deleted, or you entered the wrong URL.",
+    backHome: 'Back to Home',
+    contactSupport: 'Contact Support'
   }
 };

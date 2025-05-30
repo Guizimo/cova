@@ -53,5 +53,12 @@ export default {
     privacy: '隐私政策',
     copyright: '© 2024 Cova. All rights reserved.',
     builtBy: '由 Guizimo 构建'
+  },
+  notFound: {
+    title: '页面未找到',
+    subtitle: '404',
+    description: '抱歉，您访问的页面不存在。可能是页面已被删除，或者您输入的地址有误。',
+    backHome: '返回首页',
+    contactSupport: '联系支持'
   }
 };
