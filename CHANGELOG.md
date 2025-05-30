@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com/guizimo/cova/compare/v0.0.21...v0.0.22) (2025-05-30)
+
+
+### Features
+
+* **locales:** 添加404页面未找到的本地化文本 ([5deab23](https://github.com/guizimo/cova/commit/5deab23e5a4bbf4bf378fa2b42c0e9bfe1af8002))
+
 ### [0.0.21](https://github.com/guizimo/cova/compare/v0.0.20...v0.0.21) (2025-05-30)
 
 ### [0.0.20](https://github.com/guizimo/cova/compare/v0.0.19...v0.0.20) (2025-05-30)
