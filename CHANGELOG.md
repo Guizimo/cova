@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/guizimo/cova/compare/v0.0.19...v0.0.20) (2025-05-30)
+
+
+### Features
+
+* 更新主页样式并添加 tw-animate-css 依赖 ([a100879](https://github.com/guizimo/cova/commit/a10087980a7b84e35c2d513e859f6eebba8f8db1))
+* 将项目名称从 Cover Craft 更改为 Cova ([f40ebfe](https://github.com/guizimo/cova/commit/f40ebfe6242afb917fb877e5148f60b3b30eb1da))
+* **首页:** 添加新的导航栏组件并更新首页样式 ([c7003c6](https://github.com/guizimo/cova/commit/c7003c6e399632b57833c12856244cb5ee8fa210))
+* **Header:** 添加 GitHub 仓库星标显示功能 ([0278017](https://github.com/guizimo/cova/commit/027801758d23d65838f73194b06bcf55b7ba1c90))
+* **home:** 将 Hero 部分提取为独立组件以提高代码复用性 ([a94e827](https://github.com/guizimo/cova/commit/a94e8279705ce9da27cad6c8fd6802c25ba0e48b))
+* **home:** 将特性、CTA和页脚组件提取到独立文件中 ([69c564c](https://github.com/guizimo/cova/commit/69c564cb1766a76f42107f018a2a2737e66f2bef))
+* **i18n:** 添加多语言支持，实现中英文切换功能 ([fe9352a](https://github.com/guizimo/cova/commit/fe9352ac8e81f0f241de569a92c0b8a3a8562d5d))
+* **router:** 添加生成器页面路由 ([43c083a](https://github.com/guizimo/cova/commit/43c083aa95c46ed6a80e189dd547f368140c8098))
+
 ### [0.0.19](https://github.com/guizimo/cova/compare/v0.0.18...v0.0.19) (2025-04-06)
 
 
