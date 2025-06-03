@@ -66,97 +66,104 @@ export function Preview() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] flex-col">
-      <div className="flex-1 overflow-auto bg-muted/40">
+    <div className="flex h-full flex-col bg-black">
+      <div className="flex-1 overflow-auto bg-[#0a0a0a]">
         <div className="flex h-full items-center justify-center p-6">
           {/* 导出加载层 */}
           {isExporting && (
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-              <div className="flex flex-col items-center space-y-2">
+            <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-50">
+              <div className="flex flex-col items-center space-y-3">
                 <Loader2 className="w-8 h-8 text-white animate-spin" />
                 <span className="text-white text-sm">正在导出...</span>
               </div>
             </div>
           )}
-          <div
-            id="cover-preview"
-            className="border-0 relative overflow-hidden"
-            style={{
-              width: isCustomSize ? customWidth : selectedSize.width,
-              height: isCustomSize ? customHeight : selectedSize.height,
-              borderRadius: `${borderRadius}px`,
-              position: 'relative'
-            }}
-          >
-            {/* 背景层 */}
+          
+          {/* 预览容器 */}
+          <div className="relative">
+            {/* 背景装饰 */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-2xl blur-xl opacity-20" />
+            
             <div
+              id="cover-preview"
+              className="border border-white/10 relative overflow-hidden shadow-2xl"
               style={{
-                position: 'absolute',
-                inset: 0,
-                ...backgroundStyle
+                width: isCustomSize ? customWidth : selectedSize.width,
+                height: isCustomSize ? customHeight : selectedSize.height,
+                borderRadius: `${borderRadius}px`,
+                position: 'relative'
               }}
-            />
-
-            {/* 毛玻璃效果层 */}
-            {backdropBlur > 0 && (
+            >
+              {/* 背景层 */}
               <div
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  backdropFilter: `blur(${backdropBlur}px)`,
-                  WebkitBackdropFilter: `blur(${backdropBlur}px)`,
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                  ...backgroundStyle
                 }}
               />
-            )}
 
-            {/* 内容层 */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                fontSize: `${fontSize}px`,
-                fontFamily,
-                fontWeight,
-                fontStyle,
-                color: textColor,
-                letterSpacing: `${letterSpacing}px`,
-                width: '100%',
-                textAlign: 'center',
-                whiteSpace: 'pre-wrap',
-                lineHeight: lineHeight,
-                zIndex: 1
-              }}
-            >
-              {title}
-            </div>
+              {/* 毛玻璃效果层 */}
+              {backdropBlur > 0 && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backdropFilter: `blur(${backdropBlur}px)`,
+                    WebkitBackdropFilter: `blur(${backdropBlur}px)`,
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                  }}
+                />
+              )}
 
-            {/* 图标层 */}
-            {showIcon && iconImage && (
+              {/* 内容层 */}
               <div
                 style={{
                   position: 'absolute',
-                  width: `${iconSize}px`,
-                  height: `${iconSize}px`,
-                  borderRadius: `${iconBorderRadius}px`,
-                  boxShadow: iconShadow ? `0 0 ${iconShadow}px rgba(0, 0, 0, 0.2)` : 'none',
-                  padding: `${iconPadding}px`,
-                  backgroundColor: iconBgColor,
-                  ...getIconPosition()
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: `${fontSize}px`,
+                  fontFamily,
+                  fontWeight,
+                  fontStyle,
+                  color: textColor,
+                  letterSpacing: `${letterSpacing}px`,
+                  width: '100%',
+                  textAlign: 'center',
+                  whiteSpace: 'pre-wrap',
+                  lineHeight: lineHeight,
+                  zIndex: 1
                 }}
               >
-                <img
-                  src={iconImage}
-                  alt="Icon"
-                  className="w-full h-full object-cover"
-                  style={{
-                    borderRadius: `${iconBorderRadius}px`
-                  }}
-                />
+                {title}
               </div>
-            )}
+
+              {/* 图标层 */}
+              {showIcon && iconImage && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: `${iconSize}px`,
+                    height: `${iconSize}px`,
+                    borderRadius: `${iconBorderRadius}px`,
+                    boxShadow: iconShadow ? `0 0 ${iconShadow}px rgba(0, 0, 0, 0.2)` : 'none',
+                    padding: `${iconPadding}px`,
+                    backgroundColor: iconBgColor,
+                    ...getIconPosition()
+                  }}
+                >
+                  <img
+                    src={iconImage}
+                    alt="Icon"
+                    className="w-full h-full object-cover"
+                    style={{
+                      borderRadius: `${iconBorderRadius}px`
+                    }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

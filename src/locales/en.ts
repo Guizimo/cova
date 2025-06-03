@@ -61,5 +61,21 @@ export default {
     description: "Sorry, the page you're looking for doesn't exist. It may have been moved, deleted, or you entered the wrong URL.",
     backHome: 'Back to Home',
     contactSupport: 'Contact Support'
+  },
+  generator: {
+    title: 'Cova Cover Generator',
+    version: 'version',
+    buttons: {
+      reset: 'Reset',
+      share: 'Share',
+      export: 'Export',
+      backToHome: 'Back to Home'
+    },
+    export: {
+      png: 'PNG Format',
+      jpeg: 'JPEG Format',
+      webp: 'WebP Format',
+      avif: 'AVIF Format'
+    }
   }
 };

@@ -60,5 +60,21 @@ export default {
     description: '抱歉，您访问的页面不存在。可能是页面已被删除，或者您输入的地址有误。',
     backHome: '返回首页',
     contactSupport: '联系支持'
+  },
+  generator: {
+    title: 'Cova 封面生成器',
+    version: '版本',
+    buttons: {
+      reset: '重置',
+      share: '分享',
+      export: '导出',
+      backToHome: '返回首页'
+    },
+    export: {
+      png: 'PNG 格式',
+      jpeg: 'JPEG 格式',
+      webp: 'WebP 格式',
+      avif: 'AVIF 格式'
+    }
   }
 };

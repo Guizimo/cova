@@ -5,17 +5,19 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 
 export default function Generator() {
   return (
-    <div className="h-screen min-w-[1000px] overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
       <Header />
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={30} minSize={30} maxSize={30}>
-          <ConfigPanel />
-        </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel defaultSize={70}>
-          <Preview />
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      <div className="flex-1 h-[calc(100vh-64px)]">
+        <ResizablePanelGroup direction="horizontal" className="h-full">
+          <ResizablePanel defaultSize={30} minSize={25} maxSize={35} className="border-r border-white/[0.08]">
+            <ConfigPanel />
+          </ResizablePanel>
+          <ResizableHandle className="w-px bg-white/[0.08] hover:bg-white/[0.15] transition-colors" />
+          <ResizablePanel defaultSize={70}>
+            <Preview />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
     </div>
   );
 }
