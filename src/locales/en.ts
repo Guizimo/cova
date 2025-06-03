@@ -76,6 +76,77 @@ export default {
       jpeg: 'JPEG Format',
       webp: 'WebP Format',
       avif: 'AVIF Format'
+    },
+    config: {
+      title: {
+        label: 'Title',
+        placeholder: 'Enter your title'
+      },
+      size: {
+        label: 'Cover Size',
+        custom: 'Custom',
+        width: 'Width',
+        height: 'Height'
+      },
+      font: {
+        label: 'Font Settings',
+        family: 'Font Family',
+        size: 'Font Size',
+        weight: 'Font Weight',
+        style: 'Font Style',
+        lineHeight: 'Line Height',
+        letterSpacing: 'Letter Spacing',
+        color: 'Text Color',
+        normal: 'Normal',
+        italic: 'Italic',
+        thin: 'Thin',
+        light: 'Light',
+        regular: 'Regular',
+        medium: 'Medium',
+        semibold: 'Semi Bold',
+        bold: 'Bold',
+        heavy: 'Heavy'
+      },
+      background: {
+        label: 'Background Settings',
+        type: 'Type',
+        solid: 'Solid',
+        gradient: 'Gradient',
+        image: 'Image',
+        transparent: 'Transparent',
+        color: 'Background Color',
+        gradientStart: 'Gradient Start',
+        gradientEnd: 'Gradient End',
+        gradientAngle: 'Gradient Angle',
+        uploadImage: 'Upload Image',
+        imageSize: 'Image Size',
+        imagePosition: 'Image Position',
+        borderRadius: 'Border Radius',
+        backdropBlur: 'Backdrop Blur',
+        cover: 'Cover',
+        contain: 'Contain',
+        center: 'Center',
+        topLeft: 'Top Left',
+        topRight: 'Top Right',
+        bottomLeft: 'Bottom Left',
+        bottomRight: 'Bottom Right'
+      },
+      icon: {
+        label: 'Icon Settings',
+        show: 'Show Icon',
+        position: 'Position',
+        size: 'Size',
+        borderRadius: 'Border Radius',
+        shadow: 'Shadow',
+        backgroundColor: 'Background Color',
+        padding: 'Padding',
+        uploadIcon: 'Upload Icon',
+        center: 'Center',
+        topLeft: 'Top Left',
+        topRight: 'Top Right',
+        bottomLeft: 'Bottom Left',
+        bottomRight: 'Bottom Right'
+      }
     }
   }
 };

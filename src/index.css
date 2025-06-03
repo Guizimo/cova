@@ -114,7 +114,49 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    @apply bg-black;
+    /* 防止在移动设备上拖拉时出现白色背景 */
+    background-color: #000000 !important;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white;
+    /* 确保整个body都是深色背景 */
+    background-color: #000000 !important;
+    /* 防止页面边界出现白色 */
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* 确保根容器也有深色背景 */
+  #root {
+    @apply bg-black min-h-screen;
+    background-color: #000000 !important;
+  }
+  
+  /* 自定义滚动条样式 */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
   }
 }

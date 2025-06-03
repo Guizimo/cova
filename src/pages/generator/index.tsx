@@ -5,7 +5,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 
 export default function Generator() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
+    <div className="flex flex-col h-screen bg-black text-white overflow-hidden">
       <Header />
       <div className="flex-1 h-[calc(100vh-64px)]">
         <ResizablePanelGroup direction="horizontal" className="h-full">

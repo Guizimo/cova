@@ -7,9 +7,11 @@ import { Upload } from 'lucide-react';
 import { useGeneratorStore } from '@/store/generator';
 import { handleImageUpload } from '@/utils/generator';
 import { PRESET_COLORS, PRESET_GRADIENTS } from '@/config/generator';
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
 export function BackgroundConfig() {
+  const { t } = useTranslation();
   const {
     backgroundType,
     setBackgroundType,
@@ -68,27 +70,54 @@ export function BackgroundConfig() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-medium">背景设置</h3>
+        <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
+          {t('generator.config.background.label')}
+        </h3>
       </div>
       <div className="space-y-4">
         <Tabs value={backgroundType} onValueChange={setBackgroundType}>
-          <div className="space-y-2">
-            <Label className="text-muted-foreground">模式</Label>
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="solid">纯色</TabsTrigger>
-              <TabsTrigger value="gradient">渐变</TabsTrigger>
-              <TabsTrigger value="image">图片</TabsTrigger>
-              <TabsTrigger value="transparent">透明</TabsTrigger>
+          <div className="space-y-3">
+            <Label className="text-white/60 text-xs uppercase tracking-wide">
+              {t('generator.config.background.type')}
+            </Label>
+            <div className="mt-2">
+            <TabsList className="grid w-full grid-cols-4 bg-white/5 border-white/10">
+              <TabsTrigger 
+                value="solid"
+                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+              >
+                {t('generator.config.background.solid')}
+              </TabsTrigger>
+              <TabsTrigger 
+                value="gradient"
+                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+              >
+                {t('generator.config.background.gradient')}
+              </TabsTrigger>
+              <TabsTrigger 
+                value="image"
+                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+              >
+                {t('generator.config.background.image')}
+              </TabsTrigger>
+              <TabsTrigger 
+                value="transparent"
+                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+              >
+                {t('generator.config.background.transparent')}
+              </TabsTrigger>
             </TabsList>
+            </div>
+            
           </div>
           <TabsContent value="solid" className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">预设颜色</Label>
-              <div className="grid grid-cols-10 gap-1.5">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">预设颜色</Label>
+              <div className="grid grid-cols-10 gap-1.5 mt-2">
                 {PRESET_COLORS.map(({ value, label }) => (
                   <button
                     key={value}
-                    className="w-6 h-6 rounded-md border relative group hover:scale-110 transition-transform"
+                    className="w-6 h-6 rounded-md border border-white/20 relative group hover:scale-110 transition-transform"
                     style={{ backgroundColor: value }}
                     onClick={() => handleColorChange(value)}
                     title={label}
@@ -104,13 +133,13 @@ export function BackgroundConfig() {
             </div>
 
             {colorHistory.length > 0 && (
-              <div className="space-y-2">
-                <Label className="text-muted-foreground">最近使用</Label>
-                <div className="grid grid-cols-10 gap-1.5">
+              <div className="space-y-3">
+                <Label className="text-white/60 text-xs uppercase tracking-wide">最近使用</Label>
+                <div className="grid grid-cols-10 gap-1.5 mt-2">
                   {colorHistory.map((color) => (
                     <button
                       key={color}
-                      className="w-6 h-6 rounded-md border relative group hover:scale-110 transition-transform"
+                      className="w-6 h-6 rounded-md border border-white/20 relative group hover:scale-110 transition-transform"
                       style={{ backgroundColor: color }}
                       onClick={() => handleColorChange(color)}
                     >
@@ -125,30 +154,39 @@ export function BackgroundConfig() {
               </div>
             )}
 
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">自定义颜色</Label>
-              <div className="flex space-x-2">
-                <Input value={backgroundColor} onChange={(e) => handleColorChange(e.target.value)} />
-                <div className="relative w-10">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.color')}
+              </Label>
+              <div className="flex space-x-2 mt-2">
+                <Input 
+                  value={backgroundColor} 
+                  onChange={(e) => handleColorChange(e.target.value)}
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
+                />
+                <div className="relative w-10 h-9">
                   <input
                     type="color"
                     value={backgroundColor}
                     onChange={(e) => handleColorChange(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div className="w-full h-full rounded-md border" style={{ backgroundColor }} />
+                  <div 
+                    className="w-full h-full rounded-md border border-white/20" 
+                    style={{ backgroundColor }} 
+                  />
                 </div>
               </div>
             </div>
           </TabsContent>
           <TabsContent value="gradient" className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">预设渐变</Label>
-              <div className="grid grid-cols-5 gap-1.5">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">预设渐变</Label>
+              <div className="grid grid-cols-5 gap-1.5 mt-2">
                 {PRESET_GRADIENTS.map(({ start, end, label }) => (
                   <button
                     key={`${start}-${end}`}
-                    className="w-full h-6 rounded-md border relative group hover:scale-110 transition-transform"
+                    className="w-full h-6 rounded-md border border-white/20 relative group hover:scale-110 transition-transform"
                     style={{
                       background: `linear-gradient(${gradientAngle}deg, ${start}, ${end})`
                     }}
@@ -165,13 +203,13 @@ export function BackgroundConfig() {
               </div>
             </div>
             {gradientHistory.length > 0 && (
-              <div className="space-y-2">
-                <Label className="text-muted-foreground">最近使用</Label>
-                <div className="grid grid-cols-5 gap-1.5">
+              <div className="space-y-3">
+                <Label className="text-white/60 text-xs uppercase tracking-wide">最近使用</Label>
+                <div className="grid grid-cols-5 gap-1.5 mt-2">
                   {gradientHistory.map(({ start, end }) => (
                     <button
                       key={`${start}-${end}`}
-                      className="w-full h-6 rounded-md border relative group hover:scale-110 transition-transform"
+                      className="w-full h-6 rounded-md border border-white/20 relative group hover:scale-110 transition-transform"
                       style={{
                         background: `linear-gradient(${gradientAngle}deg, ${start}, ${end})`
                       }}
@@ -188,39 +226,59 @@ export function BackgroundConfig() {
               </div>
             )}
 
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">起始颜色</Label>
-              <div className="flex space-x-2">
-                <Input value={gradientStart} onChange={(e) => setGradientStart(e.target.value)} />
-                <div className="relative w-10">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.gradientStart')}
+              </Label>
+              <div className="flex space-x-2 mt-2">
+                <Input 
+                  value={gradientStart} 
+                  onChange={(e) => setGradientStart(e.target.value)}
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
+                />
+                <div className="relative w-10 h-9">
                   <input
                     type="color"
                     value={gradientStart}
                     onChange={(e) => setGradientStart(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div className="w-full h-full rounded-md border" style={{ backgroundColor: gradientStart }} />
+                  <div 
+                    className="w-full h-full rounded-md border border-white/20" 
+                    style={{ backgroundColor: gradientStart }} 
+                  />
                 </div>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">结束颜色</Label>
-              <div className="flex space-x-2">
-                <Input value={gradientEnd} onChange={(e) => setGradientEnd(e.target.value)} />
-                <div className="relative w-10">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.gradientEnd')}
+              </Label>
+              <div className="flex space-x-2 mt-2">
+                <Input 
+                  value={gradientEnd} 
+                  onChange={(e) => setGradientEnd(e.target.value)}
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
+                />
+                <div className="relative w-10 h-9">
                   <input
                     type="color"
                     value={gradientEnd}
                     onChange={(e) => setGradientEnd(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div className="w-full h-full rounded-md border" style={{ backgroundColor: gradientEnd }} />
+                  <div 
+                    className="w-full h-full rounded-md border border-white/20" 
+                    style={{ backgroundColor: gradientEnd }} 
+                  />
                 </div>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label className="text-muted-foreground">渐变角度</Label>
-              <div className="flex items-center space-x-2">
+            <div className="space-y-3">
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.gradientAngle')}
+              </Label>
+              <div className="flex items-center space-x-3 mt-2">
                 <Slider
                   value={[gradientAngle]}
                   onValueChange={([value]) => setGradientAngle(value)}
@@ -229,7 +287,7 @@ export function BackgroundConfig() {
                   step={1}
                   className="flex-1"
                 />
-                <span className="w-12 text-sm text-muted-foreground text-right">{gradientAngle}°</span>
+                <span className="w-12 text-sm text-white/60 text-right">{gradientAngle}°</span>
               </div>
             </div>
           </TabsContent>
@@ -237,13 +295,15 @@ export function BackgroundConfig() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2">
-                  <Label className="text-muted-foreground">本地上传</Label>
+                  <Label className="text-white/60 text-xs uppercase tracking-wide">
+                    {t('generator.config.background.uploadImage')}
+                  </Label>
                   <div className="mt-2">
                     <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50">
+                      <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:bg-white/5 transition-colors">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                          <Upload className="w-8 h-8 mb-2 text-muted-foreground" />
-                          <p className="text-sm text-muted-foreground">点击上传图片</p>
+                          <Upload className="w-8 h-8 mb-2 text-white/40" />
+                          <p className="text-sm text-white/60">点击上传图片</p>
                         </div>
                         <input
                           type="file"
@@ -256,35 +316,47 @@ export function BackgroundConfig() {
                   </div>
                 </div>
                 <div className="col-span-2">
-                  <Label className="text-muted-foreground">图片链接</Label>
+                  <Label className="text-white/60 text-xs uppercase tracking-wide">图片链接</Label>
                   <div className="mt-2">
                     <Input
                       placeholder="输入图片链接"
                       value={backgroundImage}
                       onChange={(e) => setBackgroundImage(e.target.value)}
+                      className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                     />
                   </div>
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label className="text-muted-foreground">图片填充方式</Label>
+              <div className="space-y-3">
+                <Label className="text-white/60 text-xs uppercase tracking-wide">
+                  {t('generator.config.background.imageSize')}
+                </Label>
+                <div className="mt-2">
                 <Select value={backgroundSize} onValueChange={(value: 'cover' | 'contain') => setBackgroundSize(value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="选择填充方式" />
+                  <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
+                    <SelectValue placeholder={t('generator.config.background.imageSize')} />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="cover">填充</SelectItem>
-                    <SelectItem value="contain">适应</SelectItem>
+                  <SelectContent className="bg-black border-white/10">
+                    <SelectItem value="cover" className="text-white hover:bg-white/10 focus:bg-white/10">
+                      {t('generator.config.background.cover')}
+                    </SelectItem>
+                    <SelectItem value="contain" className="text-white hover:bg-white/10 focus:bg-white/10">
+                      {t('generator.config.background.contain')}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
+                </div>
+                
               </div>
             </div>
           </TabsContent>
         </Tabs>
         {/* 添加毛玻璃效果设置 */}
-        <div className="space-y-2">
-          <Label className="text-muted-foreground">毛玻璃效果</Label>
-          <div className="flex items-center space-x-2">
+        <div className="space-y-3">
+          <Label className="text-white/60 text-xs uppercase tracking-wide">
+            {t('generator.config.background.backdropBlur')}
+          </Label>
+          <div className="flex items-center space-x-3 mt-2">
             <Slider
               value={[backdropBlur]}
               onValueChange={([value]) => setBackdropBlur(value)}
@@ -293,12 +365,14 @@ export function BackgroundConfig() {
               step={0.5}
               className="flex-1"
             />
-            <span className="w-12 text-sm text-muted-foreground text-right">{backdropBlur}px</span>
+            <span className="w-12 text-sm text-white/60 text-right">{backdropBlur}px</span>
           </div>
         </div>
-        <div className="space-y-2">
-          <Label className="text-muted-foreground">背景圆角大小</Label>
-          <div className="flex items-center space-x-2">
+        <div className="space-y-3">
+          <Label className="text-white/60 text-xs uppercase tracking-wide">
+            {t('generator.config.background.borderRadius')}
+          </Label>
+          <div className="flex items-center space-x-3 mt-2">
             <Slider
               value={[borderRadius]}
               onValueChange={([value]) => setBorderRadius(value)}
@@ -307,7 +381,7 @@ export function BackgroundConfig() {
               step={1}
               className="flex-1"
             />
-            <span className="w-12 text-sm text-muted-foreground text-right">{borderRadius}px</span>
+            <span className="w-12 text-sm text-white/60 text-right">{borderRadius}px</span>
           </div>
         </div>
       </div>

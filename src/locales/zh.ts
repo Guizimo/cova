@@ -75,6 +75,77 @@ export default {
       jpeg: 'JPEG 格式',
       webp: 'WebP 格式',
       avif: 'AVIF 格式'
+    },
+    config: {
+      title: {
+        label: '标题',
+        placeholder: '输入您的标题'
+      },
+      size: {
+        label: '封面尺寸',
+        custom: '自定义',
+        width: '宽度',
+        height: '高度'
+      },
+      font: {
+        label: '字体设置',
+        family: '字体',
+        size: '字体大小',
+        weight: '字体粗细',
+        style: '字体样式',
+        lineHeight: '行高',
+        letterSpacing: '字间距',
+        color: '文字颜色',
+        normal: '正常',
+        italic: '斜体',
+        thin: '细体',
+        light: '轻体',
+        regular: '常规',
+        medium: '中等',
+        semibold: '半粗',
+        bold: '粗体',
+        heavy: '重体'
+      },
+      background: {
+        label: '背景设置',
+        type: '类型',
+        solid: '纯色',
+        gradient: '渐变',
+        image: '图片',
+        transparent: '透明',
+        color: '背景颜色',
+        gradientStart: '渐变起始色',
+        gradientEnd: '渐变结束色',
+        gradientAngle: '渐变角度',
+        uploadImage: '上传图片',
+        imageSize: '图片尺寸',
+        imagePosition: '图片位置',
+        borderRadius: '圆角',
+        backdropBlur: '背景模糊',
+        cover: '覆盖',
+        contain: '包含',
+        center: '居中',
+        topLeft: '左上',
+        topRight: '右上',
+        bottomLeft: '左下',
+        bottomRight: '右下'
+      },
+      icon: {
+        label: '图标设置',
+        show: '显示图标',
+        position: '位置',
+        size: '大小',
+        borderRadius: '圆角',
+        shadow: '阴影',
+        backgroundColor: '背景色',
+        padding: '内边距',
+        uploadIcon: '上传图标',
+        center: '居中',
+        topLeft: '左上',
+        topRight: '右上',
+        bottomLeft: '左下',
+        bottomRight: '右下'
+      }
     }
   }
 };
