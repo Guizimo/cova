@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.25](https://github.com/guizimo/cova/compare/v0.0.24...v0.0.25) (2025-06-03)
+
+
+### Bug Fixes
+
+* **html:** 精简index.html文件，移除冗余的HTML结构和标签 ([e7b1b7c](https://github.com/guizimo/cova/commit/e7b1b7ce5e1781188f4d45993d8fda35249fe346))
+
 ### [0.0.24](https://github.com/guizimo/cova/compare/v0.0.23...v0.0.24) (2025-06-03)
 
 
