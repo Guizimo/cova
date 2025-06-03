@@ -25,10 +25,6 @@ export const router = createBrowserRouter([
     element: <div>FAQ</div>
   },
   {
-    path: '/blog',
-    element: <div>Blog</div>
-  },
-  {
     path: '/generator',
     element: <Generator />
   },

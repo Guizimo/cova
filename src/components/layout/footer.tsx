@@ -34,9 +34,14 @@ export function Footer() {
               <Link to="/docs" className="text-white/40 hover:text-white/60">
                 {t('footer.docs')}
               </Link>
-              <Link to="/blog" className="text-white/40 hover:text-white/60">
+              <a
+                href="https://blog.guizimo.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/40 hover:text-white/60"
+              >
                 {t('footer.blog')}
-              </Link>
+              </a>
               <a
                 href="https://github.com/guizimo/cova"
                 target="_blank"

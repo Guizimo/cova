@@ -44,7 +44,8 @@ export function Navbar({ items = [] }: NavbarProps) {
     },
     {
       label: t('nav.blog'),
-      href: '/blog'
+      href: 'https://blog.guizimo.com',
+      isExternal: true
     },
     {
       label: t('nav.contact'),
@@ -117,7 +118,7 @@ export function Navbar({ items = [] }: NavbarProps) {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link to="/signup">
+              <Link to="/generator">
                 <Button className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/90">
                   {t('nav.getStarted')}
                 </Button>
@@ -170,7 +171,7 @@ export function Navbar({ items = [] }: NavbarProps) {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                <Link to="/signup" onClick={() => setIsOpen(false)}>
+                <Link to="/generator" onClick={() => setIsOpen(false)}>
                   <Button className="w-full h-10 bg-white text-black hover:bg-white/90">{t('nav.getStarted')}</Button>
                 </Link>
               </div>
