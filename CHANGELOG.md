@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/guizimo/cova/compare/v0.0.22...v0.0.23) (2025-06-03)
+
+
+### Features
+
+* **generator:** 更新封面生成器组件，添加语言切换和导出功能 ([390ff73](https://github.com/guizimo/cova/commit/390ff73b64e9941d8708bcbbe6ef9ae871fc15a1))
+
 ### [0.0.22](https://github.com/guizimo/cova/compare/v0.0.21...v0.0.22) (2025-05-30)
 
 
