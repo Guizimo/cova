@@ -81,34 +81,33 @@ export function BackgroundConfig() {
               {t('generator.config.background.type')}
             </Label>
             <div className="mt-2">
-            <TabsList className="grid w-full grid-cols-4 bg-white/5 border-white/10">
-              <TabsTrigger 
-                value="solid"
-                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
-              >
-                {t('generator.config.background.solid')}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="gradient"
-                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
-              >
-                {t('generator.config.background.gradient')}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="image"
-                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
-              >
-                {t('generator.config.background.image')}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="transparent"
-                className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
-              >
-                {t('generator.config.background.transparent')}
-              </TabsTrigger>
-            </TabsList>
+              <TabsList className="grid w-full grid-cols-4 bg-white/5 border-white/10">
+                <TabsTrigger
+                  value="solid"
+                  className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+                >
+                  {t('generator.config.background.solid')}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="gradient"
+                  className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+                >
+                  {t('generator.config.background.gradient')}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="image"
+                  className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+                >
+                  {t('generator.config.background.image')}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="transparent"
+                  className="text-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white"
+                >
+                  {t('generator.config.background.transparent')}
+                </TabsTrigger>
+              </TabsList>
             </div>
-            
           </div>
           <TabsContent value="solid" className="space-y-4">
             <div className="space-y-3">
@@ -159,8 +158,8 @@ export function BackgroundConfig() {
                 {t('generator.config.background.color')}
               </Label>
               <div className="flex space-x-2 mt-2">
-                <Input 
-                  value={backgroundColor} 
+                <Input
+                  value={backgroundColor}
                   onChange={(e) => handleColorChange(e.target.value)}
                   className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                 />
@@ -171,10 +170,7 @@ export function BackgroundConfig() {
                     onChange={(e) => handleColorChange(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div 
-                    className="w-full h-full rounded-md border border-white/20" 
-                    style={{ backgroundColor }} 
-                  />
+                  <div className="w-full h-full rounded-md border border-white/20" style={{ backgroundColor }} />
                 </div>
               </div>
             </div>
@@ -231,8 +227,8 @@ export function BackgroundConfig() {
                 {t('generator.config.background.gradientStart')}
               </Label>
               <div className="flex space-x-2 mt-2">
-                <Input 
-                  value={gradientStart} 
+                <Input
+                  value={gradientStart}
                   onChange={(e) => setGradientStart(e.target.value)}
                   className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                 />
@@ -243,9 +239,9 @@ export function BackgroundConfig() {
                     onChange={(e) => setGradientStart(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div 
-                    className="w-full h-full rounded-md border border-white/20" 
-                    style={{ backgroundColor: gradientStart }} 
+                  <div
+                    className="w-full h-full rounded-md border border-white/20"
+                    style={{ backgroundColor: gradientStart }}
                   />
                 </div>
               </div>
@@ -255,8 +251,8 @@ export function BackgroundConfig() {
                 {t('generator.config.background.gradientEnd')}
               </Label>
               <div className="flex space-x-2 mt-2">
-                <Input 
-                  value={gradientEnd} 
+                <Input
+                  value={gradientEnd}
                   onChange={(e) => setGradientEnd(e.target.value)}
                   className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                 />
@@ -267,9 +263,9 @@ export function BackgroundConfig() {
                     onChange={(e) => setGradientEnd(e.target.value)}
                     className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                   />
-                  <div 
-                    className="w-full h-full rounded-md border border-white/20" 
-                    style={{ backgroundColor: gradientEnd }} 
+                  <div
+                    className="w-full h-full rounded-md border border-white/20"
+                    style={{ backgroundColor: gradientEnd }}
                   />
                 </div>
               </div>
@@ -325,6 +321,51 @@ export function BackgroundConfig() {
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                     />
                   </div>
+
+                  {/* 使用本地图片的提示 */}
+                  {!backgroundImage && (
+                    <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center mt-0.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        </div>
+                        <div className="text-xs text-blue-200">
+                          <p className="font-medium">💡 使用建议</p>
+                          <p className="text-blue-200/70 mt-1">推荐使用上方的上传功能添加本地背景图片</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 在线链接的警告提示 */}
+                  {backgroundImage && !backgroundImage.startsWith('data:') && (
+                    <div className="mt-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <div className="w-4 h-4 rounded-full bg-yellow-500/20 flex items-center justify-center mt-0.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                        </div>
+                        <div className="text-xs text-yellow-200">
+                          <p className="font-medium">⚠️ 在线图片提示</p>
+                          <p className="text-yellow-200/70 mt-1">如导出失败，建议保存图片到本地后重新上传</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 本地图片的成功提示 */}
+                  {backgroundImage && backgroundImage.startsWith('data:') && (
+                    <div className="mt-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <div className="w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center mt-0.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                        </div>
+                        <div className="text-xs text-green-200">
+                          <p className="font-medium">✅ 本地图片</p>
+                          <p className="text-green-200/70 mt-1">导出成功率100%，加载速度快</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="space-y-3">
@@ -332,21 +373,29 @@ export function BackgroundConfig() {
                   {t('generator.config.background.imageSize')}
                 </Label>
                 <div className="mt-2">
-                <Select value={backgroundSize} onValueChange={(value: 'cover' | 'contain') => setBackgroundSize(value)}>
-                  <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
-                    <SelectValue placeholder={t('generator.config.background.imageSize')} />
-                  </SelectTrigger>
-                  <SelectContent className="bg-black border-white/10">
-                    <SelectItem value="cover" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                      {t('generator.config.background.cover')}
-                    </SelectItem>
-                    <SelectItem value="contain" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                      {t('generator.config.background.contain')}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                  <Select
+                    value={backgroundSize}
+                    onValueChange={(value: 'cover' | 'contain') => setBackgroundSize(value)}
+                  >
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
+                      <SelectValue placeholder={t('generator.config.background.imageSize')} />
+                    </SelectTrigger>
+                    <SelectContent className="bg-black border-white/10">
+                      <SelectItem
+                        value="cover"
+                        className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                      >
+                        {t('generator.config.background.cover')}
+                      </SelectItem>
+                      <SelectItem
+                        value="contain"
+                        className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                      >
+                        {t('generator.config.background.contain')}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-                
               </div>
             </div>
           </TabsContent>

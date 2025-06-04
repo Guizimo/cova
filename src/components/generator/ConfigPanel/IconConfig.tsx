@@ -210,21 +210,44 @@ export function IconConfig() {
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                   />
                 </div>
+
+                {!iconImage && (
+                  <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center mt-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                      </div>
+                      <div className="text-xs text-blue-200">
+                        <p className="font-medium">💡 使用建议</p>
+                        <p className="text-blue-200/70 mt-1">推荐使用上方的上传功能添加本地图片</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {iconImage && !iconImage.startsWith('data:') && (
+                  <div className="mt-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-4 h-4 rounded-full bg-yellow-500/20 flex items-center justify-center mt-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                      </div>
+                      <div className="text-xs text-yellow-200">
+                        <p className="font-medium">⚠️ 在线图片提示</p>
+                        <p className="text-yellow-200/70 mt-1">如导出失败，建议保存图片到本地后重新上传</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {iconImage && iconImage.startsWith('data:') && (
                   <div className="mt-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <div className="flex items-start gap-2">
                       <div className="w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center mt-0.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                       </div>
                       <div className="text-xs text-green-200">
-                        <p className="font-medium">✨ 智能跨域处理</p>
-                        <p className="text-green-200/70 mt-1">系统会自动处理跨域图片，支持：</p>
-                        <ul className="text-green-200/70 mt-1 ml-2">
-                          <li>• 自动代理外部图片链接</li>
-                          <li>• 多重后备方案确保成功率</li>
-                          <li>• 导出时无跨域限制</li>
-                        </ul>
-                        <p className="text-green-200/70 mt-2 text-xs">🔒 所有处理都在本地完成，保护您的隐私</p>
+                        <p className="font-medium">✅ 本地图片</p>
+                        <p className="text-green-200/70 mt-1">导出成功率100%，加载速度快</p>
                       </div>
                     </div>
                   </div>

@@ -1,5 +1,6 @@
-import domtoimage from 'dom-to-image';
+import * as htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
+import { toast } from 'sonner';
 
 export const computeBackgroundStyle = (
   backgroundType: string,
@@ -50,11 +51,15 @@ export const exportImage = async (
   setIsExporting: (value: boolean) => void
 ) => {
   const element = document.getElementById('cover-preview');
-  if (!element) return;
+  if (!element) {
+    toast.error('找不到预览元素，请刷新页面重试');
+    return;
+  }
 
   try {
     setIsExporting(true);
-    const options: any = {
+
+    const options = {
       quality: 1,
       bgcolor: backgroundType === 'transparent' ? null : undefined
     };
@@ -62,22 +67,48 @@ export const exportImage = async (
     let blob;
     switch (format) {
       case 'png':
-        blob = await domtoimage.toBlob(element, options);
+        blob = await htmlToImage.toBlob(element, options);
         break;
       case 'jpeg':
-        blob = await domtoimage.toJpeg(element, options);
+        blob = await htmlToImage.toJpeg(element, options);
         break;
       case 'webp':
       case 'avif':
-        blob = await domtoimage.toPng(element, options);
+        blob = await htmlToImage.toPng(element, options);
         break;
     }
 
     if (blob) {
       saveAs(blob, `cover.${format}`);
+      toast.success(`🎉 ${format.toUpperCase()} 导出成功！`, {
+        description: '文件已开始下载'
+      });
+    } else {
+      throw new Error('生成图片失败');
     }
   } catch (error) {
-    console.error('Export failed:', error);
+    console.error('导出失败:', error);
+
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
+    // 根据错误类型显示不同的 toast
+    if (errorMessage.includes('tainted') || errorMessage.includes('cross-origin') || errorMessage.includes('CORS')) {
+      toast.error('导出失败：图片跨域限制', {
+        description: '建议上传本地图片或使用支持CORS的图片服务'
+      });
+    } else if (errorMessage.includes('Failed to fetch') || errorMessage.includes('network')) {
+      toast.error('导出失败：网络问题', {
+        description: '请检查网络连接或使用本地图片'
+      });
+    } else if (errorMessage.includes('memory') || errorMessage.includes('Memory')) {
+      toast.error('导出失败：内存不足', {
+        description: '请尝试减小图片尺寸'
+      });
+    } else {
+      toast.error('导出失败', {
+        description: errorMessage || '请重试或使用本地图片'
+      });
+    }
   } finally {
     setIsExporting(false);
   }
