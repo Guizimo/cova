@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.27](https://github.com/guizimo/cova/compare/v0.0.26...v0.0.27) (2025-06-04)
+
+
+### Features
+
+* **footer/locales:** 更新页脚链接和本地化文本 ([10805b0](https://github.com/guizimo/cova/commit/10805b0084957655b0694342516c6b6a1d4d5882))
+* **footer:** 将变更日志链接更新为外部链接 ([9cd5248](https://github.com/guizimo/cova/commit/9cd52489c128325818204fdcd3bceebf0deab7fc))
+* **locales/contact-faq:** 添加联系页面和常见问题页面的国际化文本支持 ([8af7b3d](https://github.com/guizimo/cova/commit/8af7b3d2afa2d62146a86dda36179bf9efb76304))
+* **locales:** 添加功能页面的国际化文本支持 ([79c61ca](https://github.com/guizimo/cova/commit/79c61ca776a1be1b5281653e658e6dee9b8350ca))
+* **navigation/locales:** 更新导航和本地化文本，添加关于页面支持 ([7daa139](https://github.com/guizimo/cova/commit/7daa139ce4eb3a29b7569922cab7a6f316191000))
+* **readme:** 更新英文和中文文档，增强封面设计工具的介绍和功能特性 ([c6dfaad](https://github.com/guizimo/cova/commit/c6dfaad0df33e2dd919acfcfb28c3f45c1f047ac))
+
 ### [0.0.26](https://github.com/guizimo/cova/compare/v0.0.25...v0.0.26) (2025-06-04)
 
 
