@@ -35,8 +35,8 @@ export function IconConfig() {
         <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
           {t('generator.config.icon.label')}
         </h3>
-        <Switch 
-          checked={showIcon} 
+        <Switch
+          checked={showIcon}
           onCheckedChange={setShowIcon}
           className="data-[state=checked]:bg-white/20 data-[state=unchecked]:bg-white/10"
         />
@@ -48,36 +48,48 @@ export function IconConfig() {
               {t('generator.config.icon.position')}
             </Label>
             <div className="mt-2">
-            <Select value={iconPosition} onValueChange={setIconPosition}>
-              <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
-                <SelectValue placeholder={t('generator.config.icon.position')} />
-              </SelectTrigger>
-              <SelectContent className="bg-black border-white/10">
-                <SelectItem value="top-left" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                  {t('generator.config.icon.topLeft')}
-                </SelectItem>
-                <SelectItem value="top-right" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                  {t('generator.config.icon.topRight')}
-                </SelectItem>
-                <SelectItem value="bottom-left" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                  {t('generator.config.icon.bottomLeft')}
-                </SelectItem>
-                <SelectItem value="bottom-right" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                  {t('generator.config.icon.bottomRight')}
-                </SelectItem>
-                <SelectItem value="center" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                  {t('generator.config.icon.center')}
-                </SelectItem>
-              </SelectContent>
-            </Select>
+              <Select value={iconPosition} onValueChange={setIconPosition}>
+                <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
+                  <SelectValue placeholder={t('generator.config.icon.position')} />
+                </SelectTrigger>
+                <SelectContent className="bg-black border-white/10">
+                  <SelectItem
+                    value="top-left"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    {t('generator.config.icon.topLeft')}
+                  </SelectItem>
+                  <SelectItem
+                    value="top-right"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    {t('generator.config.icon.topRight')}
+                  </SelectItem>
+                  <SelectItem
+                    value="bottom-left"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    {t('generator.config.icon.bottomLeft')}
+                  </SelectItem>
+                  <SelectItem
+                    value="bottom-right"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    {t('generator.config.icon.bottomRight')}
+                  </SelectItem>
+                  <SelectItem
+                    value="center"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    {t('generator.config.icon.center')}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            
           </div>
 
           <div className="space-y-3">
-            <Label className="text-white/60 text-xs uppercase tracking-wide">
-              {t('generator.config.icon.size')}
-            </Label>
+            <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.icon.size')}</Label>
             <div className="flex items-center space-x-3 mt-2">
               <Slider
                 value={[iconSize]}
@@ -130,8 +142,8 @@ export function IconConfig() {
               {t('generator.config.icon.backgroundColor')}
             </Label>
             <div className="flex space-x-2 mt-2">
-              <Input 
-                value={iconBgColor} 
+              <Input
+                value={iconBgColor}
                 onChange={(e) => setIconBgColor(e.target.value)}
                 className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
               />
@@ -142,18 +154,16 @@ export function IconConfig() {
                   onChange={(e) => setIconBgColor(e.target.value)}
                   className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
                 />
-                <div 
-                  className="w-full h-full rounded-md border border-white/20" 
-                  style={{ backgroundColor: iconBgColor }} 
+                <div
+                  className="w-full h-full rounded-md border border-white/20"
+                  style={{ backgroundColor: iconBgColor }}
                 />
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
-            <Label className="text-white/60 text-xs uppercase tracking-wide">
-              {t('generator.config.icon.shadow')}
-            </Label>
+            <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.icon.shadow')}</Label>
             <div className="flex items-center space-x-3 mt-2">
               <Slider
                 value={[iconShadow]}
@@ -193,13 +203,32 @@ export function IconConfig() {
               <div className="col-span-2">
                 <Label className="text-white/60 text-xs uppercase tracking-wide">图标链接</Label>
                 <div className="mt-2">
-                  <Input 
-                    placeholder="输入图标链接" 
-                    value={iconImage} 
+                  <Input
+                    placeholder="输入图标链接"
+                    value={iconImage}
                     onChange={(e) => setIconImage(e.target.value)}
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
                   />
                 </div>
+                {iconImage && !iconImage.startsWith('data:') && (
+                  <div className="mt-2 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center mt-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                      </div>
+                      <div className="text-xs text-green-200">
+                        <p className="font-medium">✨ 智能跨域处理</p>
+                        <p className="text-green-200/70 mt-1">系统会自动处理跨域图片，支持：</p>
+                        <ul className="text-green-200/70 mt-1 ml-2">
+                          <li>• 自动代理外部图片链接</li>
+                          <li>• 多重后备方案确保成功率</li>
+                          <li>• 导出时无跨域限制</li>
+                        </ul>
+                        <p className="text-green-200/70 mt-2 text-xs">🔒 所有处理都在本地完成，保护您的隐私</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
