@@ -41,7 +41,7 @@ export default {
   footer: {
     product: '产品',
     resources: '资源',
-    company: '公司',
+    company: '社交媒体',
     features: '特性',
     pricing: '定价',
     changelog: '更新日志',

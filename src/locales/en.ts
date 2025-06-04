@@ -42,7 +42,7 @@ export default {
   footer: {
     product: 'Product',
     resources: 'Resources',
-    company: 'Company',
+    company: 'Social Media',
     features: 'Features',
     pricing: 'Pricing',
     changelog: 'Changelog',

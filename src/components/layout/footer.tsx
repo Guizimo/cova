@@ -22,9 +22,6 @@ export function Footer() {
               <Link to="/features" className="text-white/40 hover:text-white/60">
                 {t('footer.features')}
               </Link>
-              <Link to="/pricing" className="text-white/40 hover:text-white/60">
-                {t('footer.pricing')}
-              </Link>
               <Link to="/changelog" className="text-white/40 hover:text-white/60">
                 {t('footer.changelog')}
               </Link>
@@ -58,9 +55,6 @@ export function Footer() {
               </Link>
               <Link to="/contact" className="text-white/40 hover:text-white/60">
                 {t('footer.contact')}
-              </Link>
-              <Link to="/privacy" className="text-white/40 hover:text-white/60">
-                {t('footer.privacy')}
               </Link>
             </div>
           </div>
