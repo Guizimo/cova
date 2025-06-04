@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.28](https://github.com/guizimo/cova/compare/v0.0.27...v0.0.28) (2025-06-04)
+
+
+### Features
+
+* **about:** 移除关于页面中的多余图标，简化组件结构 ([4ffa41a](https://github.com/guizimo/cova/commit/4ffa41a8e55cbd9457903936b41a6bf2ae8cbbb7))
+
 ### [0.0.27](https://github.com/guizimo/cova/compare/v0.0.26...v0.0.27) (2025-06-04)
 
 
