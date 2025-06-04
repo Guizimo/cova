@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/guizimo/cova/compare/v0.0.25...v0.0.26) (2025-06-04)
+
+
+### Features
+
+* **config:** 更新配置面板，添加国际化支持和样式优化 ([70058a6](https://github.com/guizimo/cova/commit/70058a6ef7f372878082ac536e56f02375641b97))
+* **config:** 优化配置面板的样式，提高用户交互体验 ([0753467](https://github.com/guizimo/cova/commit/0753467447127a4ea3402af6e13af890709c8781))
+* **footer/navbar:** 更新博客链接为外部链接并修改导航条的跳转路径 ([7e503e4](https://github.com/guizimo/cova/commit/7e503e4950c75915f4e56e1a35909975ee29e602))
+
 ### [0.0.25](https://github.com/guizimo/cova/compare/v0.0.24...v0.0.25) (2025-06-03)
 
 
