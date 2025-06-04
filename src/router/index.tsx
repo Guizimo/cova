@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '@/pages/home';
 import Generator from '@/pages/generator';
+import Features from '@/pages/features';
 import NotFound from '@/pages/not-found';
 
 export const router = createBrowserRouter([
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/features',
-    element: <div>Features</div>
+    element: <Features />
   },
   {
     path: '/template',

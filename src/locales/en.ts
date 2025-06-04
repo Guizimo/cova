@@ -148,5 +148,66 @@ export default {
         bottomRight: 'Bottom Right'
       }
     }
+  },
+  featuresPage: {
+    hero: {
+      title: 'The new standard for\ncover design',
+      subtitle: 'cover design',
+      description: 'With its meticulous design, breathtaking speed and purpose-built workflows, Cova unlocks your team\'s full potential. It is the tool of choice for modern creators.',
+      getStarted: 'Get started',
+      viewDocs: 'View documentation'
+    },
+    coreFeatures: {
+      coverDesign: {
+        title: 'Cover Design',
+        subtitle: 'Create beautiful covers in seconds',
+        description: 'Professional-grade cover design tools with real-time preview and instant export capabilities.',
+        metrics: '50ms response time'
+      },
+      lightningFast: {
+        title: 'Lightning Fast',
+        subtitle: 'Optimized for performance',
+        description: 'Built for speed with modern architecture. Every interaction is optimized for maximum responsiveness.',
+        metrics: '99.9% uptime'
+      },
+      exportReady: {
+        title: 'Export Ready',
+        subtitle: 'Multiple format support',
+        description: 'Export your designs in PNG, JPEG, WebP, and AVIF formats with customizable quality settings.',
+        metrics: '4 formats supported'
+      }
+    },
+    performance: {
+      title: 'Built for performance',
+      description: 'Every aspect of Cova is optimized for speed and reliability, delivering exceptional performance across all devices.',
+      stats: {
+        responseTime: 'Response time',
+        exportFormats: 'Export formats',
+        localProcessing: 'Local processing',
+        customizations: 'Customizations'
+      }
+    },
+    additionalFeatures: {
+      title: 'Everything you need to create',
+      description: 'Comprehensive features designed to streamline your creative workflow and enhance productivity.',
+      mobileOptimized: {
+        title: 'Mobile Optimized',
+        description: 'Full-featured mobile experience with touch-optimized controls and responsive design.'
+      },
+      multiLanguage: {
+        title: 'Multi-Language',
+        description: 'Native support for multiple languages with automatic detection and seamless switching.'
+      },
+      privacyFirst: {
+        title: 'Privacy First',
+        description: 'Your designs stay private. No server uploads, everything processes locally in your browser.'
+      }
+    },
+    cta: {
+      title: 'Ready to start creating?',
+      description: 'Join thousands of creators who trust Cova for their cover design needs.',
+      startDesigning: 'Start designing',
+      viewGithub: 'View on GitHub'
+    }
   }
 };

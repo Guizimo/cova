@@ -147,5 +147,66 @@ export default {
         bottomRight: '右下'
       }
     }
+  },
+  featuresPage: {
+    hero: {
+      title: '封面设计的\n全新标准',
+      subtitle: 'cover design',
+      description: '凭借精致的设计、惊人的速度和专门构建的工作流程，Cova 释放团队的全部潜力。它是现代创作者的首选工具。',
+      getStarted: '开始使用',
+      viewDocs: '查看文档'
+    },
+    coreFeatures: {
+      coverDesign: {
+        title: '封面设计',
+        subtitle: '秒速创建精美封面',
+        description: '专业级封面设计工具，支持实时预览和即时导出功能。',
+        metrics: '50ms 响应时间'
+      },
+      lightningFast: {
+        title: '闪电般快速',
+        subtitle: '性能优化',
+        description: '采用现代架构构建，注重速度。每一个交互都经过优化，确保最大的响应性。',
+        metrics: '99.9% 正常运行时间'
+      },
+      exportReady: {
+        title: '导出就绪',
+        subtitle: '多格式支持',
+        description: '支持导出 PNG、JPEG、WebP 和 AVIF 格式，具有可自定义的质量设置。',
+        metrics: '支持 4 种格式'
+      }
+    },
+    performance: {
+      title: '专为性能而生',
+      description: 'Cova 的每个方面都经过优化，确保在所有设备上都能提供卓越的速度和可靠性。',
+      stats: {
+        responseTime: '响应时间',
+        exportFormats: '导出格式',
+        localProcessing: '本地处理',
+        customizations: '自定义'
+      }
+    },
+    additionalFeatures: {
+      title: '创作所需的一切',
+      description: '全面的功能设计，旨在简化您的创意工作流程并提高生产力。',
+      mobileOptimized: {
+        title: '移动端优化',
+        description: '全功能移动端体验，具有触控优化的控件和响应式设计。'
+      },
+      multiLanguage: {
+        title: '多语言支持',
+        description: '原生支持多种语言，具有自动检测和无缝切换功能。'
+      },
+      privacyFirst: {
+        title: '隐私优先',
+        description: '您的设计保持私密。无需服务器上传，一切都在您的浏览器中本地处理。'
+      }
+    },
+    cta: {
+      title: '准备开始创作了吗？',
+      description: '加入成千上万信任 Cova 满足封面设计需求的创作者。',
+      startDesigning: '开始设计',
+      viewGithub: '查看 GitHub'
+    }
   }
 };
