@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-npx npx --no-install commitlint --edit "$1"
+npx commitlint --edit "$1"
