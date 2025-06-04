@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '@/pages/home';
 import Generator from '@/pages/generator';
 import Features from '@/pages/features';
+import Contact from '@/pages/contact';
+import FAQ from '@/pages/faq';
 import NotFound from '@/pages/not-found';
 
 export const router = createBrowserRouter([
@@ -23,11 +25,15 @@ export const router = createBrowserRouter([
   },
   {
     path: '/faq',
-    element: <div>FAQ</div>
+    element: <FAQ />
   },
   {
     path: '/generator',
     element: <Generator />
+  },
+  {
+    path: '/contact',
+    element: <Contact />
   },
   {
     path: '/about',

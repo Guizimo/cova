@@ -208,5 +208,177 @@ export default {
       startDesigning: '开始设计',
       viewGithub: '查看 GitHub'
     }
+  },
+  faqPage: {
+    hero: {
+      title: '常见问题',
+      subtitle: '快速找到您需要的答案',
+      description: '我们整理了用户最常问的问题和详细解答，帮助您更好地使用 Cova。'
+    },
+    categories: {
+      general: {
+        title: '基础问题',
+        questions: [
+          {
+            question: 'Cova 是什么？',
+            answer: 'Cova 是一个专为封面设计打造的免费开源工具。它提供现代化的设计界面，让您能够快速创建专业的封面图片，支持多种格式导出。'
+          },
+          {
+            question: 'Cova 是免费的吗？',
+            answer: '是的，Cova 完全免费且开源。您可以无限制地使用所有功能，无需注册账号或付费。我们的代码在 GitHub 上公开，遵循开源协议。'
+          },
+          {
+            question: '我需要安装什么软件吗？',
+            answer: '不需要。Cova 是一个基于 Web 的应用程序，您只需要一个现代的浏览器就可以使用，支持 Chrome、Firefox、Safari、Edge 等主流浏览器。'
+          }
+        ]
+      },
+      privacy: {
+        title: '隐私与安全',
+        questions: [
+          {
+            question: '我的设计数据会被上传到服务器吗？',
+            answer: '不会。Cova 的所有处理都在您的浏览器本地完成，包括图片处理、文字渲染和导出功能。我们不会收集、存储或上传您的任何设计数据，确保您的隐私和数据安全。'
+          },
+          {
+            question: '我上传的图片是否安全？',
+            answer: '是的，完全安全。您上传的所有图片都只在您的浏览器内存中处理，不会传输到任何服务器。当您关闭浏览器标签页时，所有数据都会被清除。'
+          }
+        ]
+      },
+      features: {
+        title: '功能相关',
+        questions: [
+          {
+            question: '支持哪些导出格式？',
+            answer: '目前支持 PNG、JPEG、WebP 和 AVIF 四种主流格式。您可以根据需要选择不同的格式和质量设置，PNG 支持透明背景，JPEG 适合照片，WebP 和 AVIF 提供更好的压缩效果。'
+          },
+          {
+            question: '可以自定义封面尺寸吗？',
+            answer: '可以。除了预设的常用尺寸（如社交媒体封面、博客封面等），您还可以自定义任意尺寸。支持像素、百分比等单位，满足各种使用场景。'
+          },
+          {
+            question: '支持哪些字体？',
+            answer: 'Cova 内置了多种精选的中英文字体，包括思源黑体、思源宋体、Inter、Roboto 等。我们会持续添加更多高质量的字体选项。'
+          },
+          {
+            question: '可以保存设计方案吗？',
+            answer: '目前您可以导出设计为图片格式保存。我们正在开发设计方案保存功能，将来您可以保存和分享您的设计模板。'
+          }
+        ]
+      },
+      technical: {
+        title: '技术支持',
+        questions: [
+          {
+            question: '遇到问题如何报告？',
+            answer: '您可以通过多种方式联系我们：1. 在 GitHub 仓库创建 Issue；2. 发送邮件到 hello@cova.design；3. 访问我们的联系页面获取更多联系方式。'
+          },
+          {
+            question: '如何提出功能建议？',
+            answer: '我们欢迎您的建议！您可以在 GitHub 仓库创建 Feature Request，或者通过邮件联系我们。请详细描述您的需求和使用场景，这将帮助我们更好地改进产品。'
+          },
+          {
+            question: '支持移动端使用吗？',
+            answer: '是的，Cova 采用响应式设计，完美支持手机和平板设备。移动端界面经过优化，提供触控友好的操作体验。'
+          },
+          {
+            question: '为什么导出的图片模糊？',
+            answer: '请检查：1. 导出质量设置是否过低；2. 原始图片分辨率是否足够；3. 浏览器缩放设置是否为100%。建议使用高质量设置和高分辨率素材以获得最佳效果。'
+          }
+        ]
+      }
+    },
+    contact: {
+      title: '没有找到答案？',
+      description: '如果您在这里没有找到需要的答案，欢迎随时联系我们。',
+      contactUs: '联系我们'
+    },
+    search: {
+      placeholder: '搜索问题...',
+      noResults: '没有找到相关问题',
+      noResultsDescription: '尝试使用不同的关键词搜索，或浏览下面的分类',
+      clearSearch: '清除搜索'
+    }
+  },
+  contactPage: {
+    hero: {
+      title: '联系我们',
+      subtitle: '随时为您提供帮助',
+      description: '有任何问题或建议？我们很乐意为您提供帮助。选择最适合您的联系方式。'
+    },
+    contactMethods: {
+      email: {
+        title: '发送邮件',
+        description: '发送详细信息给我们，我们会尽快回复您。',
+        action: '发送邮件',
+        address: 'hello@cova.design'
+      },
+      github: {
+        title: 'GitHub Issues',
+        description: '在我们的 GitHub 仓库中报告问题或提出功能请求。',
+        action: '访问 GitHub',
+        link: 'github.com/guizimo/cova'
+      },
+      twitter: {
+        title: '社交媒体',
+        description: '在社交媒体上关注我们，获取最新更新和技术分享。',
+        action: '关注我们',
+        handle: '@cova_design'
+      }
+    },
+    faq: {
+      title: '常见问题',
+      description: '查看我们的常见问题解答，也许能快速找到您需要的答案。',
+      questions: [
+        {
+          question: 'Cova 是免费的吗？',
+          answer: '是的，Cova 完全免费且开源。您可以无限制地使用所有功能。'
+        },
+        {
+          question: '我的设计数据会被上传到服务器吗？',
+          answer: '不会。Cova 所有处理都在您的浏览器本地完成，确保您的隐私和数据安全。'
+        },
+        {
+          question: '支持哪些导出格式？',
+          answer: '目前支持 PNG、JPEG、WebP 和 AVIF 四种格式，可以自定义质量设置。'
+        },
+        {
+          question: '如何报告 Bug 或提出功能建议？',
+          answer: '您可以在我们的 GitHub 仓库中创建 Issue，或者通过邮件联系我们。'
+        }
+      ]
+    },
+    support: {
+      title: '技术支持',
+      description: '遇到技术问题？我们提供多种支持渠道。',
+      channels: [
+        {
+          title: '文档中心',
+          description: '详细的使用指南和 API 文档',
+          link: '/docs'
+        },
+        {
+          title: '社区论坛',
+          description: '与其他用户交流使用经验',
+          link: '#'
+        },
+        {
+          title: '视频教程',
+          description: '观看详细的操作演示视频',
+          link: '#'
+        }
+      ]
+    },
+    cta: {
+      title: '准备开始了吗？',
+      description: '立即开始使用 Cova 创建精美的封面设计',
+      getStarted: '开始使用'
+    },
+    faqQuickLink: {
+      title: '常见问题解答',
+      description: '在联系我们之前，您可以先查看我们的常见问题解答，也许能快速找到您需要的答案。',
+      viewFaq: '查看常见问题'
+    }
   }
 };
