@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/guizimo/cova/compare/v0.0.29...v0.1.0) (2025-06-04)
+
+
+### Features
+
+* **header:** 添加毛玻璃效果导出限制提示 ([9be84cb](https://github.com/guizimo/cova/commit/9be84cb03a722c04bd01b7346f4fe53357f0bed7))
+* **icon-config:** 添加智能跨域处理提示信息 ([10a4384](https://github.com/guizimo/cova/commit/10a438484f80a9650b352108356840c620f74bd4))
+
+
+### Bug Fixes
+
+* 替换dom-to-image为html-to-image并添加导出失败提示 ([02b65c3](https://github.com/guizimo/cova/commit/02b65c336db27c3b46b3f00d8225ebea974e6d63)), closes [#9](https://github.com/guizimo/cova/issues/9)
+
 ### [0.0.29](https://github.com/guizimo/cova/compare/v0.0.28...v0.0.29) (2025-06-04)
 
 ### [0.0.28](https://github.com/guizimo/cova/compare/v0.0.27...v0.0.28) (2025-06-04)
