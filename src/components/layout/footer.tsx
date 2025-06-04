@@ -22,9 +22,14 @@ export function Footer() {
               <Link to="/features" className="text-white/40 hover:text-white/60">
                 {t('footer.features')}
               </Link>
-              <Link to="/changelog" className="text-white/40 hover:text-white/60">
+              <a
+                href="https://github.com/guizimo/cova/releases"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/40 hover:text-white/60"
+              >
                 {t('footer.changelog')}
-              </Link>
+              </a>
             </div>
             <div className="flex flex-col gap-3">
               <span className="font-medium text-white/80">{t('footer.resources')}</span>
