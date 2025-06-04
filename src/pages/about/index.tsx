@@ -3,15 +3,11 @@ import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
 import { 
   ArrowRight, 
-  Heart, 
   Users, 
   Code, 
   Zap, 
-  Globe, 
   Github,
   Mail,
-  Star,
-  Calendar,
   CheckCircle,
   Circle
 } from 'lucide-react';
