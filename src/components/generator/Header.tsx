@@ -16,7 +16,7 @@ import pkg from '../../../package.json';
 
 export function Header() {
   const [stars, setStars] = useState<number>(0);
-  const { resetSettings, backgroundType, setIsExporting } = useGeneratorStore();
+  const { resetSettings, backgroundType, setIsExporting, backdropBlur } = useGeneratorStore();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -44,11 +44,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           {/* 返回首页按钮 */}
           <Link to="/">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8"
-            >
+            <Button variant="ghost" size="sm" className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8">
               <Home className="mr-2 h-4 w-4" />
               {t('generator.buttons.backToHome')}
             </Button>
@@ -70,11 +66,7 @@ export function Header() {
           {/* 语言切换 */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8"
-              >
+              <Button variant="ghost" size="sm" className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8">
                 <Globe className="mr-2 h-4 w-4" />
                 {i18n.language === 'zh' ? '中文' : 'English'}
               </Button>
@@ -121,15 +113,22 @@ export function Header() {
           {/* 导出按钮 */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                size="sm"
-                className="bg-white text-black hover:bg-white/90 h-8"
-              >
+              <Button size="sm" className="bg-white text-black hover:bg-white/90 h-8">
                 <Download className="mr-2 h-4 w-4" />
                 {t('generator.buttons.export')}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-black border-white/[0.08]">
+              {/* 毛玻璃效果警告 */}
+              {backdropBlur > 0 && (
+                <>
+                  <div className="px-3 py-2 text-xs text-orange-300 border-b border-white/[0.08]">
+                    ⚠️ 毛玻璃效果不会在导出中显示
+                    <br />
+                    <span className="text-orange-200/70">建议使用浏览器截图功能</span>
+                  </div>
+                </>
+              )}
               <DropdownMenuItem
                 onClick={() => exportImage('png', backgroundType, setIsExporting)}
                 className="text-white hover:bg-white/[0.08]"

@@ -416,6 +416,22 @@ export function BackgroundConfig() {
             />
             <span className="w-12 text-sm text-white/60 text-right">{backdropBlur}px</span>
           </div>
+
+          {/* 毛玻璃效果导出限制提示 */}
+          {backdropBlur > 0 && (
+            <div className="mt-2 p-3 bg-orange-500/10 border border-orange-500/20 rounded-lg">
+              <div className="flex items-start gap-2">
+                <div className="w-4 h-4 rounded-full bg-orange-500/20 flex items-center justify-center mt-0.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+                </div>
+                <div className="text-xs text-orange-200">
+                  <p className="font-medium">⚠️ 导出限制提示</p>
+                  <p className="text-orange-200/70 mt-1">毛玻璃效果在导出时不会显示</p>
+                  <p className="text-orange-200 mt-1 font-medium">💡 如需保留效果，请使用浏览器截图功能</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className="space-y-3">
           <Label className="text-white/60 text-xs uppercase tracking-wide">
