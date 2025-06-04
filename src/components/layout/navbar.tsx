@@ -31,12 +31,8 @@ export function Navbar({ items = [] }: NavbarProps) {
       href: '/features'
     },
     {
-      label: t('nav.template'),
-      href: '/template'
-    },
-    {
-      label: t('nav.docs'),
-      href: '/docs'
+      label: t('nav.about'),
+      href: '/about'
     },
     {
       label: t('nav.faq'),

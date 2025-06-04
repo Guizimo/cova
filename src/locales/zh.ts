@@ -1,7 +1,7 @@
 export default {
   nav: {
     features: '特性',
-    template: '模板',
+    about: '关于',
     faq: 'FAQ',
     blog: '博客',
     contact: '联系我们',
@@ -12,7 +12,7 @@ export default {
     title: 'Cova 是一个专为\n封面设计打造的工具',
     description: '遇见现代封面设计系统。简化设计流程，让创作更加流畅。',
     getStarted: '开始使用',
-    viewDocs: '查看文档'
+    viewAbout: '关于我们'
   },
   features: {
     title: '为现代创作者打造',
@@ -51,7 +51,7 @@ export default {
     about: '关于',
     contact: '联系我们',
     privacy: '隐私政策',
-    copyright: '© 2024 Cova. All rights reserved.',
+    copyright: '© 2025 Cova. All rights reserved.',
     builtBy: '由 Guizimo 构建'
   },
   notFound: {
@@ -154,7 +154,7 @@ export default {
       subtitle: 'cover design',
       description: '凭借精致的设计、惊人的速度和专门构建的工作流程，Cova 释放团队的全部潜力。它是现代创作者的首选工具。',
       getStarted: '开始使用',
-      viewDocs: '查看文档'
+      viewAbout: '关于我们'
     },
     coreFeatures: {
       coverDesign: {
@@ -354,11 +354,6 @@ export default {
       description: '遇到技术问题？我们提供多种支持渠道。',
       channels: [
         {
-          title: '文档中心',
-          description: '详细的使用指南和 API 文档',
-          link: '/docs'
-        },
-        {
           title: '社区论坛',
           description: '与其他用户交流使用经验',
           link: '#'
@@ -379,6 +374,78 @@ export default {
       title: '常见问题解答',
       description: '在联系我们之前，您可以先查看我们的常见问题解答，也许能快速找到您需要的答案。',
       viewFaq: '查看常见问题'
+    }
+  },
+  aboutPage: {
+    hero: {
+      title: '关于 Cova',
+      description: '我们致力于为创作者打造最优秀的封面设计工具，让每个人都能轻松创作出专业级的作品。'
+    },
+    mission: {
+      title: '我们的使命',
+      description: '简化设计流程，让创作更加专注。我们相信好的工具应该是无形的，让创意自由流淌。'
+    },
+    values: {
+      performance: {
+        title: '极致性能',
+        description: '50ms 响应时间，流畅的操作体验，让设计过程不再有任何等待。'
+      },
+      userFirst: {
+        title: '用户至上',
+        description: '每一个功能都经过深思熟虑，确保用户体验的每个细节都尽善尽美。'
+      },
+      openSource: {
+        title: '开源精神',
+        description: '透明的开发过程，欢迎社区贡献，共同打造更好的产品。'
+      }
+    },
+    techStack: {
+      title: '技术栈',
+      description: '我们使用最现代的技术栈，确保产品的稳定性和可扩展性。',
+      react: '现代化的 React 18 框架，提供出色的用户界面体验。',
+      typescript: '类型安全的 TypeScript，确保代码质量和开发效率。',
+      vite: '极速的构建工具，提供快速的开发和构建体验。',
+      tailwind: '原子化的 CSS 框架，快速构建现代化界面。',
+      zustand: '轻量级状态管理，简单高效的数据流管理。',
+      i18next: '国际化解决方案，支持多语言无缝切换。'
+    },
+    team: {
+      title: '团队介绍',
+      description: '我们是一支充满热情的团队，致力于为创作者提供最好的工具。',
+      guizimo: {
+        role: '创始人 & 开发者',
+        description: '全栈开发者，专注于用户体验和产品设计，致力于打造优秀的创作工具。'
+      }
+    },
+    roadmap: {
+      title: '发展路线',
+      description: '我们有着清晰的产品规划，持续为用户带来更多价值。',
+      status: {
+        completed: '已完成',
+        'in-progress': '进行中',
+        planned: '计划中'
+      },
+      v1: {
+        title: '核心功能和稳定版本发布'
+      },
+      v1_1: {
+        title: '模板市场和更多设计选项'
+      },
+      v1_2: {
+        title: '协作功能和团队工作空间'
+      },
+      v1_3: {
+        title: '插件系统和自定义扩展'
+      },
+      v2: {
+        title: '高级动画和交互效果'
+      }
+    },
+    cta: {
+      title: '加入我们的旅程',
+      description: '立即开始使用 Cova，体验全新的封面设计方式，或者在 GitHub 上查看源代码。',
+      getStarted: '开始使用',
+      viewSource: '查看源码'
     }
   }
 };

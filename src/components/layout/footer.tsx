@@ -28,9 +28,6 @@ export function Footer() {
             </div>
             <div className="flex flex-col gap-3">
               <span className="font-medium text-white/80">{t('footer.resources')}</span>
-              <Link to="/docs" className="text-white/40 hover:text-white/60">
-                {t('footer.docs')}
-              </Link>
               <a
                 href="https://blog.guizimo.com"
                 target="_blank"

@@ -23,13 +23,13 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/docs">
+            <Link to="/about">
               <Button
                 variant="outline"
                 size="lg"
                 className="h-12 px-6 border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white rounded-lg cursor-pointer"
               >
-                {t('hero.viewDocs')}
+                {t('hero.viewAbout')}
               </Button>
             </Link>
           </div>

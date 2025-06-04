@@ -1,7 +1,7 @@
 export default {
   nav: {
     features: 'Features',
-    template: 'Template',
+    about: 'About',
     faq: 'FAQ',
     blog: 'Blog',
     contact: 'Contact',
@@ -12,7 +12,7 @@ export default {
     title: 'Cova is a tool built for\ncover design',
     description: 'Meet the modern cover design system. Streamline your design process and make creation more fluid.',
     getStarted: 'Get Started',
-    viewDocs: 'View Docs'
+    viewAbout: 'About Us'
   },
   features: {
     title: 'Built for Modern Creators',
@@ -52,7 +52,7 @@ export default {
     about: 'About',
     contact: 'Contact',
     privacy: 'Privacy Policy',
-    copyright: '© 2024 Cova. All rights reserved.',
+    copyright: '© 2025 Cova. All rights reserved.',
     builtBy: 'Built by Guizimo'
   },
   notFound: {
@@ -151,11 +151,11 @@ export default {
   },
   featuresPage: {
     hero: {
-      title: 'The new standard for\ncover design',
+      title: 'The New Standard for\nCover Design',
       subtitle: 'cover design',
-      description: 'With its meticulous design, breathtaking speed and purpose-built workflows, Cova unlocks your team\'s full potential. It is the tool of choice for modern creators.',
-      getStarted: 'Get started',
-      viewDocs: 'View documentation'
+      description: 'With exquisite design, amazing speed, and purpose-built workflows, Cova unleashes your team\'s full potential. It\'s the go-to tool for modern creators.',
+      getStarted: 'Get Started',
+      viewAbout: 'About Us'
     },
     coreFeatures: {
       coverDesign: {
@@ -263,13 +263,8 @@ export default {
       description: 'Having technical issues? We provide multiple support channels.',
       channels: [
         {
-          title: 'Documentation',
-          description: 'Detailed user guides and API documentation',
-          link: '/docs'
-        },
-        {
           title: 'Community Forum',
-          description: 'Share experiences with other users',
+          description: 'Exchange experiences with other users',
           link: '#'
         },
         {
@@ -381,6 +376,78 @@ export default {
       noResults: 'No related questions found',
       noResultsDescription: 'Try using different keywords or browse the categories below',
       clearSearch: 'Clear Search'
+    }
+  },
+  aboutPage: {
+    hero: {
+      title: 'About Cova',
+      description: 'We are dedicated to creating the best cover design tool for creators, enabling everyone to easily create professional-grade works.'
+    },
+    mission: {
+      title: 'Our Mission',
+      description: 'Simplify the design process and make creation more focused. We believe good tools should be invisible, letting creativity flow freely.'
+    },
+    values: {
+      performance: {
+        title: 'Ultimate Performance',
+        description: '50ms response time, smooth operation experience, making the design process without any waiting.'
+      },
+      userFirst: {
+        title: 'User First',
+        description: 'Every feature is carefully considered to ensure every detail of the user experience is perfect.'
+      },
+      openSource: {
+        title: 'Open Source Spirit',
+        description: 'Transparent development process, welcoming community contributions to build better products together.'
+      }
+    },
+    techStack: {
+      title: 'Tech Stack',
+      description: 'We use the most modern tech stack to ensure product stability and scalability.',
+      react: 'Modern React 18 framework providing excellent user interface experience.',
+      typescript: 'Type-safe TypeScript ensuring code quality and development efficiency.',
+      vite: 'Lightning-fast build tool providing rapid development and build experience.',
+      tailwind: 'Atomic CSS framework for quickly building modern interfaces.',
+      zustand: 'Lightweight state management with simple and efficient data flow management.',
+      i18next: 'Internationalization solution supporting seamless multi-language switching.'
+    },
+    team: {
+      title: 'Our Team',
+      description: 'We are a passionate team dedicated to providing the best tools for creators.',
+      guizimo: {
+        role: 'Founder & Developer',
+        description: 'Full-stack developer focused on user experience and product design, committed to creating excellent creative tools.'
+      }
+    },
+    roadmap: {
+      title: 'Roadmap',
+      description: 'We have a clear product roadmap, continuously bringing more value to users.',
+      status: {
+        completed: 'Completed',
+        'in-progress': 'In Progress',
+        planned: 'Planned'
+      },
+      v1: {
+        title: 'Core features and stable version release'
+      },
+      v1_1: {
+        title: 'Template marketplace and more design options'
+      },
+      v1_2: {
+        title: 'Collaboration features and team workspace'
+      },
+      v1_3: {
+        title: 'Plugin system and custom extensions'
+      },
+      v2: {
+        title: 'Advanced animations and interactive effects'
+      }
+    },
+    cta: {
+      title: 'Join Our Journey',
+      description: 'Start using Cova now to experience a new way of cover design, or check out the source code on GitHub.',
+      getStarted: 'Get Started',
+      viewSource: 'View Source'
     }
   }
 };
