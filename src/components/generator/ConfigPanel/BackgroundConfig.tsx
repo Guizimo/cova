@@ -337,10 +337,10 @@ export function BackgroundConfig() {
                     <SelectValue placeholder={t('generator.config.background.imageSize')} />
                   </SelectTrigger>
                   <SelectContent className="bg-black border-white/10">
-                    <SelectItem value="cover" className="text-white hover:bg-white/10 focus:bg-white/10">
+                    <SelectItem value="cover" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                       {t('generator.config.background.cover')}
                     </SelectItem>
-                    <SelectItem value="contain" className="text-white hover:bg-white/10 focus:bg-white/10">
+                    <SelectItem value="contain" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                       {t('generator.config.background.contain')}
                     </SelectItem>
                   </SelectContent>

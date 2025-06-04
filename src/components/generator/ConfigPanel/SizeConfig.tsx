@@ -48,14 +48,14 @@ export function SizeConfig() {
                   <SelectItem 
                     key={`${size.width}x${size.height}`} 
                     value={`${size.width}x${size.height}`}
-                    className="text-white hover:bg-white/10 focus:bg-white/10"
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
                   >
                     {size.label}
                   </SelectItem>
                 ))}
                 <SelectItem 
                   value="custom"
-                  className="text-white hover:bg-white/10 focus:bg-white/10"
+                  className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
                 >
                   {t('generator.config.size.custom')}
                 </SelectItem>

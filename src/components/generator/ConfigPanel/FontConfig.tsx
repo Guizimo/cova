@@ -47,7 +47,7 @@ export function FontConfig() {
                 <SelectItem 
                   key={value} 
                   value={value}
-                  className="text-white hover:bg-white/10 focus:bg-white/10"
+                  className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
                 >
                   <span style={{ fontFamily: value }}>{label}</span>
                 </SelectItem>
@@ -85,10 +85,10 @@ export function FontConfig() {
               <SelectValue placeholder={t('generator.config.font.style')} />
             </SelectTrigger>
             <SelectContent className="bg-black border-white/10">
-              <SelectItem value="normal" className="text-white hover:bg-white/10 focus:bg-white/10">
+              <SelectItem value="normal" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                 {t('generator.config.font.normal')}
               </SelectItem>
-              <SelectItem value="italic" className="text-white hover:bg-white/10 focus:bg-white/10">
+              <SelectItem value="italic" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                 {t('generator.config.font.italic')}
               </SelectItem>
             </SelectContent>

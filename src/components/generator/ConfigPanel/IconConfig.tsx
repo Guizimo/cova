@@ -53,19 +53,19 @@ export function IconConfig() {
                 <SelectValue placeholder={t('generator.config.icon.position')} />
               </SelectTrigger>
               <SelectContent className="bg-black border-white/10">
-                <SelectItem value="top-left" className="text-white hover:bg-white/10 focus:bg-white/10">
+                <SelectItem value="top-left" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                   {t('generator.config.icon.topLeft')}
                 </SelectItem>
-                <SelectItem value="top-right" className="text-white hover:bg-white/10 focus:bg-white/10">
+                <SelectItem value="top-right" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                   {t('generator.config.icon.topRight')}
                 </SelectItem>
-                <SelectItem value="bottom-left" className="text-white hover:bg-white/10 focus:bg-white/10">
+                <SelectItem value="bottom-left" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                   {t('generator.config.icon.bottomLeft')}
                 </SelectItem>
-                <SelectItem value="bottom-right" className="text-white hover:bg-white/10 focus:bg-white/10">
+                <SelectItem value="bottom-right" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                   {t('generator.config.icon.bottomRight')}
                 </SelectItem>
-                <SelectItem value="center" className="text-white hover:bg-white/10 focus:bg-white/10">
+                <SelectItem value="center" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
                   {t('generator.config.icon.center')}
                 </SelectItem>
               </SelectContent>
