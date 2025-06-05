@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/guizimo/cova/compare/v0.1.0...v1.0.0) (2025-06-05)
+
+
+### Features
+
+* **generator:** 优化移动端体验与布局 ([15daa0f](https://github.com/guizimo/cova/commit/15daa0f5cc27cd11ca7a4f6e6f66412a17344091)), closes [#10](https://github.com/guizimo/cova/issues/10)
+
 ## [0.1.0](https://github.com/guizimo/cova/compare/v0.0.29...v0.1.0) (2025-06-04)
 
 
