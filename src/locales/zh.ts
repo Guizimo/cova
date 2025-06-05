@@ -62,7 +62,7 @@ export default {
     contactSupport: '联系支持'
   },
   generator: {
-    title: 'Cova 封面生成器',
+    title: '封面生成器',
     version: '版本',
     buttons: {
       reset: '重置',
@@ -146,13 +146,18 @@ export default {
         bottomLeft: '左下',
         bottomRight: '右下'
       }
+    },
+    tabs: {
+      config: '配置',
+      preview: '预览'
     }
   },
   featuresPage: {
     hero: {
       title: '封面设计的\n全新标准',
       subtitle: 'cover design',
-      description: '凭借精致的设计、惊人的速度和专门构建的工作流程，Cova 释放团队的全部潜力。它是现代创作者的首选工具。',
+      description:
+        '凭借精致的设计、惊人的速度和专门构建的工作流程，Cova 释放团队的全部潜力。它是现代创作者的首选工具。',
       getStarted: '开始使用',
       viewAbout: '关于我们'
     },
@@ -221,15 +226,18 @@ export default {
         questions: [
           {
             question: 'Cova 是什么？',
-            answer: 'Cova 是一个专为封面设计打造的免费开源工具。它提供现代化的设计界面，让您能够快速创建专业的封面图片，支持多种格式导出。'
+            answer:
+              'Cova 是一个专为封面设计打造的免费开源工具。它提供现代化的设计界面，让您能够快速创建专业的封面图片，支持多种格式导出。'
           },
           {
             question: 'Cova 是免费的吗？',
-            answer: '是的，Cova 完全免费且开源。您可以无限制地使用所有功能，无需注册账号或付费。我们的代码在 GitHub 上公开，遵循开源协议。'
+            answer:
+              '是的，Cova 完全免费且开源。您可以无限制地使用所有功能，无需注册账号或付费。我们的代码在 GitHub 上公开，遵循开源协议。'
           },
           {
             question: '我需要安装什么软件吗？',
-            answer: '不需要。Cova 是一个基于 Web 的应用程序，您只需要一个现代的浏览器就可以使用，支持 Chrome、Firefox、Safari、Edge 等主流浏览器。'
+            answer:
+              '不需要。Cova 是一个基于 Web 的应用程序，您只需要一个现代的浏览器就可以使用，支持 Chrome、Firefox、Safari、Edge 等主流浏览器。'
           }
         ]
       },
@@ -238,11 +246,13 @@ export default {
         questions: [
           {
             question: '我的设计数据会被上传到服务器吗？',
-            answer: '不会。Cova 的所有处理都在您的浏览器本地完成，包括图片处理、文字渲染和导出功能。我们不会收集、存储或上传您的任何设计数据，确保您的隐私和数据安全。'
+            answer:
+              '不会。Cova 的所有处理都在您的浏览器本地完成，包括图片处理、文字渲染和导出功能。我们不会收集、存储或上传您的任何设计数据，确保您的隐私和数据安全。'
           },
           {
             question: '我上传的图片是否安全？',
-            answer: '是的，完全安全。您上传的所有图片都只在您的浏览器内存中处理，不会传输到任何服务器。当您关闭浏览器标签页时，所有数据都会被清除。'
+            answer:
+              '是的，完全安全。您上传的所有图片都只在您的浏览器内存中处理，不会传输到任何服务器。当您关闭浏览器标签页时，所有数据都会被清除。'
           }
         ]
       },
@@ -251,15 +261,18 @@ export default {
         questions: [
           {
             question: '支持哪些导出格式？',
-            answer: '目前支持 PNG、JPEG、WebP 和 AVIF 四种主流格式。您可以根据需要选择不同的格式和质量设置，PNG 支持透明背景，JPEG 适合照片，WebP 和 AVIF 提供更好的压缩效果。'
+            answer:
+              '目前支持 PNG、JPEG、WebP 和 AVIF 四种主流格式。您可以根据需要选择不同的格式和质量设置，PNG 支持透明背景，JPEG 适合照片，WebP 和 AVIF 提供更好的压缩效果。'
           },
           {
             question: '可以自定义封面尺寸吗？',
-            answer: '可以。除了预设的常用尺寸（如社交媒体封面、博客封面等），您还可以自定义任意尺寸。支持像素、百分比等单位，满足各种使用场景。'
+            answer:
+              '可以。除了预设的常用尺寸（如社交媒体封面、博客封面等），您还可以自定义任意尺寸。支持像素、百分比等单位，满足各种使用场景。'
           },
           {
             question: '支持哪些字体？',
-            answer: 'Cova 内置了多种精选的中英文字体，包括思源黑体、思源宋体、Inter、Roboto 等。我们会持续添加更多高质量的字体选项。'
+            answer:
+              'Cova 内置了多种精选的中英文字体，包括思源黑体、思源宋体、Inter、Roboto 等。我们会持续添加更多高质量的字体选项。'
           },
           {
             question: '可以保存设计方案吗？',
@@ -272,11 +285,13 @@ export default {
         questions: [
           {
             question: '遇到问题如何报告？',
-            answer: '您可以通过多种方式联系我们：1. 在 GitHub 仓库创建 Issue；2. 发送邮件到 hello@cova.design；3. 访问我们的联系页面获取更多联系方式。'
+            answer:
+              '您可以通过多种方式联系我们：1. 在 GitHub 仓库创建 Issue；2. 发送邮件到 hello@cova.design；3. 访问我们的联系页面获取更多联系方式。'
           },
           {
             question: '如何提出功能建议？',
-            answer: '我们欢迎您的建议！您可以在 GitHub 仓库创建 Feature Request，或者通过邮件联系我们。请详细描述您的需求和使用场景，这将帮助我们更好地改进产品。'
+            answer:
+              '我们欢迎您的建议！您可以在 GitHub 仓库创建 Feature Request，或者通过邮件联系我们。请详细描述您的需求和使用场景，这将帮助我们更好地改进产品。'
           },
           {
             question: '支持移动端使用吗？',
@@ -284,7 +299,8 @@ export default {
           },
           {
             question: '为什么导出的图片模糊？',
-            answer: '请检查：1. 导出质量设置是否过低；2. 原始图片分辨率是否足够；3. 浏览器缩放设置是否为100%。建议使用高质量设置和高分辨率素材以获得最佳效果。'
+            answer:
+              '请检查：1. 导出质量设置是否过低；2. 原始图片分辨率是否足够；3. 浏览器缩放设置是否为100%。建议使用高质量设置和高分辨率素材以获得最佳效果。'
           }
         ]
       }
@@ -421,9 +437,9 @@ export default {
       title: '发展路线',
       description: '我们有着清晰的产品规划，持续为用户带来更多价值。',
       status: {
-        completed: '已完成',
+        'completed': '已完成',
         'in-progress': '进行中',
-        planned: '计划中'
+        'planned': '计划中'
       },
       v1: {
         title: '核心功能和稳定版本发布'

@@ -58,7 +58,8 @@ export default {
   notFound: {
     title: 'Page Not Found',
     subtitle: '404',
-    description: "Sorry, the page you're looking for doesn't exist. It may have been moved, deleted, or you entered the wrong URL.",
+    description:
+      "Sorry, the page you're looking for doesn't exist. It may have been moved, deleted, or you entered the wrong URL.",
     backHome: 'Back to Home',
     contactSupport: 'Contact Support'
   },
@@ -147,13 +148,18 @@ export default {
         bottomLeft: 'Bottom Left',
         bottomRight: 'Bottom Right'
       }
+    },
+    tabs: {
+      config: 'Configuration',
+      preview: 'Preview'
     }
   },
   featuresPage: {
     hero: {
       title: 'The New Standard for\nCover Design',
       subtitle: 'cover design',
-      description: 'With exquisite design, amazing speed, and purpose-built workflows, Cova unleashes your team\'s full potential. It\'s the go-to tool for modern creators.',
+      description:
+        "With exquisite design, amazing speed, and purpose-built workflows, Cova unleashes your team's full potential. It's the go-to tool for modern creators.",
       getStarted: 'Get Started',
       viewAbout: 'About Us'
     },
@@ -167,7 +173,8 @@ export default {
       lightningFast: {
         title: 'Lightning Fast',
         subtitle: 'Optimized for performance',
-        description: 'Built for speed with modern architecture. Every interaction is optimized for maximum responsiveness.',
+        description:
+          'Built for speed with modern architecture. Every interaction is optimized for maximum responsiveness.',
         metrics: '99.9% uptime'
       },
       exportReady: {
@@ -179,7 +186,8 @@ export default {
     },
     performance: {
       title: 'Built for performance',
-      description: 'Every aspect of Cova is optimized for speed and reliability, delivering exceptional performance across all devices.',
+      description:
+        'Every aspect of Cova is optimized for speed and reliability, delivering exceptional performance across all devices.',
       stats: {
         responseTime: 'Response time',
         exportFormats: 'Export formats',
@@ -213,13 +221,13 @@ export default {
   contactPage: {
     hero: {
       title: 'Contact Us',
-      subtitle: 'We\'re here to help',
-      description: 'Have any questions or suggestions? We\'d love to help you out. Choose the best way to reach us.'
+      subtitle: "We're here to help",
+      description: "Have any questions or suggestions? We'd love to help you out. Choose the best way to reach us."
     },
     contactMethods: {
       email: {
         title: 'Send us an email',
-        description: 'Send us detailed information and we\'ll get back to you as soon as possible.',
+        description: "Send us detailed information and we'll get back to you as soon as possible.",
         action: 'Send Email',
         address: 'hello@cova.design'
       },
@@ -238,7 +246,7 @@ export default {
     },
     faq: {
       title: 'Frequently Asked Questions',
-      description: 'Check out our FAQ section, you might find the answer you\'re looking for.',
+      description: "Check out our FAQ section, you might find the answer you're looking for.",
       questions: [
         {
           question: 'Is Cova free to use?',
@@ -290,7 +298,7 @@ export default {
     hero: {
       title: 'Frequently Asked Questions',
       subtitle: 'Find the answers you need quickly',
-      description: 'We\'ve compiled the most common questions and detailed answers to help you make the most of Cova.'
+      description: "We've compiled the most common questions and detailed answers to help you make the most of Cova."
     },
     categories: {
       general: {
@@ -298,15 +306,18 @@ export default {
         questions: [
           {
             question: 'What is Cova?',
-            answer: 'Cova is a free, open-source tool built specifically for cover design. It provides a modern design interface that lets you quickly create professional cover images with support for multiple export formats.'
+            answer:
+              'Cova is a free, open-source tool built specifically for cover design. It provides a modern design interface that lets you quickly create professional cover images with support for multiple export formats.'
           },
           {
             question: 'Is Cova free to use?',
-            answer: 'Yes, Cova is completely free and open source. You can use all features without any limitations, no account registration or payment required. Our code is publicly available on GitHub under an open source license.'
+            answer:
+              'Yes, Cova is completely free and open source. You can use all features without any limitations, no account registration or payment required. Our code is publicly available on GitHub under an open source license.'
           },
           {
             question: 'Do I need to install any software?',
-            answer: 'No. Cova is a web-based application that works directly in your browser. You just need a modern browser like Chrome, Firefox, Safari, or Edge to get started.'
+            answer:
+              'No. Cova is a web-based application that works directly in your browser. You just need a modern browser like Chrome, Firefox, Safari, or Edge to get started.'
           }
         ]
       },
@@ -315,11 +326,13 @@ export default {
         questions: [
           {
             question: 'Is my design data uploaded to servers?',
-            answer: 'No. All Cova processing happens locally in your browser, including image processing, text rendering, and export functions. We don\'t collect, store, or upload any of your design data, ensuring your privacy and data security.'
+            answer:
+              "No. All Cova processing happens locally in your browser, including image processing, text rendering, and export functions. We don't collect, store, or upload any of your design data, ensuring your privacy and data security."
           },
           {
             question: 'Are my uploaded images safe?',
-            answer: 'Yes, completely safe. All images you upload are processed only in your browser\'s memory and never transmitted to any servers. When you close the browser tab, all data is cleared.'
+            answer:
+              "Yes, completely safe. All images you upload are processed only in your browser's memory and never transmitted to any servers. When you close the browser tab, all data is cleared."
           }
         ]
       },
@@ -328,19 +341,23 @@ export default {
         questions: [
           {
             question: 'What export formats are supported?',
-            answer: 'Currently supports PNG, JPEG, WebP, and AVIF formats. You can choose different formats and quality settings based on your needs. PNG supports transparency, JPEG is great for photos, while WebP and AVIF offer better compression.'
+            answer:
+              'Currently supports PNG, JPEG, WebP, and AVIF formats. You can choose different formats and quality settings based on your needs. PNG supports transparency, JPEG is great for photos, while WebP and AVIF offer better compression.'
           },
           {
             question: 'Can I customize cover dimensions?',
-            answer: 'Yes. In addition to preset common sizes (like social media covers, blog headers, etc.), you can also set custom dimensions. Supports pixels, percentages, and other units to meet various use cases.'
+            answer:
+              'Yes. In addition to preset common sizes (like social media covers, blog headers, etc.), you can also set custom dimensions. Supports pixels, percentages, and other units to meet various use cases.'
           },
           {
             question: 'What fonts are supported?',
-            answer: 'Cova includes multiple carefully selected Chinese and English fonts, including Source Han Sans, Source Han Serif, Inter, Roboto, and more. We continuously add more high-quality font options.'
+            answer:
+              'Cova includes multiple carefully selected Chinese and English fonts, including Source Han Sans, Source Han Serif, Inter, Roboto, and more. We continuously add more high-quality font options.'
           },
           {
             question: 'Can I save my designs?',
-            answer: 'Currently you can export your designs as image files for saving. We\'re developing a design template saving feature that will allow you to save and share your design templates in the future.'
+            answer:
+              "Currently you can export your designs as image files for saving. We're developing a design template saving feature that will allow you to save and share your design templates in the future."
           }
         ]
       },
@@ -349,26 +366,30 @@ export default {
         questions: [
           {
             question: 'How do I report issues?',
-            answer: 'You can contact us through multiple channels: 1. Create an Issue in our GitHub repository; 2. Send an email to hello@cova.design; 3. Visit our contact page for more contact methods.'
+            answer:
+              'You can contact us through multiple channels: 1. Create an Issue in our GitHub repository; 2. Send an email to hello@cova.design; 3. Visit our contact page for more contact methods.'
           },
           {
             question: 'How can I suggest new features?',
-            answer: 'We welcome your suggestions! You can create a Feature Request in our GitHub repository or contact us via email. Please describe your needs and use cases in detail to help us improve the product better.'
+            answer:
+              'We welcome your suggestions! You can create a Feature Request in our GitHub repository or contact us via email. Please describe your needs and use cases in detail to help us improve the product better.'
           },
           {
             question: 'Does it work on mobile devices?',
-            answer: 'Yes, Cova uses responsive design and works perfectly on phones and tablets. The mobile interface is optimized to provide a touch-friendly user experience.'
+            answer:
+              'Yes, Cova uses responsive design and works perfectly on phones and tablets. The mobile interface is optimized to provide a touch-friendly user experience.'
           },
           {
             question: 'Why are my exported images blurry?',
-            answer: 'Please check: 1. Export quality settings might be too low; 2. Original image resolution might be insufficient; 3. Browser zoom should be set to 100%. We recommend using high-quality settings and high-resolution assets for best results.'
+            answer:
+              'Please check: 1. Export quality settings might be too low; 2. Original image resolution might be insufficient; 3. Browser zoom should be set to 100%. We recommend using high-quality settings and high-resolution assets for best results.'
           }
         ]
       }
     },
     contact: {
-      title: 'Didn\'t find your answer?',
-      description: 'If you didn\'t find what you\'re looking for here, feel free to contact us anytime.',
+      title: "Didn't find your answer?",
+      description: "If you didn't find what you're looking for here, feel free to contact us anytime.",
       contactUs: 'Contact Us'
     },
     search: {
@@ -381,11 +402,13 @@ export default {
   aboutPage: {
     hero: {
       title: 'About Cova',
-      description: 'We are dedicated to creating the best cover design tool for creators, enabling everyone to easily create professional-grade works.'
+      description:
+        'We are dedicated to creating the best cover design tool for creators, enabling everyone to easily create professional-grade works.'
     },
     mission: {
       title: 'Our Mission',
-      description: 'Simplify the design process and make creation more focused. We believe good tools should be invisible, letting creativity flow freely.'
+      description:
+        'Simplify the design process and make creation more focused. We believe good tools should be invisible, letting creativity flow freely.'
     },
     values: {
       performance: {
@@ -398,7 +421,8 @@ export default {
       },
       openSource: {
         title: 'Open Source Spirit',
-        description: 'Transparent development process, welcoming community contributions to build better products together.'
+        description:
+          'Transparent development process, welcoming community contributions to build better products together.'
       }
     },
     techStack: {
@@ -416,16 +440,17 @@ export default {
       description: 'We are a passionate team dedicated to providing the best tools for creators.',
       guizimo: {
         role: 'Founder & Developer',
-        description: 'Full-stack developer focused on user experience and product design, committed to creating excellent creative tools.'
+        description:
+          'Full-stack developer focused on user experience and product design, committed to creating excellent creative tools.'
       }
     },
     roadmap: {
       title: 'Roadmap',
       description: 'We have a clear product roadmap, continuously bringing more value to users.',
       status: {
-        completed: 'Completed',
+        'completed': 'Completed',
         'in-progress': 'In Progress',
-        planned: 'Planned'
+        'planned': 'Planned'
       },
       v1: {
         title: 'Core features and stable version release'
@@ -445,7 +470,8 @@ export default {
     },
     cta: {
       title: 'Join Our Journey',
-      description: 'Start using Cova now to experience a new way of cover design, or check out the source code on GitHub.',
+      description:
+        'Start using Cova now to experience a new way of cover design, or check out the source code on GitHub.',
       getStarted: 'Get Started',
       viewSource: 'View Source'
     }

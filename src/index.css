@@ -119,6 +119,8 @@
     @apply bg-black;
     /* 防止在移动设备上拖拉时出现白色背景 */
     background-color: #000000 !important;
+    /* 启用平滑滚动 */
+    scroll-behavior: smooth;
   }
   
   body {
@@ -128,6 +130,9 @@
     /* 防止页面边界出现白色 */
     min-height: 100vh;
     overflow-x: hidden;
+    /* 移动端滚动优化 */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
   }
   
   /* 确保根容器也有深色背景 */
@@ -136,10 +141,20 @@
     background-color: #000000 !important;
   }
   
+  /* 移动端滚动容器优化 */
+  .mobile-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    transform: translate3d(0, 0, 0); /* 启用硬件加速 */
+  }
+  
   /* 自定义滚动条样式 */
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    /* 移动端滚动优化 */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   
   .scrollbar-thin::-webkit-scrollbar {
@@ -158,5 +173,24 @@
   
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* 移动端特定优化 */
+  @media (max-width: 1024px) {
+    /* 改善触摸滚动性能 */
+    .overflow-y-auto {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    
+    /* 确保容器高度正确计算 */
+    .flex-1 {
+      min-height: 0;
+    }
+    
+    /* 防止选择文本时出现滚动问题 */
+    .generator-container {
+      touch-action: pan-y;
+    }
   }
 }
