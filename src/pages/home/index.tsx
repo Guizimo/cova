@@ -8,10 +8,12 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-      <Hero />
-      <Features />
-      <CTA />
+      <main>
+        <Hero />
+        <Features />
+        <CTA />
+      </main>
       <Footer />
     </div>
-  );   
+  );
 }

@@ -9,6 +9,7 @@ export default {
     getStarted: 'Get Started'
   },
   hero: {
+    badge: 'For Creators',
     title: 'Cova is a tool built for\ncover design',
     description: 'Meet the modern cover design system. Streamline your design process and make creation more fluid.',
     getStarted: 'Get Started',
@@ -72,16 +73,25 @@ export default {
       export: 'Export',
       backToHome: 'Back to Home'
     },
+    share: {
+      success: 'Shared successfully',
+      copied: 'Link copied to clipboard',
+      failed: 'Share failed, please try again'
+    },
     export: {
       png: 'PNG Format',
       jpeg: 'JPEG Format',
+      jpegQuality: 'Quality {{value}}',
       webp: 'WebP Format',
-      avif: 'AVIF Format'
+      avif: 'AVIF Format',
+      webpAvifNote: 'Exported as PNG'
     },
     config: {
       title: {
         label: 'Title',
-        placeholder: 'Enter your title'
+        placeholder: 'Enter your title',
+        subtitleLabel: 'Subtitle',
+        subtitlePlaceholder: 'Optional, shown below title'
       },
       size: {
         label: 'Cover Size',
@@ -152,6 +162,15 @@ export default {
     tabs: {
       config: 'Configuration',
       preview: 'Preview'
+    },
+    templates: {
+      title: 'Templates',
+      saveAs: 'Save as template',
+      apply: 'Apply',
+      remove: 'Remove',
+      namePlaceholder: 'Enter template name',
+      saved: 'Saved as template',
+      noTemplates: 'No templates yet. Design and save one'
     }
   },
   featuresPage: {

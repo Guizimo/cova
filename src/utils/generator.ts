@@ -45,10 +45,21 @@ export const handleImageUpload = (
   }
 };
 
+/** JPEG 导出质量，0–1，仅对 JPEG 生效 */
+export type ExportQuality = number;
+
+async function ensureBlob(value: Blob | string | null): Promise<Blob | null> {
+  if (value == null) return null;
+  if (value instanceof Blob) return value;
+  const r = await fetch(value);
+  return await r.blob();
+}
+
 export const exportImage = async (
   format: 'png' | 'jpeg' | 'webp' | 'avif',
   backgroundType: string,
-  setIsExporting: (value: boolean) => void
+  setIsExporting: (value: boolean) => void,
+  jpegQuality: number = 0.92
 ) => {
   const element = document.getElementById('cover-preview');
   if (!element) {
@@ -59,27 +70,38 @@ export const exportImage = async (
   try {
     setIsExporting(true);
 
-    const options = {
-      quality: 1,
+    const baseOptions = {
       bgcolor: backgroundType === 'transparent' ? null : undefined
     };
 
-    let blob;
+    let blob: Blob | null = null;
+    let fileExt = format;
     switch (format) {
-      case 'png':
-        blob = await htmlToImage.toBlob(element, options);
+      case 'png': {
+        const pngResult = await htmlToImage.toBlob(element, { ...baseOptions, quality: 1 });
+        blob = await ensureBlob(pngResult);
         break;
-      case 'jpeg':
-        blob = await htmlToImage.toJpeg(element, options);
+      }
+      case 'jpeg': {
+        const jpegResult = await htmlToImage.toJpeg(element, {
+          ...baseOptions,
+          quality: Math.max(0, Math.min(1, jpegQuality))
+        });
+        blob = await ensureBlob(jpegResult);
         break;
+      }
       case 'webp':
-      case 'avif':
-        blob = await htmlToImage.toPng(element, options);
+      case 'avif': {
+        // html-to-image 暂不支持 WebP/AVIF，实际导出为 PNG
+        const pngResult = await htmlToImage.toBlob(element, { ...baseOptions, quality: 1 });
+        blob = await ensureBlob(pngResult);
+        fileExt = 'png';
         break;
+      }
     }
 
     if (blob) {
-      saveAs(blob, `cover.${format}`);
+      saveAs(blob, `cover.${fileExt}`);
       toast.success(`🎉 ${format.toUpperCase()} 导出成功！`, {
         description: '文件已开始下载'
       });

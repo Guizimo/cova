@@ -1,6 +1,7 @@
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Box } from 'lucide-react';
 import { PRESET_SIZES } from '@/config/generator';
 import { useGeneratorStore } from '@/store/generator';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,8 @@ export function SizeConfig() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
+        <h3 className="flex items-center gap-2 text-sm font-medium text-white/90 uppercase tracking-wide">
+          <Box className="h-3.5 w-3.5 text-white/70" />
           {t('generator.config.size.label')}
         </h3>
       </div>
@@ -45,15 +47,15 @@ export function SizeConfig() {
               </SelectTrigger>
               <SelectContent className="bg-black border-white/10">
                 {PRESET_SIZES.map((size) => (
-                  <SelectItem 
-                    key={`${size.width}x${size.height}`} 
+                  <SelectItem
+                    key={`${size.width}x${size.height}`}
                     value={`${size.width}x${size.height}`}
                     className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
                   >
                     {size.label}
                   </SelectItem>
                 ))}
-                <SelectItem 
+                <SelectItem
                   value="custom"
                   className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
                 >

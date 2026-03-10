@@ -5,11 +5,31 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Settings, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useGeneratorStore } from '@/store/generator';
+import { exportImage } from '@/utils/generator';
 
 export default function Generator() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('config');
+  const { resetSettings, backgroundType, setIsExporting } = useGeneratorStore();
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const isMac = navigator.platform.toUpperCase().includes('MAC');
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+      if (mod && e.key === 's') {
+        e.preventDefault();
+        exportImage('png', backgroundType, setIsExporting);
+      }
+      if (mod && e.shiftKey && e.key === 'R') {
+        e.preventDefault();
+        resetSettings();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [backgroundType, resetSettings, setIsExporting]);
 
   return (
     <div className="flex flex-col h-screen bg-black text-white overflow-hidden generator-container">

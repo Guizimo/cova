@@ -6,6 +6,7 @@ import { useMemo, useEffect, useState } from 'react';
 export function Preview() {
   const {
     title,
+    subtitle,
     isCustomSize,
     customWidth,
     customHeight,
@@ -81,12 +82,14 @@ export function Preview() {
     }
   };
 
+  const coverWidth = isCustomSize ? customWidth : selectedSize.width;
+  const coverHeight = isCustomSize ? customHeight : selectedSize.height;
+  const showCheckerboard = backgroundType === 'transparent';
+
   // 计算预览缩放比例，确保在移动端也能完整显示
   const scale = useMemo(() => {
     const containerWidth = containerSize.width;
     const containerHeight = containerSize.height;
-    const coverWidth = isCustomSize ? customWidth : selectedSize.width;
-    const coverHeight = isCustomSize ? customHeight : selectedSize.height;
 
     // 移动端给更多边距
     const padding = containerWidth < 768 ? 40 : 80;
@@ -98,7 +101,7 @@ export function Preview() {
     const scaleY = maxHeight / coverHeight;
 
     return Math.min(scaleX, scaleY, 1); // 最大不超过原尺寸
-  }, [containerSize, isCustomSize, customWidth, customHeight, selectedSize]);
+  }, [containerSize, coverWidth, coverHeight]);
 
   return (
     <div className="flex h-full flex-col bg-black">
@@ -115,16 +118,38 @@ export function Preview() {
           )}
 
           {/* 预览容器 */}
-          <div className="relative" style={{ transform: `scale(${scale})` }}>
+          <div className="relative flex flex-col items-center" style={{ transform: `scale(${scale})` }}>
             {/* 背景装饰 */}
             <div className="absolute -inset-4 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-2xl blur-xl opacity-20" />
+
+            {/* 透明背景时的棋盘格 */}
+            {showCheckerboard && (
+              <div
+                className="absolute border border-white/10 rounded-lg overflow-hidden shadow-2xl"
+                style={{
+                  width: coverWidth,
+                  height: coverHeight,
+                  borderRadius: `${borderRadius}px`,
+                  backgroundImage: `
+                    linear-gradient(45deg, #3a3a3a 25%, transparent 25%),
+                    linear-gradient(-45deg, #3a3a3a 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #3a3a3a 75%),
+                    linear-gradient(-45deg, transparent 75%, #3a3a3a 75%)
+                  `,
+                  backgroundSize: '16px 16px',
+                  backgroundPosition: '0 0, 8px 0, 8px -8px, 0 8px',
+                  backgroundColor: '#2a2a2a'
+                }}
+                aria-hidden
+              />
+            )}
 
             <div
               id="cover-preview"
               className="border border-white/10 relative overflow-hidden shadow-2xl"
               style={{
-                width: isCustomSize ? customWidth : selectedSize.width,
-                height: isCustomSize ? customHeight : selectedSize.height,
+                width: coverWidth,
+                height: coverHeight,
                 borderRadius: `${borderRadius}px`,
                 position: 'relative'
               }}
@@ -158,21 +183,43 @@ export function Preview() {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  fontSize: `${fontSize}px`,
-                  fontFamily,
-                  fontWeight,
-                  fontStyle,
-                  color: textColor,
-                  letterSpacing: `${letterSpacing}px`,
                   width: '100%',
                   textAlign: 'center',
-                  whiteSpace: 'pre-wrap',
-                  lineHeight: lineHeight,
                   zIndex: 1,
-                  padding: '0 20px' // 防止文字溢出
+                  padding: '0 20px'
                 }}
               >
-                {title}
+                <div
+                  style={{
+                    fontSize: `${fontSize}px`,
+                    fontFamily,
+                    fontWeight,
+                    fontStyle,
+                    color: textColor,
+                    letterSpacing: `${letterSpacing}px`,
+                    whiteSpace: 'pre-wrap',
+                    lineHeight: lineHeight
+                  }}
+                >
+                  {title}
+                </div>
+                {subtitle && (
+                  <div
+                    style={{
+                      fontSize: `${Math.max(14, Math.round(fontSize * 0.45))}px`,
+                      fontFamily,
+                      fontWeight,
+                      fontStyle,
+                      color: textColor,
+                      opacity: 0.9,
+                      marginTop: `${Math.round(fontSize * 0.15)}px`,
+                      whiteSpace: 'pre-wrap',
+                      lineHeight: lineHeight
+                    }}
+                  >
+                    {subtitle}
+                  </div>
+                )}
               </div>
 
               {/* 图标层 */}
@@ -200,6 +247,11 @@ export function Preview() {
                 </div>
               )}
             </div>
+
+            {/* 尺寸标签 */}
+            <span className="mt-2 text-xs text-white/40 font-mono tabular-nums" style={{ position: 'relative' }}>
+              {coverWidth} × {coverHeight}
+            </span>
           </div>
         </div>
       </div>

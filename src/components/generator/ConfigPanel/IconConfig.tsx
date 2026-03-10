@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Upload } from 'lucide-react';
+import { Upload, Image as ImageIcon } from 'lucide-react';
 import { useGeneratorStore } from '@/store/generator';
 import { handleImageUpload } from '@/utils/generator';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +32,8 @@ export function IconConfig() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
+        <h3 className="flex items-center gap-2 text-sm font-medium text-white/90 uppercase tracking-wide">
+          <ImageIcon className="h-3.5 w-3.5 text-white/70" />
           {t('generator.config.icon.label')}
         </h3>
         <Switch

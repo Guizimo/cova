@@ -2,10 +2,46 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { DEFAULT_SETTINGS, CoverSize } from '@/config/generator';
 
+/** 模板配置：与 partialize 缓存的字段一致，用于保存/应用模板 */
+export interface TemplateConfig {
+  title?: string;
+  subtitle?: string;
+  selectedSize?: CoverSize;
+  customWidth?: number;
+  customHeight?: number;
+  isCustomSize?: boolean;
+  fontSize?: number;
+  fontFamily?: string;
+  letterSpacing?: number;
+  fontWeight?: number;
+  textColor?: string;
+  fontStyle?: string;
+  backgroundColor?: string;
+  gradientStart?: string;
+  gradientEnd?: string;
+  gradientAngle?: number;
+  backgroundType?: string;
+  borderRadius?: number;
+  backgroundSize?: 'cover' | 'contain';
+  backgroundPosition?: string;
+  backdropBlur?: number;
+  showIcon?: boolean;
+  iconPosition?: string;
+  iconSize?: number;
+  iconBorderRadius?: number;
+  iconShadow?: number;
+  lineHeight?: number;
+  iconImage?: string;
+  iconBgColor?: string;
+  iconPadding?: number;
+}
+
 interface GeneratorState {
   // 标题
   title: string;
   setTitle: (title: string) => void;
+  subtitle: string;
+  setSubtitle: (subtitle: string) => void;
 
   // 尺寸
   selectedSize: CoverSize;
@@ -78,14 +114,22 @@ interface GeneratorState {
 
   // 重置
   resetSettings: () => void;
+
+  // 从模板应用配置
+  applyTemplateConfig: (config: TemplateConfig) => void;
+
+  // 获取当前配置用于保存为模板
+  getCurrentTemplateConfig: () => TemplateConfig;
 }
 
 export const useGeneratorStore = create<GeneratorState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       // 标题
       title: DEFAULT_SETTINGS.title,
       setTitle: (title) => set({ title }),
+      subtitle: DEFAULT_SETTINGS.subtitle ?? '',
+      setSubtitle: (subtitle) => set({ subtitle }),
 
       // 尺寸
       selectedSize: DEFAULT_SETTINGS.selectedSize,
@@ -161,7 +205,46 @@ export const useGeneratorStore = create<GeneratorState>()(
         set({
           ...DEFAULT_SETTINGS,
           backgroundImage: ''
-        })
+        }),
+
+      // 从模板应用配置（仅更新模板包含的字段）
+      applyTemplateConfig: (config) => set((state) => ({ ...state, ...config })),
+
+      getCurrentTemplateConfig: () => {
+        const s = get();
+        return {
+          title: s.title,
+          subtitle: s.subtitle,
+          selectedSize: s.selectedSize,
+          customWidth: s.customWidth,
+          customHeight: s.customHeight,
+          isCustomSize: s.isCustomSize,
+          fontSize: s.fontSize,
+          fontFamily: s.fontFamily,
+          letterSpacing: s.letterSpacing,
+          fontWeight: s.fontWeight,
+          textColor: s.textColor,
+          fontStyle: s.fontStyle,
+          backgroundColor: s.backgroundColor,
+          gradientStart: s.gradientStart,
+          gradientEnd: s.gradientEnd,
+          gradientAngle: s.gradientAngle,
+          backgroundType: s.backgroundType,
+          borderRadius: s.borderRadius,
+          backgroundSize: s.backgroundSize,
+          backgroundPosition: s.backgroundPosition,
+          backdropBlur: s.backdropBlur,
+          showIcon: s.showIcon,
+          iconPosition: s.iconPosition,
+          iconSize: s.iconSize,
+          iconBorderRadius: s.iconBorderRadius,
+          iconShadow: s.iconShadow,
+          lineHeight: s.lineHeight,
+          iconImage: s.iconImage,
+          iconBgColor: s.iconBgColor,
+          iconPadding: s.iconPadding
+        };
+      }
     }),
     {
       name: 'cova-storage', // 存储的键名
@@ -176,7 +259,7 @@ export const useGeneratorStore = create<GeneratorState>()(
               ...DEFAULT_SETTINGS,
               ...state
             };
-          } catch (e) {
+          } catch {
             return null;
           }
         },
@@ -188,6 +271,7 @@ export const useGeneratorStore = create<GeneratorState>()(
       partialize: (state: GeneratorState): Partial<GeneratorState> => ({
         // 只缓存这些字段
         title: state.title,
+        subtitle: state.subtitle,
         selectedSize: state.selectedSize,
         customWidth: state.customWidth,
         customHeight: state.customHeight,

@@ -9,7 +9,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useGeneratorStore } from '@/store/generator';
 import { exportImage } from '@/utils/generator';
+import { shareGeneratorPage } from '@/utils/share';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.png';
@@ -88,7 +90,15 @@ export function Header() {
                   {t('generator.buttons.reset')}
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="text-white hover:bg-white/[0.08]">
+                <DropdownMenuItem
+                  onClick={async () => {
+                    const result = await shareGeneratorPage(i18n.language === 'zh' ? 'zh' : 'en');
+                    if (result === 'shared') toast.success(t('generator.share.success'));
+                    else if (result === 'copied') toast.success(t('generator.share.copied'));
+                    else if (result === false) toast.error(t('generator.share.failed'));
+                  }}
+                  className="text-white hover:bg-white/[0.08]"
+                >
                   <Share2 className="mr-2 h-4 w-4" />
                   {t('generator.buttons.share')}
                 </DropdownMenuItem>
@@ -162,6 +172,12 @@ export function Header() {
           <Button
             variant="outline"
             size="sm"
+            onClick={async () => {
+              const result = await shareGeneratorPage(i18n.language === 'zh' ? 'zh' : 'en');
+              if (result === 'shared') toast.success(t('generator.share.success'));
+              else if (result === 'copied') toast.success(t('generator.share.copied'));
+              else if (result === false) toast.error(t('generator.share.failed'));
+            }}
             className="hidden lg:flex border-white/[0.08] bg-white/[0.05] text-white hover:bg-white/[0.1] hover:text-white h-8"
           >
             <Share2 className="mr-2 h-4 w-4" />
@@ -195,22 +211,37 @@ export function Header() {
                 {t('generator.export.png')}
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => exportImage('jpeg', backgroundType, setIsExporting)}
+                onClick={() => exportImage('jpeg', backgroundType, setIsExporting, 1)}
                 className="text-white hover:bg-white/[0.08]"
               >
-                {t('generator.export.jpeg')}
+                {t('generator.export.jpeg')} (1.0)
               </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => exportImage('jpeg', backgroundType, setIsExporting, 0.9)}
+                className="text-white hover:bg-white/[0.08]"
+              >
+                {t('generator.export.jpeg')} (0.9)
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => exportImage('jpeg', backgroundType, setIsExporting, 0.8)}
+                className="text-white hover:bg-white/[0.08]"
+              >
+                {t('generator.export.jpeg')} (0.8)
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="bg-white/[0.08]" />
               <DropdownMenuItem
                 onClick={() => exportImage('webp', backgroundType, setIsExporting)}
                 className="text-white hover:bg-white/[0.08]"
               >
-                {t('generator.export.webp')}
+                <span>{t('generator.export.webp')}</span>
+                <span className="ml-2 text-xs text-white/50">{t('generator.export.webpAvifNote')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => exportImage('avif', backgroundType, setIsExporting)}
                 className="text-white hover:bg-white/[0.08]"
               >
-                {t('generator.export.avif')}
+                <span>{t('generator.export.avif')}</span>
+                <span className="ml-2 text-xs text-white/50">{t('generator.export.webpAvifNote')}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

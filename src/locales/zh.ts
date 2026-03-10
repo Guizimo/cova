@@ -9,6 +9,7 @@ export default {
     getStarted: '开始使用'
   },
   hero: {
+    badge: '专为创作者',
     title: 'Cova 是一个专为\n封面设计打造的工具',
     description: '遇见现代封面设计系统。简化设计流程，让创作更加流畅。',
     getStarted: '开始使用',
@@ -70,16 +71,25 @@ export default {
       export: '导出',
       backToHome: '返回首页'
     },
+    share: {
+      success: '分享成功',
+      copied: '链接已复制到剪贴板',
+      failed: '分享失败，请重试'
+    },
     export: {
       png: 'PNG 格式',
       jpeg: 'JPEG 格式',
+      jpegQuality: '质量 {{value}}',
       webp: 'WebP 格式',
-      avif: 'AVIF 格式'
+      avif: 'AVIF 格式',
+      webpAvifNote: '当前以 PNG 导出'
     },
     config: {
       title: {
         label: '标题',
-        placeholder: '输入您的标题'
+        placeholder: '输入您的标题',
+        subtitleLabel: '副标题',
+        subtitlePlaceholder: '选填，显示在标题下方'
       },
       size: {
         label: '封面尺寸',
@@ -150,6 +160,15 @@ export default {
     tabs: {
       config: '配置',
       preview: '预览'
+    },
+    templates: {
+      title: '模板',
+      saveAs: '保存为模板',
+      apply: '应用',
+      remove: '删除',
+      namePlaceholder: '输入模板名称',
+      saved: '已保存为模板',
+      noTemplates: '暂无模板，可先设计后保存'
     }
   },
   featuresPage: {

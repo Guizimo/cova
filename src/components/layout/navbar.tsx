@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { Menu, X, Globe, Check } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface NavItem {
@@ -23,7 +23,14 @@ interface NavbarProps {
 
 export function Navbar({ items = [] }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const defaultItems: NavItem[] = [
     {
@@ -52,24 +59,31 @@ export function Navbar({ items = [] }: NavbarProps) {
   const navItems = items.length ? items : defaultItems;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-black">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        scrolled ? 'border-white/[0.12] bg-black/90 backdrop-blur-md' : 'border-white/[0.08] bg-black'
+      }`}
+    >
       <div className="mx-auto max-w-[1000px] px-6">
         <nav className="relative flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 shrink-0">
+          <Link
+            to="/"
+            className="flex items-center gap-2 shrink-0 text-white/95 hover:text-white transition-colors duration-200 rounded-lg p-1 -m-1"
+          >
             <img src={logo} alt="Cova Logo" className="h-[22px] w-[22px]" />
             <span className="text-lg font-medium">Cova</span>
           </Link>
 
           {/* 桌面端菜单 */}
           <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
               {navItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
                   target={item.isExternal ? '_blank' : undefined}
                   rel={item.isExternal ? 'noreferrer' : undefined}
-                  className="rounded-md px-3 py-2 text-sm text-white/50 transition-colors hover:text-white hover:bg-white/[0.08]"
+                  className="rounded-lg px-3.5 py-2 text-sm text-white/55 transition-all duration-200 hover:text-white hover:bg-white/[0.08]"
                 >
                   {item.label}
                 </a>
@@ -115,7 +129,7 @@ export function Navbar({ items = [] }: NavbarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link to="/generator">
-                <Button className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/90">
+                <Button className="h-8 bg-white px-4 text-sm font-medium text-black hover:bg-white/95 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow duration-200 rounded-lg">
                   {t('nav.getStarted')}
                 </Button>
               </Link>

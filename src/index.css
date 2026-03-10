@@ -175,6 +175,31 @@
     background-color: rgba(255, 255, 255, 0.3);
   }
   
+  /* Hero 背景光晕动效：仅动画 opacity/scale，保留元素自身的 -translate-x-1/2（用 translate(-50%, 0) 与 left-1/2 配合） */
+  @keyframes hero-glow-drift {
+    0%, 100% { opacity: 0.2; transform: translate(-50%, 0) scale(1); }
+    50% { opacity: 0.28; transform: translate(-50%, 0) scale(1.05); }
+  }
+  .hero-glow-animate {
+    animation: hero-glow-drift 12s ease-in-out infinite;
+  }
+
+  /* 宣传页：标题渐变高亮 */
+  .text-gradient-hero {
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.9) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 宣传页：小节标题下划线装饰 */
+  .section-underline {
+    width: 2.5rem;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
+  }
+
   /* 移动端特定优化 */
   @media (max-width: 1024px) {
     /* 改善触摸滚动性能 */

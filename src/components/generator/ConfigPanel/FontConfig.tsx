@@ -2,6 +2,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Type } from 'lucide-react';
 import { FONT_FAMILIES } from '@/config/generator';
 import { useGeneratorStore } from '@/store/generator';
 import { useTranslation } from 'react-i18next';
@@ -28,36 +29,34 @@ export function FontConfig() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
+        <h3 className="flex items-center gap-2 text-sm font-medium text-white/90 uppercase tracking-wide">
+          <Type className="h-3.5 w-3.5 text-white/70" />
           {t('generator.config.font.label')}
         </h3>
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label className="text-white/60 text-xs uppercase tracking-wide">
-            {t('generator.config.font.family')}
-          </Label>
+          <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.font.family')}</Label>
           <div className="mt-2">
-          <Select value={fontFamily} onValueChange={setFontFamily}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
-              <SelectValue placeholder={t('generator.config.font.family')} />
-            </SelectTrigger>
-            <SelectContent className="bg-black border-white/10">
-              {FONT_FAMILIES.map(({ value, label }) => (
-                <SelectItem 
-                  key={value} 
-                  value={value}
-                  className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
-                >
-                  <span style={{ fontFamily: value }}>{label}</span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <Select value={fontFamily} onValueChange={setFontFamily}>
+              <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
+                <SelectValue placeholder={t('generator.config.font.family')} />
+              </SelectTrigger>
+              <SelectContent className="bg-black border-white/10">
+                {FONT_FAMILIES.map(({ value, label }) => (
+                  <SelectItem
+                    key={value}
+                    value={value}
+                    className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                  >
+                    <span style={{ fontFamily: value }}>{label}</span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-          
         </div>
-        
+
         <div className="space-y-2">
           <Label className="text-white/60 text-xs uppercase tracking-wide">
             {t('generator.config.font.lineHeight')}
@@ -74,33 +73,34 @@ export function FontConfig() {
             <span className="w-12 text-sm text-white/60 text-right">{lineHeight}</span>
           </div>
         </div>
-        
+
         <div className="space-y-2">
-          <Label className="text-white/60 text-xs uppercase tracking-wide">
-            {t('generator.config.font.style')}
-          </Label>
+          <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.font.style')}</Label>
           <div className="mt-2">
-          <Select value={fontStyle} onValueChange={setFontStyle}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
-              <SelectValue placeholder={t('generator.config.font.style')} />
-            </SelectTrigger>
-            <SelectContent className="bg-black border-white/10">
-              <SelectItem value="normal" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                {t('generator.config.font.normal')}
-              </SelectItem>
-              <SelectItem value="italic" className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white">
-                {t('generator.config.font.italic')}
-              </SelectItem>
-            </SelectContent>
-          </Select>
+            <Select value={fontStyle} onValueChange={setFontStyle}>
+              <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
+                <SelectValue placeholder={t('generator.config.font.style')} />
+              </SelectTrigger>
+              <SelectContent className="bg-black border-white/10">
+                <SelectItem
+                  value="normal"
+                  className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                >
+                  {t('generator.config.font.normal')}
+                </SelectItem>
+                <SelectItem
+                  value="italic"
+                  className="text-white hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white"
+                >
+                  {t('generator.config.font.italic')}
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          
         </div>
-        
+
         <div className="space-y-2">
-          <Label className="text-white/60 text-xs uppercase tracking-wide">
-            {t('generator.config.font.size')}
-          </Label>
+          <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.font.size')}</Label>
           <div className="flex items-center space-x-3 mt-2">
             <Slider
               value={[fontSize]}
@@ -113,7 +113,7 @@ export function FontConfig() {
             <span className="w-12 text-sm text-white/60 text-right">{fontSize}px</span>
           </div>
         </div>
-        
+
         <div className="space-y-2">
           <Label className="text-white/60 text-xs uppercase tracking-wide">
             {t('generator.config.font.letterSpacing')}
@@ -130,11 +130,9 @@ export function FontConfig() {
             <span className="w-12 text-sm text-white/60 text-right">{letterSpacing}px</span>
           </div>
         </div>
-        
+
         <div className="space-y-2">
-          <Label className="text-white/60 text-xs uppercase tracking-wide">
-            {t('generator.config.font.weight')}
-          </Label>
+          <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.font.weight')}</Label>
           <div className="flex space-x-2 mt-2">
             <Input
               type="number"
@@ -147,14 +145,12 @@ export function FontConfig() {
             />
           </div>
         </div>
-        
+
         <div className="space-y-2">
-          <Label className="text-white/60 text-xs uppercase tracking-wide">
-            {t('generator.config.font.color')}
-          </Label>
+          <Label className="text-white/60 text-xs uppercase tracking-wide">{t('generator.config.font.color')}</Label>
           <div className="flex space-x-2 mt-2">
-            <Input 
-              value={textColor} 
+            <Input
+              value={textColor}
               onChange={(e) => setTextColor(e.target.value)}
               className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
             />
@@ -165,10 +161,7 @@ export function FontConfig() {
                 onChange={(e) => setTextColor(e.target.value)}
                 className="absolute inset-0 w-full h-full cursor-pointer opacity-0"
               />
-              <div 
-                className="w-full h-full rounded-md border border-white/20" 
-                style={{ backgroundColor: textColor }} 
-              />
+              <div className="w-full h-full rounded-md border border-white/20" style={{ backgroundColor: textColor }} />
             </div>
           </div>
         </div>

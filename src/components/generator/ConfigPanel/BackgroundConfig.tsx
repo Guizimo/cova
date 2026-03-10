@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Upload } from 'lucide-react';
+import { Upload, Palette } from 'lucide-react';
 import { useGeneratorStore } from '@/store/generator';
 import { handleImageUpload } from '@/utils/generator';
 import { PRESET_COLORS, PRESET_GRADIENTS } from '@/config/generator';
@@ -70,7 +70,8 @@ export function BackgroundConfig() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-white/90 uppercase tracking-wide">
+        <h3 className="flex items-center gap-2 text-sm font-medium text-white/90 uppercase tracking-wide">
+          <Palette className="h-3.5 w-3.5 text-white/70" />
           {t('generator.config.background.label')}
         </h3>
       </div>

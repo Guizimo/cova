@@ -32,6 +32,7 @@ export const FONT_FAMILIES = [
 export const DEFAULT_SETTINGS = {
   selectedSize: PRESET_SIZES[0],
   title: '输入标题预览效果',
+  subtitle: '',
   fontSize: 90,
   fontFamily: '"ZCOOL QingKe HuangYou", cursive',
   letterSpacing: 10,
