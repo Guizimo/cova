@@ -11,7 +11,15 @@
 
   <h1>Cova</h1>
   <p><strong>封面设计的全新标准</strong></p>
-  <p>专业级封面设计工具，支持实时预览和即时导出功能</p>
+  <p>专业级封面图片生成器，支持实时预览、模板管理和多格式导出 —— 完全在浏览器中本地运行。</p>
+
+  <div>
+    <a href="https://cova.guizimo.com" target="_blank">
+      <img src="https://img.shields.io/badge/🌐_在线演示-cova.guizimo.com-4285F4?style=for-the-badge" alt="在线演示">
+    </a>
+  </div>
+
+  <br>
 
   <div>
     <a href="https://github.com/guizimo/cova/stargazers">
@@ -32,10 +40,10 @@
 
   <div>
     <a href="#-功能特性">功能特性</a> •
-    <a href="#-界面展示">界面展示</a> •
     <a href="#-快速开始">快速开始</a> •
-    <a href="#-文档说明">文档说明</a> •
-    <a href="#-参与贡献">参与贡献</a>
+    <a href="#-技术架构">技术架构</a> •
+    <a href="#-参与贡献">参与贡献</a> •
+    <a href="#-发展路线">发展路线</a>
   </div>
 
   <br>
@@ -57,39 +65,39 @@
     <td width="50%">
       <h3>🎨 专业设计工具</h3>
       <ul>
-        <li><strong>实时预览</strong> - 即时查看设计效果</li>
-        <li><strong>自定义排版</strong> - 精细调节字体、大小和样式</li>
-        <li><strong>高级布局</strong> - 灵活的定位和对齐选项</li>
-        <li><strong>色彩管理</strong> - 渐变、纯色和透明度控制</li>
+        <li><strong>实时预览</strong> — 设计时即刻查看效果变化</li>
+        <li><strong>丰富的排版选项</strong> — 多种字体、字号、字距、行高、斜体、颜色</li>
+        <li><strong>灵活的背景设置</strong> — 纯色、渐变预设、图片上传、毛玻璃效果</li>
+        <li><strong>图标支持</strong> — 添加图标并自定义背景色和内边距</li>
       </ul>
     </td>
     <td width="50%">
-      <h3>⚡ 闪电般性能</h3>
+      <h3>📐 尺寸与布局</h3>
       <ul>
-        <li><strong>50ms 响应时间</strong> - 极速交互体验</li>
-        <li><strong>本地处理</strong> - 无需上传，完全保护隐私</li>
-        <li><strong>内存优化</strong> - 针对大型图片优化</li>
-        <li><strong>跨平台兼容</strong> - 支持所有现代浏览器</li>
+        <li><strong>多种尺寸预设</strong> — 覆盖博客、社交媒体等常见封面尺寸</li>
+        <li><strong>自定义尺寸</strong> — 自由设置任意宽度和高度</li>
+        <li><strong>圆角调整</strong> — 可调节的边框圆角</li>
+        <li><strong>响应式编辑器</strong> — 可拖拽调整的面板，适配你的工作流程</li>
       </ul>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>🚀 导出与分享</h3>
+      <h3>🚀 导出与模板</h3>
       <ul>
-        <li><strong>多种格式</strong> - 支持 PNG、JPEG、WebP、AVIF</li>
-        <li><strong>质量控制</strong> - 可自定义压缩设置</li>
-        <li><strong>批量导出</strong> - 导出多个变体</li>
-        <li><strong>社交媒体就绪</strong> - 针对各平台优化</li>
+        <li><strong>多格式导出</strong> — 支持 PNG、JPEG、WebP、AVIF</li>
+        <li><strong>模板系统</strong> — 保存、加载和管理最多 10 个模板</li>
+        <li><strong>配置持久化</strong> — 设置自动缓存到本地</li>
+        <li><strong>一键下载</strong> — 即时导出高质量封面图片</li>
       </ul>
     </td>
     <td width="50%">
-      <h3>🌍 全球化与无障碍</h3>
+      <h3>🌍 国际化与隐私</h3>
       <ul>
-        <li><strong>多语言支持</strong> - 中英文界面切换</li>
-        <li><strong>响应式设计</strong> - 完美适配桌面和移动端</li>
-        <li><strong>键盘快捷键</strong> - 高效的工作流程</li>
-        <li><strong>屏幕阅读器</strong> - 完全无障碍界面</li>
+        <li><strong>双语界面</strong> — 完整的中英文支持</li>
+        <li><strong>100% 本地处理</strong> — 无需上传服务器，数据永不离开你的浏览器</li>
+        <li><strong>GitHub Stars 展示</strong> — 编辑器顶部内置仓库星标数显示</li>
+        <li><strong>开源项目</strong> — GPL-3.0 协议，免费使用和修改</li>
       </ul>
     </td>
   </tr>
@@ -98,20 +106,8 @@
 ## 📸 界面展示
 
 <div align="center">
-  
-  **现代化界面设计**
-  <br>
-  <img src="public/preview-1.jpg" alt="Cova 界面" width="800" style="border-radius: 12px; margin: 20px 0;">
-  
-  *专为专业工作流程设计的简洁直观界面*
 
-  <br><br>
-
-  **强大的导出功能**
-  <br>
-  <img src="public/preview-2.jpg" alt="导出结果" width="800" style="border-radius: 12px; margin: 20px 0;">
-  
-  *支持多种格式的高质量导出，可自定义设置*
+> 在线体验：**[cova.guizimo.com](https://cova.guizimo.com)**
 
 </div>
 
@@ -140,12 +136,17 @@ pnpm install
 pnpm dev
 ```
 
-### Docker 部署（可选）
+### 可用脚本
 
 ```bash
-# 使用 Docker 构建和运行
-docker build -t cova .
-docker run -p 3000:3000 cova
+pnpm dev              # 启动开发服务器
+pnpm build            # 构建生产版本 (tsc + vite)
+pnpm preview          # 本地预览生产构建
+pnpm lint             # 运行 ESLint 检查
+pnpm format           # 使用 Prettier 格式化代码
+pnpm release          # 创建新版本 (standard-version)
+pnpm release:major    # 主版本升级
+pnpm release:minor    # 次版本升级
 ```
 
 ## 🏗️ 技术架构
@@ -155,12 +156,13 @@ docker run -p 3000:3000 cova
 <div align="center">
 
 | 分类 | 技术 |
-|----------|-------------|
+|------|------|
 | **前端框架** | ![React](https://img.shields.io/badge/React-19.1.0-61dafb?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6?logo=typescript&logoColor=white) |
 | **样式方案** | ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.1.8-38bdf8?logo=tailwindcss&logoColor=white) ![Radix UI](https://img.shields.io/badge/Radix_UI-Latest-000000?logo=radixui&logoColor=white) |
 | **构建工具** | ![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?logo=vite&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-9.28.0-4B32C3?logo=eslint&logoColor=white) |
-| **状态管理** | ![Zustand](https://img.shields.io/badge/Zustand-5.0.5-FF6B6B?logoColor=white) |
-| **国际化** | ![i18next](https://img.shields.io/badge/i18next-25.2.1-26A69A?logo=i18next&logoColor=white) |
+| **状态管理** | ![Zustand](https://img.shields.io/badge/Zustand-5.0.5-FF6B6B?logoColor=white)（含 persist 中间件） |
+| **国际化** | ![i18next](https://img.shields.io/badge/i18next-25.2.1-26A69A?logo=i18next&logoColor=white) ![react-i18next](https://img.shields.io/badge/react--i18next-15.5.2-26A69A?logoColor=white) |
+| **导出能力** | ![html-to-image](https://img.shields.io/badge/html--to--image-1.11.13-FF6B6B?logoColor=white) ![file-saver](https://img.shields.io/badge/file--saver-2.0.5-4CAF50?logoColor=white) |
 
 </div>
 
@@ -168,89 +170,44 @@ docker run -p 3000:3000 cova
 
 ```
 cova/
-├── 📁 src/
-│   ├── 📁 components/          # 可复用 UI 组件
-│   │   ├── 📁 ui/             # 基础 UI 组件 (按钮、输入框等)
-│   │   ├── 📁 layout/         # 布局组件 (导航栏、页脚)
-│   │   └── 📁 generator/      # 设计工具组件
-│   ├── 📁 pages/              # 页面组件
-│   │   ├── 📁 home/          # 首页
-│   │   ├── 📁 generator/     # 主编辑器
-│   │   ├── 📁 features/      # 功能展示页
-│   │   ├── 📁 contact/       # 联系页面
-│   │   └── 📁 faq/           # 常见问题页
-│   ├── 📁 stores/            # Zustand 状态管理
-│   ├── 📁 hooks/             # 自定义 React Hooks
-│   ├── 📁 utils/             # 工具函数
-│   ├── 📁 locales/           # 国际化翻译文件
-│   └── 📁 router/            # 路由配置
-├── 📁 public/                # 静态资源
-└── 📄 package.json          # 项目配置
-```
-
-## 📚 文档说明
-
-### API 参考
-
-<details>
-<summary><strong>核心组件</strong></summary>
-
-#### 生成器组件
-- `ConfigPanel` - 主配置界面
-- `Canvas` - 设计画布和实时预览
-- `ExportPanel` - 导出控制和格式选择
-
-#### 配置选项
-- **标题**: 文本内容和排版设置
-- **背景**: 颜色、渐变和图片上传
-- **布局**: 尺寸预设和自定义尺寸
-- **导出**: 质量设置和格式选择
-
-</details>
-
-<details>
-<summary><strong>自定义指南</strong></summary>
-
-#### 添加自定义字体
-```typescript
-// 在 src/utils/fonts.ts 中添加
-export const customFonts = [
-  { name: '自定义字体', value: 'custom-font' }
-];
-```
-
-#### 自定义导出格式
-```typescript
-// 扩展 src/utils/export.ts
-export const supportedFormats = ['png', 'jpeg', 'webp', 'avif'];
-```
-
-</details>
-
-### 开发脚本
-
-```bash
-# 开发
-pnpm dev              # 启动开发服务器
-pnpm build            # 构建生产版本
-pnpm preview          # 预览生产构建
-
-# 代码质量
-pnpm lint             # 运行 ESLint 检查
-pnpm format           # 使用 Prettier 格式化
-pnpm type-check       # TypeScript 类型检查
-
-# 发布
-pnpm release          # 创建新版本
-pnpm release:major    # 主版本升级
-pnpm release:minor    # 次版本升级
+├── src/
+│   ├── components/
+│   │   ├── ui/                # 基础 UI 组件（Button、Input、Select、Slider 等）
+│   │   ├── layout/            # 落地页模块（Navbar、Hero、Features、CTA、Footer）
+│   │   └── generator/         # 编辑器组件
+│   │       ├── Header.tsx     # 编辑器头部（版本号 & GitHub Stars）
+│   │       ├── Preview.tsx    # 实时封面预览画布
+│   │       └── ConfigPanel/   # 配置面板
+│   │           ├── TitleConfig.tsx
+│   │           ├── FontConfig.tsx
+│   │           ├── BackgroundConfig.tsx
+│   │           ├── IconConfig.tsx
+│   │           ├── SizeConfig.tsx
+│   │           └── TemplateConfig.tsx
+│   ├── pages/                 # 路由页面
+│   │   ├── home/              # 首页
+│   │   ├── generator/         # 封面编辑器（核心功能）
+│   │   ├── features/          # 功能展示页
+│   │   ├── about/             # 关于页面
+│   │   ├── contact/           # 联系页面
+│   │   ├── faq/               # 常见问题页
+│   │   └── not-found/         # 404 页面
+│   ├── store/                 # Zustand 状态管理（生成器状态 + 模板管理）
+│   ├── config/                # 应用配置常量
+│   ├── types/                 # TypeScript 类型定义
+│   ├── utils/                 # 工具函数（导出、国际化、分享）
+│   ├── lib/                   # 共享辅助函数（cn 工具）
+│   ├── locales/               # 国际化翻译文件（en.ts、zh.ts）
+│   ├── styles/                # 全局样式
+│   └── router/                # React Router 路由配置
+├── public/                    # 静态资源
+├── CHANGELOG.md               # 自动生成的变更日志
+└── package.json
 ```
 
 ## 🤝 参与贡献
 
-我们欢迎社区的贡献！以下是您可以参与的方式：
-
-### 开发流程
+我们欢迎社区贡献！参与方式如下：
 
 1. **Fork** 仓库
 2. **创建** 功能分支：`git checkout -b feature/amazing-feature`
@@ -258,48 +215,23 @@ pnpm release:minor    # 次版本升级
 4. **推送** 分支：`git push origin feature/amazing-feature`
 5. **提交** Pull Request
 
-### 贡献指南
-
-<div align="center">
-
-| 类型 | 描述 |
-|------|-------------|
-| 🐛 **错误报告** | 报告问题并提供详细的重现步骤 |
-| ✨ **功能请求** | 提出新功能建议和使用场景 |
-| 📖 **文档改进** | 改进文档、添加示例、修复错误 |
-| 🎨 **设计** | UI/UX 改进和设计建议 |
-| 🔧 **代码** | 错误修复、功能实现、重构 |
-
-</div>
-
 ### 代码规范
 
-- **TypeScript**: 完全类型化的代码库
-- **ESLint**: 一致的代码风格
-- **Prettier**: 自动格式化
-- **约定式提交**: 语义化提交信息
-- **Husky**: 提交前质量检查
-
-## 📊 性能指标
-
-<div align="center">
-
-| 指标 | 数值 | 描述 |
-|--------|-------|-------------|
-| **响应时间** | < 50ms | UI 交互响应速度 |
-| **包大小** | < 500KB | 优化后的生产构建 |
-| **首次绘制** | < 1s | 初始页面加载速度 |
-| **Core Web Vitals** | 全部优秀 | Google 用户体验指标 |
-
-</div>
+| 工具 | 用途 |
+|------|------|
+| **TypeScript** | 完全类型化的代码库 |
+| **ESLint** | 一致的代码风格 |
+| **Prettier** | 自动格式化 |
+| **Commitlint** | 约定式提交信息 |
+| **Husky + lint-staged** | 提交前质量检查 |
 
 ## 🌟 发展路线
 
-- [ ] **v1.0.0** - 稳定版本和核心功能
-- [ ] **v1.1.0** - 模板市场
-- [ ] **v1.2.0** - 协作功能
-- [ ] **v1.3.0** - 插件系统
-- [ ] **v2.0.0** - 高级动画和特效
+- [x] **v1.0.0** — 核心封面生成器：背景、字体、图标、导出
+- [x] **v1.1.0** — 移动端优化、用户体验增强、模板系统
+- [ ] **v1.2.0** — 模板市场
+- [ ] **v1.3.0** — 协作功能
+- [ ] **v2.0.0** — 插件系统、高级动画和特效
 
 ## 💝 支持项目
 
@@ -307,25 +239,25 @@ pnpm release:minor    # 次版本升级
 
 <div align="center">
   <a href="https://github.com/guizimo/cova/stargazers">
-    <img src="https://img.shields.io/badge/⭐_在_GitHub_上星标-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="在 GitHub 上星标">
+    <img src="https://img.shields.io/badge/在_GitHub_上点星-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="在 GitHub 上点星">
   </a>
   <a href="https://github.com/guizimo/cova/issues">
-    <img src="https://img.shields.io/badge/🐛_报告问题-FF4444?style=for-the-badge&logo=github&logoColor=white" alt="报告问题">
+    <img src="https://img.shields.io/badge/报告问题-FF4444?style=for-the-badge&logo=github&logoColor=white" alt="报告问题">
   </a>
   <a href="https://github.com/guizimo/cova/discussions">
-    <img src="https://img.shields.io/badge/💬_参与讨论-4285F4?style=for-the-badge&logo=github&logoColor=white" alt="参与讨论">
+    <img src="https://img.shields.io/badge/参与讨论-4285F4?style=for-the-badge&logo=github&logoColor=white" alt="参与讨论">
   </a>
 </div>
 
 ## 📄 开源协议
 
-本项目基于 **GPL-3.0 协议** 开源 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目基于 **GPL-3.0 协议** 开源 — 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ## 📞 联系方式
 
 <div align="center">
 
-**Guizimo** - *创建者与维护者*
+**Guizimo** — *创建者与维护者*
 
 [![邮箱](https://img.shields.io/badge/邮箱-17680262548@163.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:17680262548@163.com)
 [![GitHub](https://img.shields.io/badge/GitHub-guizimo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/guizimo)
@@ -339,5 +271,3 @@ pnpm release:minor    # 次版本升级
   <br>
   <sub>为创作者而生，由创作者打造</sub>
 </div>
-
-        

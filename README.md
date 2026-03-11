@@ -11,7 +11,15 @@
 
   <h1>Cova</h1>
   <p><strong>The new standard for cover design</strong></p>
-  <p>Professional-grade cover design tool with real-time preview and instant export capabilities</p>
+  <p>A professional-grade cover image generator with real-time preview, template management, and multi-format export — all running locally in your browser.</p>
+
+  <div>
+    <a href="https://cova.guizimo.com" target="_blank">
+      <img src="https://img.shields.io/badge/🌐_Live_Demo-cova.guizimo.com-4285F4?style=for-the-badge" alt="Live Demo">
+    </a>
+  </div>
+
+  <br>
 
   <div>
     <a href="https://github.com/guizimo/cova/stargazers">
@@ -32,10 +40,10 @@
 
   <div>
     <a href="#-features">Features</a> •
-    <a href="#-showcase">Showcase</a> •
     <a href="#-quick-start">Quick Start</a> •
-    <a href="#-documentation">Documentation</a> •
-    <a href="#-contributing">Contributing</a>
+    <a href="#-architecture">Architecture</a> •
+    <a href="#-contributing">Contributing</a> •
+    <a href="#-roadmap">Roadmap</a>
   </div>
 
   <br>
@@ -57,39 +65,39 @@
     <td width="50%">
       <h3>🎨 Professional Design Tools</h3>
       <ul>
-        <li><strong>Real-time Preview</strong> - See changes instantly as you design</li>
-        <li><strong>Custom Typography</strong> - Fine-tune fonts, sizes, and styles</li>
-        <li><strong>Advanced Layouts</strong> - Flexible positioning and alignment</li>
-        <li><strong>Color Management</strong> - Gradients, solid colors, and transparency</li>
+        <li><strong>Real-time Preview</strong> — See changes instantly as you design</li>
+        <li><strong>Rich Typography</strong> — Multiple fonts, sizes, letter-spacing, line-height, italic, and color</li>
+        <li><strong>Flexible Backgrounds</strong> — Solid colors, gradients with presets, image upload, frosted glass effects</li>
+        <li><strong>Icon Support</strong> — Add icons with customizable background color and padding</li>
       </ul>
     </td>
     <td width="50%">
-      <h3>⚡ Lightning Performance</h3>
+      <h3>📐 Size & Layout</h3>
       <ul>
-        <li><strong>50ms Response Time</strong> - Blazing fast interactions</li>
-        <li><strong>Local Processing</strong> - No server uploads, complete privacy</li>
-        <li><strong>Memory Efficient</strong> - Optimized for large images</li>
-        <li><strong>Cross-platform</strong> - Works on all modern browsers</li>
+        <li><strong>Multiple Presets</strong> — Common cover sizes for blogs, social media, etc.</li>
+        <li><strong>Custom Dimensions</strong> — Set any width and height</li>
+        <li><strong>Border Radius</strong> — Adjustable rounded corners</li>
+        <li><strong>Responsive Editor</strong> — Resizable panels that adapt to your workflow</li>
       </ul>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>🚀 Export & Share</h3>
+      <h3>🚀 Export & Templates</h3>
       <ul>
-        <li><strong>Multiple Formats</strong> - PNG, JPEG, WebP, AVIF support</li>
-        <li><strong>Quality Control</strong> - Customizable compression settings</li>
-        <li><strong>Batch Export</strong> - Export multiple variations</li>
-        <li><strong>Social Ready</strong> - Optimized for all platforms</li>
+        <li><strong>Multi-format Export</strong> — PNG, JPEG, WebP, AVIF</li>
+        <li><strong>Template System</strong> — Save, load, and manage up to 10 templates</li>
+        <li><strong>Configuration Persistence</strong> — Your settings are automatically cached locally</li>
+        <li><strong>One-click Download</strong> — Export high-quality cover images instantly</li>
       </ul>
     </td>
     <td width="50%">
-      <h3>🌍 Global & Accessible</h3>
+      <h3>🌍 Internationalization & Privacy</h3>
       <ul>
-        <li><strong>Multi-language</strong> - English and Chinese support</li>
-        <li><strong>Responsive Design</strong> - Perfect on desktop and mobile</li>
-        <li><strong>Keyboard Shortcuts</strong> - Efficient workflow</li>
-        <li><strong>Screen Reader</strong> - Fully accessible interface</li>
+        <li><strong>Bilingual UI</strong> — Full English and Chinese support</li>
+        <li><strong>100% Local Processing</strong> — No server uploads, your data never leaves your browser</li>
+        <li><strong>GitHub Stars Display</strong> — Built-in repo star count on the editor header</li>
+        <li><strong>Open Source</strong> — GPL-3.0, free to use and modify</li>
       </ul>
     </td>
   </tr>
@@ -98,20 +106,8 @@
 ## 📸 Showcase
 
 <div align="center">
-  
-  **Modern Interface Design**
-  <br>
-  <img src="public/preview-1.jpg" alt="Cova Interface" width="800" style="border-radius: 12px; margin: 20px 0;">
-  
-  *Clean, intuitive interface designed for professional workflows*
 
-  <br><br>
-
-  **Powerful Export Capabilities**
-  <br>
-  <img src="public/preview-2.jpg" alt="Export Results" width="800" style="border-radius: 12px; margin: 20px 0;">
-  
-  *High-quality exports in multiple formats with customizable settings*
+> Try it live at **[cova.guizimo.com](https://cova.guizimo.com)**
 
 </div>
 
@@ -140,12 +136,17 @@ pnpm install
 pnpm dev
 ```
 
-### Docker (Alternative)
+### Available Scripts
 
 ```bash
-# Build and run with Docker
-docker build -t cova .
-docker run -p 3000:3000 cova
+pnpm dev              # Start development server
+pnpm build            # Build for production (tsc + vite)
+pnpm preview          # Preview production build locally
+pnpm lint             # Run ESLint
+pnpm format           # Format code with Prettier
+pnpm release          # Create a new release (standard-version)
+pnpm release:major    # Major version bump
+pnpm release:minor    # Minor version bump
 ```
 
 ## 🏗️ Architecture
@@ -156,11 +157,12 @@ docker run -p 3000:3000 cova
 
 | Category | Technologies |
 |----------|-------------|
-| **Frontend** | ![React](https://img.shields.io/badge/React-19.1.0-61dafb?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6?logo=typescript&logoColor=white) |
+| **Framework** | ![React](https://img.shields.io/badge/React-19.1.0-61dafb?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6?logo=typescript&logoColor=white) |
 | **Styling** | ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.1.8-38bdf8?logo=tailwindcss&logoColor=white) ![Radix UI](https://img.shields.io/badge/Radix_UI-Latest-000000?logo=radixui&logoColor=white) |
-| **Build Tools** | ![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?logo=vite&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-9.28.0-4B32C3?logo=eslint&logoColor=white) |
-| **State Management** | ![Zustand](https://img.shields.io/badge/Zustand-5.0.5-FF6B6B?logoColor=white) |
-| **Internationalization** | ![i18next](https://img.shields.io/badge/i18next-25.2.1-26A69A?logo=i18next&logoColor=white) |
+| **Build** | ![Vite](https://img.shields.io/badge/Vite-6.3.5-646cff?logo=vite&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-9.28.0-4B32C3?logo=eslint&logoColor=white) |
+| **State** | ![Zustand](https://img.shields.io/badge/Zustand-5.0.5-FF6B6B?logoColor=white) (with persist middleware) |
+| **i18n** | ![i18next](https://img.shields.io/badge/i18next-25.2.1-26A69A?logo=i18next&logoColor=white) ![react-i18next](https://img.shields.io/badge/react--i18next-15.5.2-26A69A?logoColor=white) |
+| **Export** | ![html-to-image](https://img.shields.io/badge/html--to--image-1.11.13-FF6B6B?logoColor=white) ![file-saver](https://img.shields.io/badge/file--saver-2.0.5-4CAF50?logoColor=white) |
 
 </div>
 
@@ -168,89 +170,44 @@ docker run -p 3000:3000 cova
 
 ```
 cova/
-├── 📁 src/
-│   ├── 📁 components/          # Reusable UI components
-│   │   ├── 📁 ui/             # Base UI components (Button, Input, etc.)
-│   │   ├── 📁 layout/         # Layout components (Navbar, Footer)
-│   │   └── 📁 generator/      # Design tools components
-│   ├── 📁 pages/              # Page components
-│   │   ├── 📁 home/          # Landing page
-│   │   ├── 📁 generator/     # Main editor
-│   │   ├── 📁 features/      # Features showcase
-│   │   ├── 📁 contact/       # Contact page
-│   │   └── 📁 faq/           # FAQ page
-│   ├── 📁 stores/            # Zustand stores
-│   ├── 📁 hooks/             # Custom React hooks
-│   ├── 📁 utils/             # Utility functions
-│   ├── 📁 locales/           # i18n translations
-│   └── 📁 router/            # Route configurations
-├── 📁 public/                # Static assets
-└── 📄 package.json          # Project configuration
-```
-
-## 📚 Documentation
-
-### API Reference
-
-<details>
-<summary><strong>Core Components</strong></summary>
-
-#### Generator Components
-- `ConfigPanel` - Main configuration interface
-- `Canvas` - Design canvas with real-time preview
-- `ExportPanel` - Export controls and format selection
-
-#### Configuration Options
-- **Title**: Text content and typography settings
-- **Background**: Colors, gradients, and image uploads
-- **Layout**: Size presets and custom dimensions
-- **Export**: Quality settings and format selection
-
-</details>
-
-<details>
-<summary><strong>Customization Guide</strong></summary>
-
-#### Adding Custom Fonts
-```typescript
-// Add to src/utils/fonts.ts
-export const customFonts = [
-  { name: 'Custom Font', value: 'custom-font' }
-];
-```
-
-#### Custom Export Formats
-```typescript
-// Extend src/utils/export.ts
-export const supportedFormats = ['png', 'jpeg', 'webp', 'avif'];
-```
-
-</details>
-
-### Development Scripts
-
-```bash
-# Development
-pnpm dev              # Start development server
-pnpm build            # Build for production
-pnpm preview          # Preview production build
-
-# Code Quality
-pnpm lint             # Run ESLint
-pnpm format           # Format with Prettier
-pnpm type-check       # TypeScript type checking
-
-# Release
-pnpm release          # Create new release
-pnpm release:major    # Major version bump
-pnpm release:minor    # Minor version bump
+├── src/
+│   ├── components/
+│   │   ├── ui/                # Base UI components (Button, Input, Select, Slider, etc.)
+│   │   ├── layout/            # Landing page sections (Navbar, Hero, Features, CTA, Footer)
+│   │   └── generator/         # Editor components
+│   │       ├── Header.tsx     # Editor header with version & GitHub stars
+│   │       ├── Preview.tsx    # Real-time cover preview canvas
+│   │       └── ConfigPanel/   # Configuration panels
+│   │           ├── TitleConfig.tsx
+│   │           ├── FontConfig.tsx
+│   │           ├── BackgroundConfig.tsx
+│   │           ├── IconConfig.tsx
+│   │           ├── SizeConfig.tsx
+│   │           └── TemplateConfig.tsx
+│   ├── pages/                 # Route pages
+│   │   ├── home/              # Landing page
+│   │   ├── generator/         # Cover editor (core feature)
+│   │   ├── features/          # Features showcase
+│   │   ├── about/             # About page
+│   │   ├── contact/           # Contact page
+│   │   ├── faq/               # FAQ page
+│   │   └── not-found/         # 404 page
+│   ├── store/                 # Zustand stores (generator state + templates)
+│   ├── config/                # App configuration constants
+│   ├── types/                 # TypeScript type definitions
+│   ├── utils/                 # Utility functions (export, i18n, share)
+│   ├── lib/                   # Shared helpers (cn utility)
+│   ├── locales/               # i18n translations (en.ts, zh.ts)
+│   ├── styles/                # Global styles
+│   └── router/                # React Router configuration
+├── public/                    # Static assets
+├── CHANGELOG.md               # Auto-generated changelog
+└── package.json
 ```
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how you can help:
-
-### Development Workflow
+We welcome contributions! Here's how you can help:
 
 1. **Fork** the repository
 2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
@@ -258,48 +215,23 @@ We welcome contributions from the community! Here's how you can help:
 4. **Push** to the branch: `git push origin feature/amazing-feature`
 5. **Submit** a Pull Request
 
-### Contribution Guidelines
-
-<div align="center">
-
-| Type | Description |
-|------|-------------|
-| 🐛 **Bug Reports** | Report issues with detailed reproduction steps |
-| ✨ **Feature Requests** | Suggest new features with use cases |
-| 📖 **Documentation** | Improve docs, add examples, fix typos |
-| 🎨 **Design** | UI/UX improvements and design suggestions |
-| 🔧 **Code** | Bug fixes, feature implementations, refactoring |
-
-</div>
-
 ### Code Standards
 
-- **TypeScript**: Fully typed codebase
-- **ESLint**: Consistent code style
-- **Prettier**: Automated formatting
-- **Conventional Commits**: Semantic commit messages
-- **Husky**: Pre-commit hooks for quality assurance
-
-## 📊 Performance Metrics
-
-<div align="center">
-
-| Metric | Value | Description |
-|--------|-------|-------------|
-| **Response Time** | < 50ms | UI interaction responsiveness |
-| **Bundle Size** | < 500KB | Optimized production build |
-| **First Paint** | < 1s | Initial page load speed |
-| **Core Web Vitals** | All Green | Google's UX metrics |
-
-</div>
+| Tool | Purpose |
+|------|---------|
+| **TypeScript** | Fully typed codebase |
+| **ESLint** | Consistent code style |
+| **Prettier** | Automated formatting |
+| **Commitlint** | Conventional commit messages |
+| **Husky + lint-staged** | Pre-commit quality checks |
 
 ## 🌟 Roadmap
 
-- [ ] **v1.0.0** - Stable release with core features
-- [ ] **v1.1.0** - Template marketplace
-- [ ] **v1.2.0** - Collaboration features
-- [ ] **v1.3.0** - Plugin system
-- [ ] **v2.0.0** - Advanced animations and effects
+- [x] **v1.0.0** — Core cover generator with background, fonts, icons, and export
+- [x] **v1.1.0** — Mobile optimization, enhanced UX, template system
+- [ ] **v1.2.0** — Template marketplace
+- [ ] **v1.3.0** — Collaboration features
+- [ ] **v2.0.0** — Plugin system, advanced animations and effects
 
 ## 💝 Support
 
@@ -307,25 +239,25 @@ If you find Cova helpful, please consider:
 
 <div align="center">
   <a href="https://github.com/guizimo/cova/stargazers">
-    <img src="https://img.shields.io/badge/⭐_Star_on_GitHub-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="Star on GitHub">
+    <img src="https://img.shields.io/badge/Star_on_GitHub-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="Star on GitHub">
   </a>
   <a href="https://github.com/guizimo/cova/issues">
-    <img src="https://img.shields.io/badge/🐛_Report_Bug-FF4444?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+    <img src="https://img.shields.io/badge/Report_Bug-FF4444?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
   </a>
   <a href="https://github.com/guizimo/cova/discussions">
-    <img src="https://img.shields.io/badge/💬_Discussions-4285F4?style=for-the-badge&logo=github&logoColor=white" alt="Discussions">
+    <img src="https://img.shields.io/badge/Discussions-4285F4?style=for-the-badge&logo=github&logoColor=white" alt="Discussions">
   </a>
 </div>
 
 ## 📄 License
 
-This project is licensed under the **GPL-3.0 License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GPL-3.0 License** — see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
 <div align="center">
 
-**Guizimo** - *Creator & Maintainer*
+**Guizimo** — *Creator & Maintainer*
 
 [![Email](https://img.shields.io/badge/Email-17680262548@163.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:17680262548@163.com)
 [![GitHub](https://img.shields.io/badge/GitHub-guizimo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/guizimo)
