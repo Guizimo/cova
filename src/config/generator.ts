@@ -1,3 +1,5 @@
+import type { BackgroundType, FontStyle, IconPosition } from '@/types/generator';
+
 export interface CoverSize {
   width: number;
   height: number;
@@ -41,7 +43,7 @@ export const DEFAULT_SETTINGS = {
   gradientStart: '#4f46e5',
   gradientEnd: '#818cf8',
   gradientAngle: 45,
-  backgroundType: 'solid',
+  backgroundType: 'solid' as BackgroundType,
   borderRadius: 0,
   backgroundImage: '',
   backgroundSize: 'cover' as const,
@@ -50,11 +52,11 @@ export const DEFAULT_SETTINGS = {
   customWidth: 1200,
   customHeight: 630,
   isCustomSize: false,
-  fontStyle: 'normal',
+  fontStyle: 'normal' as FontStyle,
   lineHeight: 1.5,
   backdropBlur: 0,
   showIcon: false,
-  iconPosition: 'top-left',
+  iconPosition: 'top-left' as IconPosition,
   iconSize: 60,
   iconBorderRadius: 8,
   iconShadow: 0,

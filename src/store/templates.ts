@@ -1,9 +1,22 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import type { TemplateConfig } from '@/store/generator';
 
 const MAX_TEMPLATES = 10;
 const STORAGE_KEY = 'cova-templates';
+
+/** 配额安全的 localStorage：写入失败（多为图片导致超额）时静默降级，避免应用崩溃 */
+const safeStorage = createJSONStorage(() => ({
+  getItem: (name: string) => localStorage.getItem(name),
+  setItem: (name: string, value: string) => {
+    try {
+      localStorage.setItem(name, value);
+    } catch (error) {
+      console.warn('Failed to persist templates (storage quota?):', error);
+    }
+  },
+  removeItem: (name: string) => localStorage.removeItem(name)
+}));
 
 export interface SavedTemplate {
   id: string;
@@ -33,7 +46,7 @@ export const useTemplatesStore = create<TemplatesState>()(
           if (list.length >= MAX_TEMPLATES) list.pop();
           list.unshift({
             id: generateId(),
-            name: name.trim() || '未命名模板',
+            name: name.trim() || 'Untitled',
             config
           });
           return { templates: list };
@@ -46,6 +59,6 @@ export const useTemplatesStore = create<TemplatesState>()(
 
       getTemplate: (id) => get().templates.find((t) => t.id === id)
     }),
-    { name: STORAGE_KEY }
+    { name: STORAGE_KEY, storage: safeStorage }
   )
 );

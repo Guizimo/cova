@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { DEFAULT_SETTINGS, CoverSize } from '@/config/generator';
+import type { BackgroundType, BackgroundSize, FontStyle, IconPosition } from '@/types/generator';
 
 /** 模板配置：与 partialize 缓存的字段一致，用于保存/应用模板 */
 export interface TemplateConfig {
@@ -15,18 +16,18 @@ export interface TemplateConfig {
   letterSpacing?: number;
   fontWeight?: number;
   textColor?: string;
-  fontStyle?: string;
+  fontStyle?: FontStyle;
   backgroundColor?: string;
   gradientStart?: string;
   gradientEnd?: string;
   gradientAngle?: number;
-  backgroundType?: string;
+  backgroundType?: BackgroundType;
   borderRadius?: number;
-  backgroundSize?: 'cover' | 'contain';
+  backgroundSize?: BackgroundSize;
   backgroundPosition?: string;
   backdropBlur?: number;
   showIcon?: boolean;
-  iconPosition?: string;
+  iconPosition?: IconPosition;
   iconSize?: number;
   iconBorderRadius?: number;
   iconShadow?: number;
@@ -64,8 +65,8 @@ interface GeneratorState {
   setFontWeight: (weight: number) => void;
   textColor: string;
   setTextColor: (color: string) => void;
-  fontStyle: string;
-  setFontStyle: (style: string) => void;
+  fontStyle: FontStyle;
+  setFontStyle: (style: FontStyle) => void;
   lineHeight: number;
   setLineHeight: (height: number) => void;
 
@@ -78,14 +79,14 @@ interface GeneratorState {
   setGradientEnd: (color: string) => void;
   gradientAngle: number;
   setGradientAngle: (angle: number) => void;
-  backgroundType: string;
-  setBackgroundType: (type: string) => void;
+  backgroundType: BackgroundType;
+  setBackgroundType: (type: BackgroundType) => void;
   borderRadius: number;
   setBorderRadius: (radius: number) => void;
   backgroundImage: string;
   setBackgroundImage: (image: string) => void;
-  backgroundSize: 'cover' | 'contain';
-  setBackgroundSize: (size: 'cover' | 'contain') => void;
+  backgroundSize: BackgroundSize;
+  setBackgroundSize: (size: BackgroundSize) => void;
   backgroundPosition: string;
   setBackgroundPosition: (position: string) => void;
   backdropBlur: number;
@@ -94,8 +95,8 @@ interface GeneratorState {
   // 图标设置
   showIcon: boolean;
   setShowIcon: (show: boolean) => void;
-  iconPosition: string;
-  setIconPosition: (position: string) => void;
+  iconPosition: IconPosition;
+  setIconPosition: (position: IconPosition) => void;
   iconSize: number;
   setIconSize: (size: number) => void;
   iconBorderRadius: number;
@@ -264,7 +265,12 @@ export const useGeneratorStore = create<GeneratorState>()(
           }
         },
         setItem: (name, value) => {
-          localStorage.setItem(name, JSON.stringify(value));
+          try {
+            localStorage.setItem(name, JSON.stringify(value));
+          } catch (error) {
+            // 多为图片（base64）写入超出 localStorage 配额，静默降级避免崩溃
+            console.warn('Failed to persist generator state (storage quota?):', error);
+          }
         },
         removeItem: (name) => localStorage.removeItem(name)
       },

@@ -2,8 +2,10 @@ import { useGeneratorStore } from '@/store/generator';
 import { computeBackgroundStyle } from '@/utils/generator';
 import { Loader2 } from 'lucide-react';
 import { useMemo, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function Preview() {
+  const { t } = useTranslation();
   const {
     title,
     subtitle,
@@ -112,7 +114,7 @@ export function Preview() {
             <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
               <div className="flex flex-col items-center space-y-3">
                 <Loader2 className="w-8 h-8 text-white animate-spin" />
-                <span className="text-white text-sm">正在导出...</span>
+                <span className="text-white text-sm">{t('generator.export.exporting')}</span>
               </div>
             </div>
           )}

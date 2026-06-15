@@ -85,8 +85,8 @@
     <td width="50%">
       <h3>🚀 Export & Templates</h3>
       <ul>
-        <li><strong>Multi-format Export</strong> — PNG, JPEG, WebP, AVIF</li>
-        <li><strong>Template System</strong> — Save, load, and manage up to 10 templates</li>
+        <li><strong>Multi-format Export</strong> — PNG, JPEG, WebP with 2x high-resolution output (AVIF falls back to PNG)</li>
+        <li><strong>Template System & Marketplace</strong> — Save up to 10 templates and import from the built-in marketplace</li>
         <li><strong>Configuration Persistence</strong> — Your settings are automatically cached locally</li>
         <li><strong>One-click Download</strong> — Export high-quality cover images instantly</li>
       </ul>
@@ -229,7 +229,7 @@ We welcome contributions! Here's how you can help:
 
 - [x] **v1.0.0** — Core cover generator with background, fonts, icons, and export
 - [x] **v1.1.0** — Mobile optimization, enhanced UX, template system
-- [ ] **v1.2.0** — Template marketplace
+- [x] **v1.2.0** — Template marketplace, real WebP export, high-resolution output, full i18n
 - [ ] **v1.3.0** — Collaboration features
 - [ ] **v2.0.0** — Plugin system, advanced animations and effects
 

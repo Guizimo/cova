@@ -7,6 +7,7 @@ import { Upload, Palette } from 'lucide-react';
 import { useGeneratorStore } from '@/store/generator';
 import { handleImageUpload } from '@/utils/generator';
 import { PRESET_COLORS, PRESET_GRADIENTS } from '@/config/generator';
+import type { BackgroundType } from '@/types/generator';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -76,7 +77,7 @@ export function BackgroundConfig() {
         </h3>
       </div>
       <div className="space-y-4">
-        <Tabs value={backgroundType} onValueChange={setBackgroundType}>
+        <Tabs value={backgroundType} onValueChange={(value) => setBackgroundType(value as BackgroundType)}>
           <div className="space-y-3">
             <Label className="text-white/60 text-xs uppercase tracking-wide">
               {t('generator.config.background.type')}
@@ -112,7 +113,9 @@ export function BackgroundConfig() {
           </div>
           <TabsContent value="solid" className="space-y-4">
             <div className="space-y-3">
-              <Label className="text-white/60 text-xs uppercase tracking-wide">预设颜色</Label>
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.presetColors')}
+              </Label>
               <div className="grid grid-cols-10 gap-1.5 mt-2">
                 {PRESET_COLORS.map(({ value, label }) => (
                   <button
@@ -134,7 +137,9 @@ export function BackgroundConfig() {
 
             {colorHistory.length > 0 && (
               <div className="space-y-3">
-                <Label className="text-white/60 text-xs uppercase tracking-wide">最近使用</Label>
+                <Label className="text-white/60 text-xs uppercase tracking-wide">
+                  {t('generator.config.background.recentlyUsed')}
+                </Label>
                 <div className="grid grid-cols-10 gap-1.5 mt-2">
                   {colorHistory.map((color) => (
                     <button
@@ -178,7 +183,9 @@ export function BackgroundConfig() {
           </TabsContent>
           <TabsContent value="gradient" className="space-y-4">
             <div className="space-y-3">
-              <Label className="text-white/60 text-xs uppercase tracking-wide">预设渐变</Label>
+              <Label className="text-white/60 text-xs uppercase tracking-wide">
+                {t('generator.config.background.presetGradients')}
+              </Label>
               <div className="grid grid-cols-5 gap-1.5 mt-2">
                 {PRESET_GRADIENTS.map(({ start, end, label }) => (
                   <button
@@ -201,7 +208,9 @@ export function BackgroundConfig() {
             </div>
             {gradientHistory.length > 0 && (
               <div className="space-y-3">
-                <Label className="text-white/60 text-xs uppercase tracking-wide">最近使用</Label>
+                <Label className="text-white/60 text-xs uppercase tracking-wide">
+                  {t('generator.config.background.recentlyUsed')}
+                </Label>
                 <div className="grid grid-cols-5 gap-1.5 mt-2">
                   {gradientHistory.map(({ start, end }) => (
                     <button
@@ -300,7 +309,7 @@ export function BackgroundConfig() {
                       <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:bg-white/5 transition-colors">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <Upload className="w-8 h-8 mb-2 text-white/40" />
-                          <p className="text-sm text-white/60">点击上传图片</p>
+                          <p className="text-sm text-white/60">{t('generator.config.background.clickToUpload')}</p>
                         </div>
                         <input
                           type="file"
@@ -313,10 +322,12 @@ export function BackgroundConfig() {
                   </div>
                 </div>
                 <div className="col-span-2">
-                  <Label className="text-white/60 text-xs uppercase tracking-wide">图片链接</Label>
+                  <Label className="text-white/60 text-xs uppercase tracking-wide">
+                    {t('generator.config.background.imageUrl')}
+                  </Label>
                   <div className="mt-2">
                     <Input
-                      placeholder="输入图片链接"
+                      placeholder={t('generator.config.background.imageUrlPlaceholder')}
                       value={backgroundImage}
                       onChange={(e) => setBackgroundImage(e.target.value)}
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
@@ -331,8 +342,8 @@ export function BackgroundConfig() {
                           <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                         </div>
                         <div className="text-xs text-blue-200">
-                          <p className="font-medium">💡 使用建议</p>
-                          <p className="text-blue-200/70 mt-1">推荐使用上方的上传功能添加本地背景图片</p>
+                          <p className="font-medium">💡 {t('generator.config.tips.suggestionTitle')}</p>
+                          <p className="text-blue-200/70 mt-1">{t('generator.config.tips.suggestionDesc')}</p>
                         </div>
                       </div>
                     </div>
@@ -346,8 +357,8 @@ export function BackgroundConfig() {
                           <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
                         </div>
                         <div className="text-xs text-yellow-200">
-                          <p className="font-medium">⚠️ 在线图片提示</p>
-                          <p className="text-yellow-200/70 mt-1">如导出失败，建议保存图片到本地后重新上传</p>
+                          <p className="font-medium">⚠️ {t('generator.config.tips.onlineWarnTitle')}</p>
+                          <p className="text-yellow-200/70 mt-1">{t('generator.config.tips.onlineWarnDesc')}</p>
                         </div>
                       </div>
                     </div>
@@ -361,8 +372,8 @@ export function BackgroundConfig() {
                           <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                         </div>
                         <div className="text-xs text-green-200">
-                          <p className="font-medium">✅ 本地图片</p>
-                          <p className="text-green-200/70 mt-1">导出成功率100%，加载速度快</p>
+                          <p className="font-medium">✅ {t('generator.config.tips.localTitle')}</p>
+                          <p className="text-green-200/70 mt-1">{t('generator.config.tips.localDesc')}</p>
                         </div>
                       </div>
                     </div>
@@ -426,9 +437,9 @@ export function BackgroundConfig() {
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
                 </div>
                 <div className="text-xs text-orange-200">
-                  <p className="font-medium">⚠️ 导出限制提示</p>
-                  <p className="text-orange-200/70 mt-1">毛玻璃效果在导出时不会显示</p>
-                  <p className="text-orange-200 mt-1 font-medium">💡 如需保留效果，请使用浏览器截图功能</p>
+                  <p className="font-medium">⚠️ {t('generator.config.tips.blurExportTitle')}</p>
+                  <p className="text-orange-200/70 mt-1">{t('generator.config.tips.blurExportLine1')}</p>
+                  <p className="text-orange-200 mt-1 font-medium">💡 {t('generator.config.tips.blurExportLine2')}</p>
                 </div>
               </div>
             </div>

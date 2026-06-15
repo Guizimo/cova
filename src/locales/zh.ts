@@ -82,7 +82,23 @@ export default {
       jpegQuality: '质量 {{value}}',
       webp: 'WebP 格式',
       avif: 'AVIF 格式',
-      webpAvifNote: '当前以 PNG 导出'
+      avifNote: '暂以 PNG 导出',
+      exporting: '正在导出...',
+      successTitle: '🎉 {{format}} 导出成功！',
+      successDesc: '文件已开始下载',
+      blurWarningTitle: '毛玻璃效果不会在导出中显示',
+      blurWarningDesc: '建议使用浏览器截图功能保留效果',
+      errors: {
+        notFound: '找不到预览元素，请刷新页面重试',
+        cors: '导出失败：图片跨域限制',
+        corsDesc: '建议上传本地图片或使用支持 CORS 的图片服务',
+        network: '导出失败：网络问题',
+        networkDesc: '请检查网络连接或使用本地图片',
+        memory: '导出失败：内存不足',
+        memoryDesc: '请尝试减小图片尺寸',
+        generic: '导出失败',
+        genericDesc: '请重试或使用本地图片'
+      }
     },
     config: {
       title: {
@@ -124,10 +140,16 @@ export default {
         image: '图片',
         transparent: '透明',
         color: '背景颜色',
+        presetColors: '预设颜色',
+        presetGradients: '预设渐变',
+        recentlyUsed: '最近使用',
         gradientStart: '渐变起始色',
         gradientEnd: '渐变结束色',
         gradientAngle: '渐变角度',
         uploadImage: '上传图片',
+        clickToUpload: '点击上传图片',
+        imageUrl: '图片链接',
+        imageUrlPlaceholder: '输入图片链接',
         imageSize: '图片尺寸',
         imagePosition: '图片位置',
         borderRadius: '圆角',
@@ -150,11 +172,25 @@ export default {
         backgroundColor: '背景色',
         padding: '内边距',
         uploadIcon: '上传图标',
+        clickToUpload: '点击上传图标',
+        iconUrl: '图标链接',
+        iconUrlPlaceholder: '输入图标链接',
         center: '居中',
         topLeft: '左上',
         topRight: '右上',
         bottomLeft: '左下',
         bottomRight: '右下'
+      },
+      tips: {
+        suggestionTitle: '使用建议',
+        suggestionDesc: '推荐使用上方的上传功能添加本地图片',
+        onlineWarnTitle: '在线图片提示',
+        onlineWarnDesc: '如导出失败，建议保存图片到本地后重新上传',
+        localTitle: '本地图片',
+        localDesc: '导出成功率最高，加载速度快',
+        blurExportTitle: '导出限制提示',
+        blurExportLine1: '毛玻璃效果在导出时不会显示',
+        blurExportLine2: '如需保留效果，请使用浏览器截图功能'
       }
     },
     tabs: {
@@ -163,12 +199,45 @@ export default {
     },
     templates: {
       title: '模板',
+      myTemplates: '我的模板',
       saveAs: '保存为模板',
       apply: '应用',
+      preview: '预览',
+      import: '导入',
       remove: '删除',
       namePlaceholder: '输入模板名称',
+      untitled: '未命名模板',
       saved: '已保存为模板',
-      noTemplates: '暂无模板，可先设计后保存'
+      imported: '已导入到我的模板',
+      previewed: '已应用模板（已保留你之前的设计）',
+      previewReverted: '已恢复到你之前的设计',
+      undo: '撤销',
+      noTemplates: '暂无模板，可先设计后保存',
+      marketplace: {
+        title: '模板市场',
+        searchPlaceholder: '搜索模板名称或用途',
+        empty: '没有匹配的模板，请尝试其它关键词或分类',
+        categories: {
+          all: '全部',
+          tech: '技术',
+          social: '社媒',
+          minimal: '极简'
+        },
+        items: {
+          techDark: {
+            name: '科技深色',
+            description: '适合技术文章、发布日志与产品更新'
+          },
+          creatorWarm: {
+            name: '创作者暖色',
+            description: '适合内容总结、周报和社媒封面'
+          },
+          minimalLight: {
+            name: '极简浅色',
+            description: '适合产品文档、教程与知识卡片'
+          }
+        }
+      }
     }
   },
   featuresPage: {
@@ -281,7 +350,7 @@ export default {
           {
             question: '支持哪些导出格式？',
             answer:
-              '目前支持 PNG、JPEG、WebP 和 AVIF 四种主流格式。您可以根据需要选择不同的格式和质量设置，PNG 支持透明背景，JPEG 适合照片，WebP 和 AVIF 提供更好的压缩效果。'
+              '目前支持 PNG、JPEG、WebP 三种主流格式，可自定义质量并默认以 2 倍分辨率高清输出。PNG 支持透明背景，JPEG 适合照片，WebP 拥有更好的压缩率；AVIF 选项目前会回退为 PNG 导出。'
           },
           {
             question: '可以自定义封面尺寸吗？',

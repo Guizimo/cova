@@ -58,16 +58,14 @@ export default function Generator() {
                 className="flex items-center gap-2 text-white/60 data-[state=active]:text-white data-[state=active]:bg-white/[0.08] rounded-md h-10"
               >
                 <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">{t('generator.tabs.config')}</span>
-                <span className="sm:hidden">配置</span>
+                <span>{t('generator.tabs.config')}</span>
               </TabsTrigger>
               <TabsTrigger
                 value="preview"
                 className="flex items-center gap-2 text-white/60 data-[state=active]:text-white data-[state=active]:bg-white/[0.08] rounded-md h-10"
               >
                 <Eye className="h-4 w-4" />
-                <span className="hidden sm:inline">{t('generator.tabs.preview')}</span>
-                <span className="sm:hidden">预览</span>
+                <span>{t('generator.tabs.preview')}</span>
               </TabsTrigger>
             </TabsList>
           </div>

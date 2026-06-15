@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Upload, Image as ImageIcon } from 'lucide-react';
 import { useGeneratorStore } from '@/store/generator';
 import { handleImageUpload } from '@/utils/generator';
+import type { IconPosition } from '@/types/generator';
 import { useTranslation } from 'react-i18next';
 
 export function IconConfig() {
@@ -49,7 +50,7 @@ export function IconConfig() {
               {t('generator.config.icon.position')}
             </Label>
             <div className="mt-2">
-              <Select value={iconPosition} onValueChange={setIconPosition}>
+              <Select value={iconPosition} onValueChange={(value) => setIconPosition(value as IconPosition)}>
                 <SelectTrigger className="bg-white/5 border-white/10 text-white hover:bg-white/10 focus:border-white/20">
                   <SelectValue placeholder={t('generator.config.icon.position')} />
                 </SelectTrigger>
@@ -189,7 +190,7 @@ export function IconConfig() {
                     <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:bg-white/5 transition-colors">
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         <Upload className="w-8 h-8 mb-2 text-white/40" />
-                        <p className="text-sm text-white/60">点击上传图标</p>
+                        <p className="text-sm text-white/60">{t('generator.config.icon.clickToUpload')}</p>
                       </div>
                       <input
                         type="file"
@@ -202,10 +203,12 @@ export function IconConfig() {
                 </div>
               </div>
               <div className="col-span-2">
-                <Label className="text-white/60 text-xs uppercase tracking-wide">图标链接</Label>
+                <Label className="text-white/60 text-xs uppercase tracking-wide">
+                  {t('generator.config.icon.iconUrl')}
+                </Label>
                 <div className="mt-2">
                   <Input
-                    placeholder="输入图标链接"
+                    placeholder={t('generator.config.icon.iconUrlPlaceholder')}
                     value={iconImage}
                     onChange={(e) => setIconImage(e.target.value)}
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-white/20"
@@ -219,8 +222,8 @@ export function IconConfig() {
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                       </div>
                       <div className="text-xs text-blue-200">
-                        <p className="font-medium">💡 使用建议</p>
-                        <p className="text-blue-200/70 mt-1">推荐使用上方的上传功能添加本地图片</p>
+                        <p className="font-medium">💡 {t('generator.config.tips.suggestionTitle')}</p>
+                        <p className="text-blue-200/70 mt-1">{t('generator.config.tips.suggestionDesc')}</p>
                       </div>
                     </div>
                   </div>
@@ -233,8 +236,8 @@ export function IconConfig() {
                         <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
                       </div>
                       <div className="text-xs text-yellow-200">
-                        <p className="font-medium">⚠️ 在线图片提示</p>
-                        <p className="text-yellow-200/70 mt-1">如导出失败，建议保存图片到本地后重新上传</p>
+                        <p className="font-medium">⚠️ {t('generator.config.tips.onlineWarnTitle')}</p>
+                        <p className="text-yellow-200/70 mt-1">{t('generator.config.tips.onlineWarnDesc')}</p>
                       </div>
                     </div>
                   </div>
@@ -247,8 +250,8 @@ export function IconConfig() {
                         <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                       </div>
                       <div className="text-xs text-green-200">
-                        <p className="font-medium">✅ 本地图片</p>
-                        <p className="text-green-200/70 mt-1">导出成功率100%，加载速度快</p>
+                        <p className="font-medium">✅ {t('generator.config.tips.localTitle')}</p>
+                        <p className="text-green-200/70 mt-1">{t('generator.config.tips.localDesc')}</p>
                       </div>
                     </div>
                   </div>

@@ -84,7 +84,23 @@ export default {
       jpegQuality: 'Quality {{value}}',
       webp: 'WebP Format',
       avif: 'AVIF Format',
-      webpAvifNote: 'Exported as PNG'
+      avifNote: 'Falls back to PNG',
+      exporting: 'Exporting...',
+      successTitle: '🎉 {{format}} exported successfully!',
+      successDesc: 'Your file is downloading',
+      blurWarningTitle: 'Backdrop blur is not included in exports',
+      blurWarningDesc: 'Use your browser screenshot tool to keep it',
+      errors: {
+        notFound: 'Preview element not found, please refresh and try again',
+        cors: 'Export failed: image cross-origin restriction',
+        corsDesc: 'Upload a local image or use a CORS-enabled image service',
+        network: 'Export failed: network issue',
+        networkDesc: 'Check your connection or use a local image',
+        memory: 'Export failed: out of memory',
+        memoryDesc: 'Try reducing the cover size',
+        generic: 'Export failed',
+        genericDesc: 'Please retry or use a local image'
+      }
     },
     config: {
       title: {
@@ -126,10 +142,16 @@ export default {
         image: 'Image',
         transparent: 'Transparent',
         color: 'Background Color',
+        presetColors: 'Preset Colors',
+        presetGradients: 'Preset Gradients',
+        recentlyUsed: 'Recently Used',
         gradientStart: 'Gradient Start',
         gradientEnd: 'Gradient End',
         gradientAngle: 'Gradient Angle',
         uploadImage: 'Upload Image',
+        clickToUpload: 'Click to upload an image',
+        imageUrl: 'Image URL',
+        imageUrlPlaceholder: 'Enter image URL',
         imageSize: 'Image Size',
         imagePosition: 'Image Position',
         borderRadius: 'Border Radius',
@@ -152,11 +174,25 @@ export default {
         backgroundColor: 'Background Color',
         padding: 'Padding',
         uploadIcon: 'Upload Icon',
+        clickToUpload: 'Click to upload an icon',
+        iconUrl: 'Icon URL',
+        iconUrlPlaceholder: 'Enter icon URL',
         center: 'Center',
         topLeft: 'Top Left',
         topRight: 'Top Right',
         bottomLeft: 'Bottom Left',
         bottomRight: 'Bottom Right'
+      },
+      tips: {
+        suggestionTitle: 'Tip',
+        suggestionDesc: 'Use the uploader above to add a local image',
+        onlineWarnTitle: 'Online image notice',
+        onlineWarnDesc: 'If export fails, save the image locally and re-upload it',
+        localTitle: 'Local image',
+        localDesc: 'Highest export success rate and fast loading',
+        blurExportTitle: 'Export limitation',
+        blurExportLine1: 'Backdrop blur is not rendered in exports',
+        blurExportLine2: 'To keep the effect, use your browser screenshot tool'
       }
     },
     tabs: {
@@ -165,12 +201,45 @@ export default {
     },
     templates: {
       title: 'Templates',
+      myTemplates: 'My templates',
       saveAs: 'Save as template',
       apply: 'Apply',
+      preview: 'Preview',
+      import: 'Import',
       remove: 'Remove',
       namePlaceholder: 'Enter template name',
+      untitled: 'Untitled template',
       saved: 'Saved as template',
-      noTemplates: 'No templates yet. Design and save one'
+      imported: 'Imported to my templates',
+      previewed: 'Template applied (your previous design is kept)',
+      previewReverted: 'Reverted to your previous design',
+      undo: 'Undo',
+      noTemplates: 'No templates yet. Design and save one',
+      marketplace: {
+        title: 'Template marketplace',
+        searchPlaceholder: 'Search by name or use case',
+        empty: 'No templates matched. Try another keyword or category',
+        categories: {
+          all: 'All',
+          tech: 'Tech',
+          social: 'Social',
+          minimal: 'Minimal'
+        },
+        items: {
+          techDark: {
+            name: 'Tech Dark',
+            description: 'Great for engineering posts, release notes, and product updates'
+          },
+          creatorWarm: {
+            name: 'Creator Warm',
+            description: 'Great for weekly recaps, creator content, and social covers'
+          },
+          minimalLight: {
+            name: 'Minimal Light',
+            description: 'Great for docs, tutorials, and knowledge cards'
+          }
+        }
+      }
     }
   },
   featuresPage: {
@@ -361,7 +430,7 @@ export default {
           {
             question: 'What export formats are supported?',
             answer:
-              'Currently supports PNG, JPEG, WebP, and AVIF formats. You can choose different formats and quality settings based on your needs. PNG supports transparency, JPEG is great for photos, while WebP and AVIF offer better compression.'
+              'Currently supports PNG, JPEG, and WebP formats with customizable quality and 2x high-resolution output. PNG supports transparency, JPEG is great for photos, and WebP offers better compression. AVIF is also offered and currently falls back to PNG.'
           },
           {
             question: 'Can I customize cover dimensions?',

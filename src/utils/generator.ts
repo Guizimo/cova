@@ -1,9 +1,11 @@
 import * as htmlToImage from 'html-to-image';
 import { saveAs } from 'file-saver';
 import { toast } from 'sonner';
+import i18n from '@/utils/i18n';
+import type { BackgroundType, ImageFormat } from '@/types/generator';
 
 export const computeBackgroundStyle = (
-  backgroundType: string,
+  backgroundType: BackgroundType,
   backgroundColor: string,
   gradientStart: string,
   gradientEnd: string,
@@ -48,6 +50,9 @@ export const handleImageUpload = (
 /** JPEG 导出质量，0–1，仅对 JPEG 生效 */
 export type ExportQuality = number;
 
+/** 默认导出像素倍率，保证在普通屏幕上也能输出高清图 */
+const DEFAULT_PIXEL_RATIO = 2;
+
 async function ensureBlob(value: Blob | string | null): Promise<Blob | null> {
   if (value == null) return null;
   if (value instanceof Blob) return value;
@@ -55,15 +60,24 @@ async function ensureBlob(value: Blob | string | null): Promise<Blob | null> {
   return await r.blob();
 }
 
+/** 使用 canvas.toBlob 进行真实的 WebP 编码（浏览器原生支持） */
+function canvasToBlob(canvas: HTMLCanvasElement, type: string, quality: number): Promise<Blob | null> {
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => resolve(blob), type, quality);
+  });
+}
+
 export const exportImage = async (
-  format: 'png' | 'jpeg' | 'webp' | 'avif',
-  backgroundType: string,
+  format: ImageFormat,
+  backgroundType: BackgroundType,
   setIsExporting: (value: boolean) => void,
-  jpegQuality: number = 0.92
+  jpegQuality: number = 0.92,
+  pixelRatio: number = DEFAULT_PIXEL_RATIO
 ) => {
+  const t = i18n.t.bind(i18n);
   const element = document.getElementById('cover-preview');
   if (!element) {
-    toast.error('找不到预览元素，请刷新页面重试');
+    toast.error(t('generator.export.errors.notFound'));
     return;
   }
 
@@ -71,15 +85,16 @@ export const exportImage = async (
     setIsExporting(true);
 
     const baseOptions = {
-      bgcolor: backgroundType === 'transparent' ? null : undefined
+      bgcolor: backgroundType === 'transparent' ? null : undefined,
+      pixelRatio,
+      quality: 1
     };
 
     let blob: Blob | null = null;
-    let fileExt = format;
+    let fileExt: string = format;
     switch (format) {
       case 'png': {
-        const pngResult = await htmlToImage.toBlob(element, { ...baseOptions, quality: 1 });
-        blob = await ensureBlob(pngResult);
+        blob = await ensureBlob(await htmlToImage.toBlob(element, baseOptions));
         break;
       }
       case 'jpeg': {
@@ -90,11 +105,20 @@ export const exportImage = async (
         blob = await ensureBlob(jpegResult);
         break;
       }
-      case 'webp':
+      case 'webp': {
+        // 通过 canvas 进行真实的 WebP 编码
+        const canvas = await htmlToImage.toCanvas(element, baseOptions);
+        blob = await canvasToBlob(canvas, 'image/webp', 0.92);
+        // 某些浏览器不支持 WebP 编码时回退到 PNG
+        if (!blob || blob.type !== 'image/webp') {
+          blob = await ensureBlob(await htmlToImage.toBlob(element, baseOptions));
+          fileExt = 'png';
+        }
+        break;
+      }
       case 'avif': {
-        // html-to-image 暂不支持 WebP/AVIF，实际导出为 PNG
-        const pngResult = await htmlToImage.toBlob(element, { ...baseOptions, quality: 1 });
-        blob = await ensureBlob(pngResult);
+        // 浏览器 canvas 暂不支持 AVIF 编码，回退到 PNG
+        blob = await ensureBlob(await htmlToImage.toBlob(element, baseOptions));
         fileExt = 'png';
         break;
       }
@@ -102,33 +126,32 @@ export const exportImage = async (
 
     if (blob) {
       saveAs(blob, `cover.${fileExt}`);
-      toast.success(`🎉 ${format.toUpperCase()} 导出成功！`, {
-        description: '文件已开始下载'
+      toast.success(t('generator.export.successTitle', { format: fileExt.toUpperCase() }), {
+        description: t('generator.export.successDesc')
       });
     } else {
-      throw new Error('生成图片失败');
+      throw new Error('Failed to generate image');
     }
   } catch (error) {
-    console.error('导出失败:', error);
+    console.error('Export failed:', error);
 
     const errorMessage = error instanceof Error ? error.message : String(error);
 
-    // 根据错误类型显示不同的 toast
     if (errorMessage.includes('tainted') || errorMessage.includes('cross-origin') || errorMessage.includes('CORS')) {
-      toast.error('导出失败：图片跨域限制', {
-        description: '建议上传本地图片或使用支持CORS的图片服务'
+      toast.error(t('generator.export.errors.cors'), {
+        description: t('generator.export.errors.corsDesc')
       });
     } else if (errorMessage.includes('Failed to fetch') || errorMessage.includes('network')) {
-      toast.error('导出失败：网络问题', {
-        description: '请检查网络连接或使用本地图片'
+      toast.error(t('generator.export.errors.network'), {
+        description: t('generator.export.errors.networkDesc')
       });
-    } else if (errorMessage.includes('memory') || errorMessage.includes('Memory')) {
-      toast.error('导出失败：内存不足', {
-        description: '请尝试减小图片尺寸'
+    } else if (errorMessage.toLowerCase().includes('memory')) {
+      toast.error(t('generator.export.errors.memory'), {
+        description: t('generator.export.errors.memoryDesc')
       });
     } else {
-      toast.error('导出失败', {
-        description: errorMessage || '请重试或使用本地图片'
+      toast.error(t('generator.export.errors.generic'), {
+        description: errorMessage || t('generator.export.errors.genericDesc')
       });
     }
   } finally {

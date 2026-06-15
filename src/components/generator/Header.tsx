@@ -23,10 +23,32 @@ export function Header() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
+    const CACHE_KEY = 'cova-github-stars';
+    const TTL = 60 * 60 * 1000; // 1 小时
+
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { value, time } = JSON.parse(cached);
+        if (typeof value === 'number') setStars(value);
+        if (Date.now() - time < TTL) return; // 命中缓存且未过期，跳过请求避免触发 GitHub 限流
+      }
+    } catch {
+      // 忽略缓存解析错误
+    }
+
     fetch('https://api.github.com/repos/guizimo/cova')
       .then((res) => res.json())
-      .then((data) => setStars(data.stargazers_count))
-      .catch(() => setStars(0));
+      .then((data) => {
+        const count = typeof data?.stargazers_count === 'number' ? data.stargazers_count : 0;
+        setStars(count);
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ value: count, time: Date.now() }));
+        } catch {
+          // 忽略写入错误
+        }
+      })
+      .catch(() => undefined);
   }, []);
 
   return (
@@ -118,6 +140,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="sm"
+            aria-label="GitHub"
             onClick={() => window.open('https://github.com/guizimo/cova', '_blank')}
             className="hidden lg:flex text-white/50 hover:text-white hover:bg-white/[0.08] h-8"
           >
@@ -189,20 +212,17 @@ export function Header() {
             <DropdownMenuTrigger asChild>
               <Button size="sm" className="bg-white text-black hover:bg-white/90 h-8">
                 <Download className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">{t('generator.buttons.export')}</span>
-                <span className="sm:hidden">导出</span>
+                <span>{t('generator.buttons.export')}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-black border-white/[0.08]">
               {/* 毛玻璃效果警告 */}
               {backdropBlur > 0 && (
-                <>
-                  <div className="px-3 py-2 text-xs text-orange-300 border-b border-white/[0.08]">
-                    ⚠️ 毛玻璃效果不会在导出中显示
-                    <br />
-                    <span className="text-orange-200/70">建议使用浏览器截图功能</span>
-                  </div>
-                </>
+                <div className="px-3 py-2 text-xs text-orange-300 border-b border-white/[0.08]">
+                  ⚠️ {t('generator.export.blurWarningTitle')}
+                  <br />
+                  <span className="text-orange-200/70">{t('generator.export.blurWarningDesc')}</span>
+                </div>
               )}
               <DropdownMenuItem
                 onClick={() => exportImage('png', backgroundType, setIsExporting)}
@@ -234,14 +254,13 @@ export function Header() {
                 className="text-white hover:bg-white/[0.08]"
               >
                 <span>{t('generator.export.webp')}</span>
-                <span className="ml-2 text-xs text-white/50">{t('generator.export.webpAvifNote')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => exportImage('avif', backgroundType, setIsExporting)}
                 className="text-white hover:bg-white/[0.08]"
               >
                 <span>{t('generator.export.avif')}</span>
-                <span className="ml-2 text-xs text-white/50">{t('generator.export.webpAvifNote')}</span>
+                <span className="ml-2 text-xs text-white/50">{t('generator.export.avifNote')}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
