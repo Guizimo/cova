@@ -65,6 +65,48 @@ export default {
   generator: {
     title: '封面生成器',
     version: '版本',
+    ai: {
+      title: 'AI 助手',
+      notConfiguredHint: '连接你的 AI 服务即可解锁 AI 设计 —— 点击进行配置',
+      tabs: {
+        design: '设计',
+        copy: '文案',
+        color: '配色'
+      },
+      design: {
+        placeholder: '描述你想要的封面，例如「一张深色科技风封面，用于 Kubernetes 深度解析文章」',
+        action: '生成设计',
+        applied: '已应用 AI 设计'
+      },
+      copy: {
+        placeholder: '标题主题',
+        action: '获取灵感',
+        applied: '已应用文案'
+      },
+      color: {
+        placeholder: '心情或关键词，例如「平静的海上日出」',
+        action: '生成',
+        applied: '已应用配色'
+      },
+      settings: {
+        title: 'AI 服务配置',
+        description: '自带密钥，兼容任意 OpenAI 协议端点（OpenAI、OpenRouter、Azure、Ollama 等）。',
+        baseUrl: 'API 基础地址',
+        apiKey: 'API 密钥',
+        model: '模型',
+        privacy: '仅保存在你的浏览器，请求直连你所选择的服务商。',
+        connected: '已连接'
+      },
+      errors: {
+        notConfigured: '请先配置你的 AI 服务',
+        auth: '鉴权失败 —— 请检查 API 密钥',
+        http: 'AI 请求失败，请重试',
+        network: '网络错误 —— 请检查基础地址与网络连接',
+        parse: '无法解析 AI 返回内容，请重试',
+        empty: 'AI 未返回可用结果，请重试',
+        unknown: '出错了，请重试'
+      }
+    },
     buttons: {
       reset: '重置',
       share: '分享',

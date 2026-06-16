@@ -1,4 +1,5 @@
 import { Separator } from '@/components/ui/separator';
+import { AIAssistant } from './AIAssistant';
 import { TitleConfig } from './TitleConfig';
 import { SizeConfig } from './SizeConfig';
 import { FontConfig } from './FontConfig';
@@ -11,6 +12,8 @@ export function ConfigPanel() {
     <div className="flex h-full flex-col bg-black">
       <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20 scrollbar-thumb-rounded">
         <div className="space-y-4 lg:space-y-6 p-4 lg:p-6 pb-6 lg:pb-8 min-h-0">
+          <AIAssistant />
+          <Separator className="bg-white/[0.08]" />
           <TemplateConfig />
           <Separator className="bg-white/[0.08]" />
           <TitleConfig />

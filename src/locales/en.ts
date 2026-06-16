@@ -67,6 +67,48 @@ export default {
   generator: {
     title: 'Cova Cover Generator',
     version: 'version',
+    ai: {
+      title: 'AI Assistant',
+      notConfiguredHint: 'Connect your AI provider to unlock AI design — click to set it up',
+      tabs: {
+        design: 'Design',
+        copy: 'Copy',
+        color: 'Color'
+      },
+      design: {
+        placeholder: 'Describe the cover you want, e.g. "A dark, techy cover for a Kubernetes deep-dive article"',
+        action: 'Generate design',
+        applied: 'AI design applied'
+      },
+      copy: {
+        placeholder: 'Topic for the headline',
+        action: 'Ideas',
+        applied: 'Copy applied'
+      },
+      color: {
+        placeholder: 'Mood or keyword, e.g. "calm ocean sunrise"',
+        action: 'Generate',
+        applied: 'Palette applied'
+      },
+      settings: {
+        title: 'AI provider settings',
+        description: 'Bring your own key. Any OpenAI-compatible endpoint works (OpenAI, OpenRouter, Azure, Ollama…).',
+        baseUrl: 'API Base URL',
+        apiKey: 'API Key',
+        model: 'Model',
+        privacy: 'Stored only in your browser; requests go directly to your provider.',
+        connected: 'Connected'
+      },
+      errors: {
+        notConfigured: 'Please configure your AI provider first',
+        auth: 'Authentication failed — check your API key',
+        http: 'AI request failed, please try again',
+        network: 'Network error — check the Base URL and your connection',
+        parse: 'Could not parse the AI response, please retry',
+        empty: 'The AI returned no usable result, please retry',
+        unknown: 'Something went wrong, please try again'
+      }
+    },
     buttons: {
       reset: 'Reset',
       share: 'Share',
