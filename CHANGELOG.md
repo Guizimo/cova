@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/guizimo/cova/compare/v1.0.0...v1.3.0) (2026-06-16)
+
+
+### Features
+
+* **ai:** add AI-native assistant (design, copywriter, palette) with bring-your-own-key ([d901f18](https://github.com/guizimo/cova/commit/d901f186933f35fba4edf1c75bc8b2d083d07a03))
+* **generator:** real WebP export, hi-res output, full i18n, template marketplace polish ([088c2e7](https://github.com/guizimo/cova/commit/088c2e7a4d9125347e9cca786d137a4330e2cfca))
+* **generator:** 增强生成器功能与用户体验 ([c65d51b](https://github.com/guizimo/cova/commit/c65d51b3988290af31768de3f8055bcd68659efa))
+* **readme:** 更新README文档以增强描述和功能介绍 ([cc0af92](https://github.com/guizimo/cova/commit/cc0af9279534ae16d11c9bbee2555977755a4fc4))
+
 ## [1.1.0](https://github.com/guizimo/cova/compare/v0.1.0...v1.1.0) (2026-03-10)
 
 
