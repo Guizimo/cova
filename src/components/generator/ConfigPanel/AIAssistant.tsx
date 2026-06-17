@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-import { Sparkles, Settings2, Loader2, Wand2, Type as TypeIcon, Palette, Check } from 'lucide-react';
+import { Sparkles, Settings2, Loader2, Wand2, Type as TypeIcon, Palette, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,7 +10,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useGeneratorStore } from '@/store/generator';
 import type { TemplateConfig } from '@/store/generator';
 import { useAIStore, DEFAULT_AI_BASE_URL, DEFAULT_AI_MODEL } from '@/store/ai';
-import { AIError, generateDesign, generateTitles, generatePalette, type TitleSuggestion } from '@/utils/ai';
+import {
+  AIError,
+  generateDesign,
+  generateTitles,
+  generatePalette,
+  isAbortError,
+  type TitleSuggestion
+} from '@/utils/ai';
 
 function errorKey(error: unknown): string {
   if (error instanceof AIError) {
@@ -19,6 +26,7 @@ function errorKey(error: unknown): string {
       HTTP_AUTH: 'auth',
       HTTP_OTHER: 'http',
       NETWORK: 'network',
+      TIMEOUT: 'timeout',
       PARSE: 'parse',
       EMPTY: 'empty'
     };
@@ -26,6 +34,17 @@ function errorKey(error: unknown): string {
   }
   return 'generator.ai.errors.unknown';
 }
+
+/** 设计副驾驶：基于当前画布的一键微调指令（label 走 i18n，指令文本按语言下发给模型） */
+const REFINE_CHIPS: { id: string; zh: string; en: string }[] = [
+  { id: 'brighter', zh: '让整体配色更鲜艳明亮', en: 'Make the overall colors more vivid and bright' },
+  { id: 'darker', zh: '改成深色背景、浅色文字', en: 'Switch to a dark background with light text' },
+  { id: 'warmer', zh: '换成温暖的色调', en: 'Use a warm color palette' },
+  { id: 'cooler', zh: '换成清冷的色调', en: 'Use a cool color palette' },
+  { id: 'biggerTitle', zh: '把标题放得更大更醒目', en: 'Make the title noticeably bigger and bolder' },
+  { id: 'minimal', zh: '更简洁，增加留白', en: 'Make it cleaner and more minimal with more whitespace' },
+  { id: 'gradient', zh: '改用协调好看的渐变背景', en: 'Use a tasteful gradient background' }
+];
 
 export function AIAssistant() {
   const { t, i18n } = useTranslation();
@@ -40,6 +59,7 @@ export function AIAssistant() {
 
   const [designPrompt, setDesignPrompt] = useState('');
   const [designLoading, setDesignLoading] = useState(false);
+  const designAbortRef = useRef<AbortController | null>(null);
 
   const [topic, setTopic] = useState('');
   const [titlesLoading, setTitlesLoading] = useState(false);
@@ -71,18 +91,31 @@ export function AIAssistant() {
     return true;
   };
 
-  const handleGenerateDesign = async () => {
-    if (!designPrompt.trim() || !ensureReady()) return;
+  // 设计副驾驶：始终把当前画布作为上下文传给模型，实现增量微调
+  const runDesign = async (instruction: string) => {
+    if (!instruction.trim() || !ensureReady()) return;
+    designAbortRef.current?.abort();
+    const controller = new AbortController();
+    designAbortRef.current = controller;
     setDesignLoading(true);
     try {
-      const config = await generateDesign(designPrompt.trim(), locale);
+      const config = await generateDesign(instruction.trim(), locale, {
+        currentConfig: getCurrentTemplateConfig(),
+        signal: controller.signal
+      });
       applyWithUndo(config, t('generator.ai.design.applied'));
     } catch (error) {
-      toast.error(t(errorKey(error)));
+      if (!isAbortError(error)) toast.error(t(errorKey(error)));
     } finally {
-      setDesignLoading(false);
+      if (designAbortRef.current === controller) {
+        designAbortRef.current = null;
+        setDesignLoading(false);
+      }
     }
   };
+
+  const handleGenerateDesign = () => runDesign(designPrompt);
+  const handleCancelDesign = () => designAbortRef.current?.abort();
 
   const handleGenerateTitles = async () => {
     if (!topic.trim() || !ensureReady()) return;
@@ -221,20 +254,54 @@ export function AIAssistant() {
             placeholder={t('generator.ai.design.placeholder')}
             className="min-h-[64px] border-white/10 bg-white/5 text-white placeholder:text-white/30 text-xs resize-none"
           />
-          <Button
-            type="button"
-            size="sm"
-            disabled={designLoading || !designPrompt.trim()}
-            onClick={handleGenerateDesign}
-            className="w-full h-8 bg-white text-black hover:bg-white/90 text-xs disabled:opacity-50"
-          >
-            {designLoading ? (
-              <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
-            ) : (
-              <Wand2 className="mr-1.5 h-3.5 w-3.5" />
+
+          {/* 设计副驾驶：基于当前画布的一键微调 */}
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-wide text-white/40">{t('generator.ai.design.refineHint')}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {REFINE_CHIPS.map((chip) => (
+                <button
+                  key={chip.id}
+                  type="button"
+                  disabled={designLoading}
+                  onClick={() => runDesign(chip[locale])}
+                  className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition-colors hover:border-white/25 hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {t(`generator.ai.design.chips.${chip.id}`)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              size="sm"
+              disabled={designLoading || !designPrompt.trim()}
+              onClick={handleGenerateDesign}
+              className="h-8 flex-1 bg-white text-black hover:bg-white/90 text-xs disabled:opacity-50"
+            >
+              {designLoading ? (
+                <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Wand2 className="mr-1.5 h-3.5 w-3.5" />
+              )}
+              {t('generator.ai.design.action')}
+            </Button>
+            {designLoading && (
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={handleCancelDesign}
+                aria-label={t('generator.ai.design.cancel')}
+                className="h-8 flex-shrink-0 border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white text-xs"
+              >
+                <X className="h-3.5 w-3.5" />
+                {t('generator.ai.design.cancel')}
+              </Button>
             )}
-            {t('generator.ai.design.action')}
-          </Button>
+          </div>
         </TabsContent>
 
         <TabsContent value="copy" className="space-y-2 pt-1">

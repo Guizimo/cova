@@ -74,9 +74,21 @@ export default {
         color: '配色'
       },
       design: {
-        placeholder: '描述你想要的封面，例如「一张深色科技风封面，用于 Kubernetes 深度解析文章」',
+        placeholder:
+          '描述你想要的封面，例如「一张深色科技风封面，用于 Kubernetes 深度解析文章」；也可输入微调指令，例如「标题再大一点、换成暖色」',
         action: '生成设计',
-        applied: '已应用 AI 设计'
+        applied: '已应用 AI 设计',
+        cancel: '取消',
+        refineHint: '基于当前设计一键微调',
+        chips: {
+          brighter: '更鲜艳',
+          darker: '深色模式',
+          warmer: '暖色调',
+          cooler: '冷色调',
+          biggerTitle: '标题更大',
+          minimal: '更简洁',
+          gradient: '渐变背景'
+        }
       },
       copy: {
         placeholder: '标题主题',
@@ -101,6 +113,7 @@ export default {
         notConfigured: '请先配置你的 AI 服务',
         auth: '鉴权失败 —— 请检查 API 密钥',
         http: 'AI 请求失败，请重试',
+        timeout: '请求超时，请重试',
         network: '网络错误 —— 请检查基础地址与网络连接',
         parse: '无法解析 AI 返回内容，请重试',
         empty: 'AI 未返回可用结果，请重试',

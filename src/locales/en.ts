@@ -76,9 +76,21 @@ export default {
         color: 'Color'
       },
       design: {
-        placeholder: 'Describe the cover you want, e.g. "A dark, techy cover for a Kubernetes deep-dive article"',
+        placeholder:
+          'Describe the cover you want, e.g. "A dark, techy cover for a Kubernetes deep-dive article" — or type a tweak like "make the title bigger and use warm colors"',
         action: 'Generate design',
-        applied: 'AI design applied'
+        applied: 'AI design applied',
+        cancel: 'Cancel',
+        refineHint: 'Quick refine based on the current design',
+        chips: {
+          brighter: 'More vivid',
+          darker: 'Dark mode',
+          warmer: 'Warmer',
+          cooler: 'Cooler',
+          biggerTitle: 'Bigger title',
+          minimal: 'Minimal',
+          gradient: 'Gradient'
+        }
       },
       copy: {
         placeholder: 'Topic for the headline',
@@ -103,6 +115,7 @@ export default {
         notConfigured: 'Please configure your AI provider first',
         auth: 'Authentication failed — check your API key',
         http: 'AI request failed, please try again',
+        timeout: 'Request timed out, please try again',
         network: 'Network error — check the Base URL and your connection',
         parse: 'Could not parse the AI response, please retry',
         empty: 'The AI returned no usable result, please retry',

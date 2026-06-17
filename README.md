@@ -107,9 +107,12 @@
 
 Cova ships with a built-in AI assistant that keeps the local-first, privacy-friendly philosophy via a **Bring-Your-Own-Key** model — requests go directly from your browser to the OpenAI-compatible endpoint you configure (OpenAI, OpenRouter, Azure, local Ollama, …). Nothing passes through our servers.
 
-- **AI Design** — Describe the cover in plain language and get a complete, ready-to-tweak design (title, fonts, colors, gradient, layout).
+- **AI Design Copilot** — Describe a cover from scratch, *or* iterate on what's already on the canvas. Cova sends your current design as context so the AI refines it instead of starting over.
+- **Quick Refine** — One-tap chips ("More vivid", "Dark mode", "Bigger title", "Gradient", …) apply context-aware tweaks to the current design instantly.
+- **Wider control surface** — AI can now drive typography (incl. italic), color, gradients, frosted-glass blur, radius and more.
 - **AI Copywriter** — Turn a topic into punchy title/subtitle options, applied with one click.
 - **AI Palette** — Generate a harmonious gradient + readable text color from a mood or keyword.
+- **Cancellable & robust** — In-flight requests can be cancelled, with built-in timeout handling.
 - **Non-destructive** — Every AI result can be reverted with a one-click Undo.
 - **Provider-agnostic** — Any OpenAI-compatible Chat Completions endpoint works; your key is stored only in your browser.
 
@@ -241,7 +244,8 @@ We welcome contributions! Here's how you can help:
 - [x] **v1.1.0** — Mobile optimization, enhanced UX, template system
 - [x] **v1.2.0** — Template marketplace, real WebP export, high-resolution output, full i18n
 - [x] **v1.3.0** — AI Native: AI design assistant, copywriter & palette (bring-your-own-key)
-- [ ] **v1.4.0** — Collaboration features
+- [x] **v1.4.0** — AI Design Copilot: context-aware iterative refine, quick-refine actions, wider control surface, cancellable requests
+- [ ] **v1.5.0** — Collaboration features
 - [ ] **v2.0.0** — Plugin system, advanced animations and effects
 
 ## 💝 Support
