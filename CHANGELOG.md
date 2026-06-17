@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/guizimo/cova/compare/v1.3.0...v1.4.0) (2026-06-17)
+
+
+### Features
+
+* **ai:** evolve AI assistant into a context-aware design copilot ([8a141c7](https://github.com/guizimo/cova/commit/8a141c7c4ce4c383befff355b961fd15afd88b5a))
+* **home:** redesign landing page with aurora visuals and live cover preview ([a8935e9](https://github.com/guizimo/cova/commit/a8935e93c7e4efef7dde5cbdb28c9a5d457b5c08))
+
 ## [1.3.0](https://github.com/guizimo/cova/compare/v1.0.0...v1.3.0) (2026-06-16)
 
 
