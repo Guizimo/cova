@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/layout/navbar';
 import { Hero } from '@/components/layout/hero';
+import { CoverMarquee } from '@/components/layout/cover-marquee';
 import { Features } from '@/components/layout/features';
 import { CTA } from '@/components/layout/cta';
 import { Footer } from '@/components/layout/footer';
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <CoverMarquee />
         <Features />
         <CTA />
       </main>

@@ -200,6 +200,95 @@
     background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
   }
 
+  /* ===== 极光渐变色彩系统（落地页创新视觉） ===== */
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  @keyframes aurora-drift-1 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+    50% { transform: translate3d(6%, 8%, 0) scale(1.15); opacity: 0.8; }
+  }
+  @keyframes aurora-drift-2 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); opacity: 0.5; }
+    50% { transform: translate3d(-8%, -6%, 0) scale(0.95); opacity: 0.75; }
+  }
+  @keyframes aurora-drift-3 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.4; }
+    50% { transform: translate3d(4%, -10%, 0) scale(1.2); opacity: 0.65; }
+  }
+  .aurora-1 { animation: aurora-drift-1 16s ease-in-out infinite; }
+  .aurora-2 { animation: aurora-drift-2 20s ease-in-out infinite; }
+  .aurora-3 { animation: aurora-drift-3 24s ease-in-out infinite; }
+
+  /* 文本渐变（彩色版本，用于落地页关键字） */
+  .text-gradient-aurora {
+    background: linear-gradient(110deg, #a5b4fc 0%, #f0abfc 38%, #67e8f9 76%, #a5b4fc 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: aurora-text-pan 8s linear infinite;
+  }
+  @keyframes aurora-text-pan {
+    to { background-position: 200% center; }
+  }
+
+  /* 旋转的锥形渐变描边（用于展示件外框） */
+  @keyframes conic-spin {
+    to { transform: rotate(1turn); }
+  }
+  .conic-border {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(165,180,252,0.9) 60deg, rgba(240,171,252,0.9) 140deg, transparent 200deg, rgba(103,232,249,0.8) 300deg, transparent 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: conic-spin 6s linear infinite;
+    pointer-events: none;
+  }
+
+  /* 展示件浮动 */
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .float-soft { animation: float-soft 7s ease-in-out infinite; }
+
+  /* 跑马灯 */
+  @keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x 40s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* 进入动画 */
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .rise-in { animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-1, .aurora-2, .aurora-3,
+    .text-gradient-aurora, .conic-border,
+    .float-soft, .marquee-track, .rise-in,
+    .hero-glow-animate {
+      animation: none !important;
+    }
+  }
+
   /* 移动端特定优化 */
   @media (max-width: 1024px) {
     /* 改善触摸滚动性能 */
