@@ -8,28 +8,29 @@ import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { useGeneratorStore } from '@/store/generator';
 import { exportImage } from '@/utils/generator';
+import { resetWithUndo } from '@/utils/reset';
 
 export default function Generator() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('config');
-  const { resetSettings, backgroundType, setIsExporting } = useGeneratorStore();
+  const { backgroundType, setIsExporting, isExporting } = useGeneratorStore();
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const isMac = navigator.platform.toUpperCase().includes('MAC');
       const mod = isMac ? e.metaKey : e.ctrlKey;
-      if (mod && e.key === 's') {
+      if (mod && e.key.toLowerCase() === 's') {
         e.preventDefault();
-        exportImage('png', backgroundType, setIsExporting);
+        if (!isExporting) exportImage('png', backgroundType, setIsExporting);
       }
-      if (mod && e.shiftKey && e.key === 'R') {
+      if (mod && e.shiftKey && e.key.toLowerCase() === 'r') {
         e.preventDefault();
-        resetSettings();
+        resetWithUndo(t);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [backgroundType, resetSettings, setIsExporting]);
+  }, [backgroundType, setIsExporting, isExporting, t]);
 
   return (
     <div className="flex flex-col h-screen bg-black text-white overflow-hidden generator-container">
@@ -41,7 +42,10 @@ export default function Generator() {
           <ResizablePanel defaultSize={30} minSize={25} maxSize={35} className="border-r border-white/[0.08]">
             <ConfigPanel />
           </ResizablePanel>
-          <ResizableHandle className="w-px bg-white/[0.08] hover:bg-white/[0.15] transition-colors" />
+          <ResizableHandle
+            withHandle
+            className="w-px bg-white/[0.08] transition-colors hover:bg-white/[0.2] data-[resize-handle-state=drag]:bg-white/30"
+          />
           <ResizablePanel defaultSize={70}>
             <Preview />
           </ResizablePanel>

@@ -131,6 +131,10 @@ export default {
       copied: '链接已复制到剪贴板',
       failed: '分享失败，请重试'
     },
+    reset: {
+      done: '已重置为默认设计',
+      reverted: '已恢复重置前的设计'
+    },
     export: {
       png: 'PNG 格式',
       jpeg: 'JPEG 格式',

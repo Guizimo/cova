@@ -133,6 +133,10 @@ export default {
       copied: 'Link copied to clipboard',
       failed: 'Share failed, please try again'
     },
+    reset: {
+      done: 'Reset to the default design',
+      reverted: 'Restored your previous design'
+    },
     export: {
       png: 'PNG Format',
       jpeg: 'JPEG Format',

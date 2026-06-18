@@ -1,7 +1,7 @@
 import { useGeneratorStore } from '@/store/generator';
 import { computeBackgroundStyle } from '@/utils/generator';
 import { Loader2 } from 'lucide-react';
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function Preview() {
@@ -41,19 +41,18 @@ export function Preview() {
     isExporting
   } = useGeneratorStore();
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
+  // 用 ResizeObserver 监听真实预览区域尺寸：拖动分栏、窗口缩放、移动端切换 Tab 都能自适应
   useEffect(() => {
-    const updateSize = () => {
-      setContainerSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    };
-
+    const el = containerRef.current;
+    if (!el) return;
+    const updateSize = () => setContainerSize({ width: el.clientWidth, height: el.clientHeight });
     updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const backgroundStyle = computeBackgroundStyle(
@@ -88,26 +87,27 @@ export function Preview() {
   const coverHeight = isCustomSize ? customHeight : selectedSize.height;
   const showCheckerboard = backgroundType === 'transparent';
 
-  // 计算预览缩放比例，确保在移动端也能完整显示
+  // 基于真实预览区域尺寸计算缩放，确保封面始终完整显示且不溢出
   const scale = useMemo(() => {
-    const containerWidth = containerSize.width;
-    const containerHeight = containerSize.height;
+    const { width, height } = containerSize;
+    if (!width || !height) return 1;
 
-    // 移动端给更多边距
-    const padding = containerWidth < 768 ? 40 : 80;
-    const maxWidth = containerWidth - padding;
-    // 为header、tabs和底部留空间
-    const maxHeight = containerWidth < 1024 ? containerHeight - 220 : containerHeight - 200;
+    // 预留内边距与底部尺寸标签的空间
+    const horizontalPadding = width < 768 ? 32 : 56;
+    const verticalPadding = (width < 768 ? 32 : 56) + 28;
+    const maxWidth = Math.max(0, width - horizontalPadding);
+    const maxHeight = Math.max(0, height - verticalPadding);
 
-    const scaleX = maxWidth / coverWidth;
-    const scaleY = maxHeight / coverHeight;
-
-    return Math.min(scaleX, scaleY, 1); // 最大不超过原尺寸
+    const next = Math.min(maxWidth / coverWidth, maxHeight / coverHeight, 1);
+    return next > 0 ? next : 1;
   }, [containerSize, coverWidth, coverHeight]);
 
   return (
     <div className="flex h-full flex-col bg-black">
-      <div className="flex-1 overflow-auto bg-[#0a0a0a] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20">
+      <div
+        ref={containerRef}
+        className="flex-1 overflow-auto bg-[#0a0a0a] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20"
+      >
         <div className="flex h-full min-h-full items-center justify-center p-4 lg:p-6">
           {/* 导出加载层 */}
           {isExporting && (

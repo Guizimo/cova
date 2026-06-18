@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Download, ListRestart, Share2, Home, Globe, Check, MoreHorizontal } from 'lucide-react';
+import { Download, ListRestart, Share2, Home, Globe, Check, MoreHorizontal, Loader2 } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useGeneratorStore } from '@/store/generator';
 import { exportImage } from '@/utils/generator';
+import { resetWithUndo } from '@/utils/reset';
 import { shareGeneratorPage } from '@/utils/share';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
@@ -17,9 +18,13 @@ import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.png';
 import pkg from '../../../package.json';
 
+const IS_MAC = typeof navigator !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
+const SHORTCUT_EXPORT = IS_MAC ? '⌘S' : 'Ctrl+S';
+const SHORTCUT_RESET = IS_MAC ? '⌘⇧R' : 'Ctrl+Shift+R';
+
 export function Header() {
   const [stars, setStars] = useState<number>(0);
-  const { resetSettings, backgroundType, setIsExporting, backdropBlur } = useGeneratorStore();
+  const { backgroundType, setIsExporting, backdropBlur, isExporting } = useGeneratorStore();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -107,7 +112,7 @@ export function Header() {
                   {i18n.language === 'zh' ? 'English' : '中文'}
                 </DropdownMenuItem>
 
-                <DropdownMenuItem onClick={resetSettings} className="text-white hover:bg-white/[0.08]">
+                <DropdownMenuItem onClick={() => resetWithUndo(t)} className="text-white hover:bg-white/[0.08]">
                   <ListRestart className="mr-2 h-4 w-4" />
                   {t('generator.buttons.reset')}
                 </DropdownMenuItem>
@@ -130,7 +135,12 @@ export function Header() {
 
           {/* 桌面端：返回首页按钮 */}
           <Link to="/" className="hidden lg:block">
-            <Button variant="ghost" size="sm" className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8">
+            <Button
+              variant="ghost"
+              size="sm"
+              title={t('generator.buttons.backToHome')}
+              className="text-white/50 hover:text-white hover:bg-white/[0.08] h-8"
+            >
               <Home className="mr-2 h-4 w-4" />
               {t('generator.buttons.backToHome')}
             </Button>
@@ -184,7 +194,8 @@ export function Header() {
           <Button
             variant="outline"
             size="sm"
-            onClick={resetSettings}
+            onClick={() => resetWithUndo(t)}
+            title={`${t('generator.buttons.reset')} · ${SHORTCUT_RESET}`}
             className="hidden lg:flex border-white/[0.08] bg-white/[0.05] text-white hover:bg-white/[0.1] hover:text-white h-8"
           >
             <ListRestart className="mr-2 h-4 w-4" />
@@ -210,9 +221,18 @@ export function Header() {
           {/* 导出按钮 - 所有设备显示 */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button size="sm" className="bg-white text-black hover:bg-white/90 h-8">
-                <Download className="mr-2 h-4 w-4" />
-                <span>{t('generator.buttons.export')}</span>
+              <Button
+                size="sm"
+                disabled={isExporting}
+                title={`${t('generator.buttons.export')} · ${SHORTCUT_EXPORT}`}
+                className="bg-white text-black hover:bg-white/90 h-8 disabled:opacity-60"
+              >
+                {isExporting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="mr-2 h-4 w-4" />
+                )}
+                <span>{isExporting ? t('generator.export.exporting') : t('generator.buttons.export')}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-black border-white/[0.08]">
