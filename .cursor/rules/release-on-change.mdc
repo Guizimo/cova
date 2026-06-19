@@ -1,0 +1,25 @@
+---
+description: Always release and push after completing code changes
+alwaysApply: true
+---
+
+# Release & Push After Every Change
+
+After completing any code change in this repo, always finish with this sequence (do it without being asked):
+
+1. **Verify**: run `pnpm build` and make sure it passes.
+2. **Commit**: stage and commit with a Conventional Commit message
+   (`feat:`, `fix:`, `chore:`, `docs:`, …) so `standard-version` can build the changelog.
+3. **Release**: bump the version and tag with `standard-version`:
+   - default / most changes: `pnpm exec standard-version --release-as patch`
+   - new user-facing feature: `pnpm release:minor`
+   - breaking change: `pnpm release:major`
+   - If unsure of the level, prefer **patch**.
+4. **Push**: `git push --follow-tags origin main` (push commits *and* the new tag).
+
+## Notes
+
+- The release commit (`chore(release): x.y.z`) + tag is created by `standard-version`; the
+  feature/fix commit must already exist before running it.
+- Never skip the push — the tag must reach the remote.
+- Only skip this flow if the user explicitly says not to release.
