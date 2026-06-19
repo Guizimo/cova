@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/guizimo/cova/compare/v1.4.0...v1.4.1) (2026-06-19)
+
+
+### Features
+
+* **generator:** turn the editor into a floating control panel ([9269fe1](https://github.com/guizimo/cova/commit/9269fe11dafafe60fa117a8d4c2ec1836b8b9f5a))
+
+
+### Bug Fixes
+
+* **generator:** improve editor interactions and safety ([3377695](https://github.com/guizimo/cova/commit/337769580da109aaf7543432ad691460ba6f8d5d))
+
 ## [1.4.0](https://github.com/guizimo/cova/compare/v1.3.0...v1.4.0) (2026-06-17)
 
 
