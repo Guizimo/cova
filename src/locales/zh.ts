@@ -135,6 +135,12 @@ export default {
       done: '已重置为默认设计',
       reverted: '已恢复重置前的设计'
     },
+    controls: {
+      title: '控制面板',
+      collapse: '收起',
+      expand: '展开控制面板',
+      dragHint: '拖动可移动面板'
+    },
     export: {
       png: 'PNG 格式',
       jpeg: 'JPEG 格式',

@@ -1,7 +1,7 @@
 import { Header } from '@/components/generator/Header';
 import { Preview } from '@/components/generator/Preview';
 import { ConfigPanel } from '@/components/generator/ConfigPanel';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { FloatingConfigPanel } from '@/components/generator/FloatingConfigPanel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Settings, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -36,20 +36,10 @@ export default function Generator() {
     <div className="flex flex-col h-screen bg-black text-white overflow-hidden generator-container">
       <Header />
 
-      {/* 桌面端：分栏布局 */}
-      <div className="hidden lg:flex flex-1 h-[calc(100vh-64px)]">
-        <ResizablePanelGroup direction="horizontal" className="h-full">
-          <ResizablePanel defaultSize={30} minSize={25} maxSize={35} className="border-r border-white/[0.08]">
-            <ConfigPanel />
-          </ResizablePanel>
-          <ResizableHandle
-            withHandle
-            className="w-px bg-white/[0.08] transition-colors hover:bg-white/[0.2] data-[resize-handle-state=drag]:bg-white/30"
-          />
-          <ResizablePanel defaultSize={70}>
-            <Preview />
-          </ResizablePanel>
-        </ResizablePanelGroup>
+      {/* 桌面端：预览全幅 + 悬浮控制面板 */}
+      <div className="relative hidden lg:block flex-1 h-[calc(100vh-64px)] overflow-hidden">
+        <Preview />
+        <FloatingConfigPanel />
       </div>
 
       {/* 移动端：Tabs 布局 */}

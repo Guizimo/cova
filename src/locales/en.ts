@@ -137,6 +137,12 @@ export default {
       done: 'Reset to the default design',
       reverted: 'Restored your previous design'
     },
+    controls: {
+      title: 'Controls',
+      collapse: 'Collapse',
+      expand: 'Expand controls',
+      dragHint: 'Drag to move the panel'
+    },
     export: {
       png: 'PNG Format',
       jpeg: 'JPEG Format',
