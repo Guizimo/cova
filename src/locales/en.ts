@@ -143,6 +143,13 @@ export default {
       expand: 'Expand controls',
       dragHint: 'Drag to move the panel'
     },
+    canvas: {
+      zoomIn: 'Zoom in',
+      zoomOut: 'Zoom out',
+      fit: 'Fit to screen',
+      resetZoom: 'Reset zoom',
+      grid: 'Grid'
+    },
     export: {
       png: 'PNG Format',
       jpeg: 'JPEG Format',

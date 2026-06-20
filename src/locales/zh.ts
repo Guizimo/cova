@@ -141,6 +141,13 @@ export default {
       expand: '展开控制面板',
       dragHint: '拖动可移动面板'
     },
+    canvas: {
+      zoomIn: '放大',
+      zoomOut: '缩小',
+      fit: '适应屏幕',
+      resetZoom: '重置缩放',
+      grid: '网格'
+    },
     export: {
       png: 'PNG 格式',
       jpeg: 'JPEG 格式',

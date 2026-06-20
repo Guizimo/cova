@@ -1,8 +1,12 @@
 import { useGeneratorStore } from '@/store/generator';
 import { computeBackgroundStyle } from '@/utils/generator';
-import { Loader2 } from 'lucide-react';
-import { useMemo, useEffect, useState, useRef } from 'react';
+import { Loader2, ZoomIn, ZoomOut, Maximize2, Grid3x3 } from 'lucide-react';
+import { useMemo, useEffect, useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+
+const MIN_ZOOM = 0.1;
+const MAX_ZOOM = 5;
+const GRID_BASE = 24;
 
 export function Preview() {
   const { t } = useTranslation();
@@ -87,26 +91,113 @@ export function Preview() {
   const coverHeight = isCustomSize ? customHeight : selectedSize.height;
   const showCheckerboard = backgroundType === 'transparent';
 
-  // 基于真实预览区域尺寸计算缩放，确保封面始终完整显示且不溢出
-  const scale = useMemo(() => {
+  // 缩放/平移/网格状态
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [showGrid, setShowGrid] = useState(true);
+  const [panning, setPanning] = useState(false);
+  const panStart = useRef<{ px: number; py: number; ox: number; oy: number } | null>(null);
+
+  // 自适应缩放比例：让封面恰好放入预览区域
+  const fitZoom = useMemo(() => {
     const { width, height } = containerSize;
     if (!width || !height) return 1;
-
-    // 预留内边距与底部尺寸标签的空间
-    const horizontalPadding = width < 768 ? 32 : 56;
-    const verticalPadding = (width < 768 ? 32 : 56) + 28;
+    const horizontalPadding = width < 768 ? 48 : 96;
+    const verticalPadding = (width < 768 ? 48 : 96) + 28;
     const maxWidth = Math.max(0, width - horizontalPadding);
     const maxHeight = Math.max(0, height - verticalPadding);
-
     const next = Math.min(maxWidth / coverWidth, maxHeight / coverHeight, 1);
     return next > 0 ? next : 1;
   }, [containerSize, coverWidth, coverHeight]);
+
+  // 适应屏幕：重置缩放与平移
+  const fitToScreen = useCallback(() => {
+    setZoom(fitZoom);
+    setPan({ x: 0, y: 0 });
+  }, [fitZoom]);
+
+  // 首次测量到容器尺寸、或切换封面尺寸时，自动适应屏幕（拖动分栏等不会打断用户当前缩放）
+  const sizeKey = `${coverWidth}x${coverHeight}`;
+  const lastSizeKey = useRef('');
+  useEffect(() => {
+    if (!containerSize.width) return;
+    if (lastSizeKey.current !== sizeKey) {
+      lastSizeKey.current = sizeKey;
+      setZoom(fitZoom);
+      setPan({ x: 0, y: 0 });
+    }
+  }, [sizeKey, fitZoom, containerSize.width]);
+
+  // 以某锚点为中心缩放（锚点为相对容器中心的偏移），保持锚点视觉位置不变
+  const applyZoom = useCallback((nextZoom: number, anchorX = 0, anchorY = 0) => {
+    setZoom((current) => {
+      const clamped = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextZoom));
+      const factor = clamped / current;
+      setPan((p) => ({
+        x: anchorX * (1 - factor) + p.x * factor,
+        y: anchorY * (1 - factor) + p.y * factor
+      }));
+      return clamped;
+    });
+  }, []);
+
+  const zoomBy = useCallback((ratio: number) => applyZoom(zoom * ratio), [applyZoom, zoom]);
+
+  // 滚轮缩放（锚定光标位置）
+  const handleWheel = useCallback(
+    (e: React.WheelEvent) => {
+      e.preventDefault();
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const anchorX = e.clientX - rect.left - rect.width / 2;
+      const anchorY = e.clientY - rect.top - rect.height / 2;
+      const ratio = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+      applyZoom(zoom * ratio, anchorX, anchorY);
+    },
+    [applyZoom, zoom]
+  );
+
+  // 拖动平移
+  const startPan = useCallback(
+    (e: React.PointerEvent) => {
+      if (e.button !== 0) return;
+      panStart.current = { px: e.clientX, py: e.clientY, ox: pan.x, oy: pan.y };
+      setPanning(true);
+    },
+    [pan]
+  );
+
+  useEffect(() => {
+    if (!panning) return;
+    const onMove = (e: PointerEvent) => {
+      const s = panStart.current;
+      if (!s) return;
+      setPan({ x: s.ox + (e.clientX - s.px), y: s.oy + (e.clientY - s.py) });
+    };
+    const onUp = () => setPanning(false);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+  }, [panning]);
 
   return (
     <div className="flex h-full flex-col bg-black">
       <div
         ref={containerRef}
-        className="flex-1 overflow-auto bg-[#0a0a0a] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20"
+        onWheel={handleWheel}
+        onPointerDown={startPan}
+        className={`relative flex-1 overflow-hidden bg-[#0a0a0a] ${panning ? 'cursor-grabbing' : 'cursor-grab'}`}
+        style={{
+          touchAction: 'none',
+          backgroundImage: showGrid
+            ? `linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)`
+            : undefined,
+          backgroundSize: showGrid ? `${GRID_BASE * zoom}px ${GRID_BASE * zoom}px` : undefined,
+          backgroundPosition: showGrid ? `calc(50% + ${pan.x}px) calc(50% + ${pan.y}px)` : undefined
+        }}
       >
         <div className="flex h-full min-h-full items-center justify-center p-4 lg:p-6">
           {/* 导出加载层 */}
@@ -120,7 +211,10 @@ export function Preview() {
           )}
 
           {/* 预览容器 */}
-          <div className="relative flex flex-col items-center" style={{ transform: `scale(${scale})` }}>
+          <div
+            className="relative flex flex-col items-center"
+            style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+          >
             {/* 背景装饰 */}
             <div className="absolute -inset-4 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-2xl blur-xl opacity-20" />
 
@@ -249,12 +343,67 @@ export function Preview() {
                 </div>
               )}
             </div>
-
-            {/* 尺寸标签 */}
-            <span className="mt-2 text-xs text-white/40 font-mono tabular-nums" style={{ position: 'relative' }}>
-              {coverWidth} × {coverHeight}
-            </span>
           </div>
+        </div>
+
+        {/* 画布工具条：缩放 / 适应 / 网格 */}
+        <div
+          onPointerDown={(e) => e.stopPropagation()}
+          onWheel={(e) => e.stopPropagation()}
+          className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 rounded-xl border border-white/10 bg-black/65 px-1.5 py-1 shadow-2xl shadow-black/50 backdrop-blur-xl"
+        >
+          <button
+            type="button"
+            onClick={() => zoomBy(1 / 1.2)}
+            aria-label={t('generator.canvas.zoomOut')}
+            title={t('generator.canvas.zoomOut')}
+            className="flex h-7 w-7 items-center justify-center rounded-md text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ZoomOut className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={fitToScreen}
+            title={t('generator.canvas.resetZoom')}
+            className="min-w-[52px] rounded-md px-1.5 py-1 text-center text-xs font-medium tabular-nums text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            {Math.round(zoom * 100)}%
+          </button>
+          <button
+            type="button"
+            onClick={() => zoomBy(1.2)}
+            aria-label={t('generator.canvas.zoomIn')}
+            title={t('generator.canvas.zoomIn')}
+            className="flex h-7 w-7 items-center justify-center rounded-md text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ZoomIn className="h-4 w-4" />
+          </button>
+          <span className="mx-0.5 h-4 w-px bg-white/10" />
+          <button
+            type="button"
+            onClick={fitToScreen}
+            aria-label={t('generator.canvas.fit')}
+            title={t('generator.canvas.fit')}
+            className="flex h-7 w-7 items-center justify-center rounded-md text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <Maximize2 className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowGrid((v) => !v)}
+            aria-label={t('generator.canvas.grid')}
+            title={t('generator.canvas.grid')}
+            aria-pressed={showGrid}
+            className={`flex h-7 w-7 items-center justify-center rounded-md transition-colors hover:bg-white/10 ${
+              showGrid ? 'bg-white/10 text-white' : 'text-white/65 hover:text-white'
+            }`}
+          >
+            <Grid3x3 className="h-4 w-4" />
+          </button>
+          <span className="mx-0.5 h-4 w-px bg-white/10" />
+          <span className="px-1.5 text-[11px] font-mono tabular-nums text-white/40">
+            {coverWidth} × {coverHeight}
+          </span>
         </div>
       </div>
     </div>
