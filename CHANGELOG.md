@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/guizimo/cova/compare/v1.4.2...v1.5.0) (2026-06-20)
+
+
+### Features
+
+* **generator:** add canvas zoom, pan and grid background ([b466741](https://github.com/guizimo/cova/commit/b4667411762d3f751ad93c8030c6d2129eb2194d))
+
 ### [1.4.2](https://github.com/guizimo/cova/compare/v1.4.1...v1.4.2) (2026-06-19)
 
 ### [1.4.1](https://github.com/guizimo/cova/compare/v1.4.0...v1.4.1) (2026-06-19)
