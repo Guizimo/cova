@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/guizimo/cova/compare/v1.5.0...v1.6.0) (2026-06-21)
+
+
+### Features
+
+* **templates:** revamp template manager UX and marketplace ([d01fc57](https://github.com/guizimo/cova/commit/d01fc578ba2632387b5ceab1f604187eb1513705))
+
 ## [1.5.0](https://github.com/guizimo/cova/compare/v1.4.2...v1.5.0) (2026-06-20)
 
 
