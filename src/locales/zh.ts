@@ -277,9 +277,15 @@ export default {
       preview: '预览',
       import: '导入',
       remove: '删除',
+      rename: '重命名',
+      saveTitle: '保存当前设计为模板',
       namePlaceholder: '输入模板名称',
       untitled: '未命名模板',
       saved: '已保存为模板',
+      applied: '已应用模板（已保留之前设计）',
+      renamed: '已重命名',
+      deleted: '已删除模板',
+      capacityHint: '模板已达上限，保存后将自动移除最旧的一个',
       imported: '已导入到我的模板',
       previewed: '已应用模板（已保留你之前的设计）',
       previewReverted: '已恢复到你之前的设计',
@@ -293,7 +299,9 @@ export default {
           all: '全部',
           tech: '技术',
           social: '社媒',
-          minimal: '极简'
+          minimal: '极简',
+          vibrant: '活力',
+          dark: '深色'
         },
         items: {
           techDark: {
@@ -307,6 +315,30 @@ export default {
           minimalLight: {
             name: '极简浅色',
             description: '适合产品文档、教程与知识卡片'
+          },
+          midnightPro: {
+            name: '午夜专业',
+            description: '适合版本发布、更新日志与深色主题封面'
+          },
+          sunsetPop: {
+            name: '日落活力',
+            description: '适合活动预告、上线庆祝与高能量主题'
+          },
+          oceanCalm: {
+            name: '海洋静谧',
+            description: '适合云服务、基础设施与技术品牌'
+          },
+          monoPaper: {
+            name: '纸质衬线',
+            description: '适合长文、随笔与编辑风格内容'
+          },
+          neonGrid: {
+            name: '霓虹未来',
+            description: '适合前沿科技、产品发布与潮流主题'
+          },
+          forestZen: {
+            name: '森林禅意',
+            description: '适合生活方式、专注与冥想类内容'
           }
         }
       }

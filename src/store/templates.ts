@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { TemplateConfig } from '@/store/generator';
 
-const MAX_TEMPLATES = 10;
+export const MAX_TEMPLATES = 10;
 const STORAGE_KEY = 'cova-templates';
 
 /** 配额安全的 localStorage：写入失败（多为图片导致超额）时静默降级，避免应用崩溃 */
@@ -22,12 +22,14 @@ export interface SavedTemplate {
   id: string;
   name: string;
   config: TemplateConfig;
+  createdAt: number;
 }
 
 interface TemplatesState {
   templates: SavedTemplate[];
   addTemplate: (name: string, config: TemplateConfig) => void;
   removeTemplate: (id: string) => void;
+  renameTemplate: (id: string, name: string) => void;
   getTemplate: (id: string) => SavedTemplate | undefined;
 }
 
@@ -47,7 +49,8 @@ export const useTemplatesStore = create<TemplatesState>()(
           list.unshift({
             id: generateId(),
             name: name.trim() || 'Untitled',
-            config
+            config,
+            createdAt: Date.now()
           });
           return { templates: list };
         }),
@@ -55,6 +58,11 @@ export const useTemplatesStore = create<TemplatesState>()(
       removeTemplate: (id) =>
         set((state) => ({
           templates: state.templates.filter((t) => t.id !== id)
+        })),
+
+      renameTemplate: (id, name) =>
+        set((state) => ({
+          templates: state.templates.map((t) => (t.id === id ? { ...t, name: name.trim() || t.name } : t))
         })),
 
       getTemplate: (id) => get().templates.find((t) => t.id === id)

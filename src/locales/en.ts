@@ -279,9 +279,15 @@ export default {
       preview: 'Preview',
       import: 'Import',
       remove: 'Remove',
+      rename: 'Rename',
+      saveTitle: 'Save the current design as a template',
       namePlaceholder: 'Enter template name',
       untitled: 'Untitled template',
       saved: 'Saved as template',
+      applied: 'Template applied (previous design kept)',
+      renamed: 'Renamed',
+      deleted: 'Template deleted',
+      capacityHint: 'Template limit reached. Saving removes the oldest one',
       imported: 'Imported to my templates',
       previewed: 'Template applied (your previous design is kept)',
       previewReverted: 'Reverted to your previous design',
@@ -295,7 +301,9 @@ export default {
           all: 'All',
           tech: 'Tech',
           social: 'Social',
-          minimal: 'Minimal'
+          minimal: 'Minimal',
+          vibrant: 'Vibrant',
+          dark: 'Dark'
         },
         items: {
           techDark: {
@@ -309,6 +317,30 @@ export default {
           minimalLight: {
             name: 'Minimal Light',
             description: 'Great for docs, tutorials, and knowledge cards'
+          },
+          midnightPro: {
+            name: 'Midnight Pro',
+            description: 'Great for releases, changelogs, and dark-themed covers'
+          },
+          sunsetPop: {
+            name: 'Sunset Pop',
+            description: 'Great for launches, announcements, and high-energy themes'
+          },
+          oceanCalm: {
+            name: 'Ocean Calm',
+            description: 'Great for cloud, infrastructure, and tech brands'
+          },
+          monoPaper: {
+            name: 'Mono Paper',
+            description: 'Great for long reads, essays, and editorial content'
+          },
+          neonGrid: {
+            name: 'Neon Future',
+            description: 'Great for cutting-edge tech, launches, and trendy themes'
+          },
+          forestZen: {
+            name: 'Forest Zen',
+            description: 'Great for lifestyle, focus, and mindfulness content'
           }
         }
       }

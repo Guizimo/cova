@@ -1,56 +1,94 @@
 import { Button } from '@/components/ui/button';
-import { MARKETPLACE_TEMPLATES } from '@/config/template-marketplace';
-import type { MarketplaceTemplate } from '@/config/template-marketplace';
 import { Input } from '@/components/ui/input';
+import { MARKETPLACE_CATEGORIES, MARKETPLACE_TEMPLATES, type MarketplaceFilter } from '@/config/template-marketplace';
 import { useGeneratorStore } from '@/store/generator';
-import { useTemplatesStore } from '@/store/templates';
-import { useMemo, useState } from 'react';
+import { MAX_TEMPLATES, useTemplatesStore } from '@/store/templates';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
-import { BookmarkPlus, Download, Store, Trash2 } from 'lucide-react';
-
-/** 根据模板配置生成用于缩略图预览的背景样式 */
-function getThumbnailStyle(config: MarketplaceTemplate['config']): React.CSSProperties {
-  if (config.backgroundType === 'gradient') {
-    return {
-      backgroundImage: `linear-gradient(${config.gradientAngle ?? 135}deg, ${config.gradientStart}, ${config.gradientEnd})`
-    };
-  }
-  if (config.backgroundType === 'solid') {
-    return { backgroundColor: config.backgroundColor };
-  }
-  return { backgroundColor: '#1f2937' };
-}
+import { BookmarkPlus, Check, Download, Pencil, Store, Trash2, X } from 'lucide-react';
+import { TemplateThumb } from './TemplateThumb';
 
 export function TemplateConfig() {
   const { t } = useTranslation();
-  const { templates, addTemplate, removeTemplate, getTemplate } = useTemplatesStore();
+  const { templates, addTemplate, removeTemplate, renameTemplate, getTemplate } = useTemplatesStore();
   const { getCurrentTemplateConfig, applyTemplateConfig } = useGeneratorStore();
+
   const [keyword, setKeyword] = useState('');
-  const [activeCategory, setActiveCategory] = useState<'all' | 'tech' | 'social' | 'minimal'>('all');
+  const [activeCategory, setActiveCategory] = useState<MarketplaceFilter>('all');
 
-  const marketplaceCategories: Array<'all' | 'tech' | 'social' | 'minimal'> = ['all', 'tech', 'social', 'minimal'];
+  // 内联“保存为模板”表单
+  const [saving, setSaving] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const saveInputRef = useRef<HTMLInputElement>(null);
 
-  const handleSaveAs = () => {
-    const name = window.prompt(t('generator.templates.namePlaceholder'), '');
-    if (name == null) return;
+  // 内联重命名
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState('');
+
+  useEffect(() => {
+    if (saving) saveInputRef.current?.focus();
+  }, [saving]);
+
+  const atCapacity = templates.length >= MAX_TEMPLATES;
+
+  const openSave = () => {
+    setSaveName('');
+    setSaving(true);
+  };
+
+  const confirmSave = () => {
     const config = getCurrentTemplateConfig();
-    addTemplate(name.trim() || t('generator.templates.untitled'), config);
+    addTemplate(saveName.trim() || t('generator.templates.untitled'), config);
+    setSaving(false);
+    setSaveName('');
     toast.success(t('generator.templates.saved'));
   };
 
   const handleApply = (id: string) => {
     const template = getTemplate(id);
-    if (template) {
-      applyTemplateConfig(template.config);
-      toast.success(t('generator.templates.apply'));
+    if (!template) return;
+    const previousConfig = getCurrentTemplateConfig();
+    applyTemplateConfig(template.config);
+    toast.success(t('generator.templates.applied'), {
+      action: {
+        label: t('generator.templates.undo'),
+        onClick: () => {
+          applyTemplateConfig(previousConfig);
+          toast.success(t('generator.templates.previewReverted'));
+        }
+      }
+    });
+  };
+
+  const handleDelete = (id: string) => {
+    const template = getTemplate(id);
+    if (!template) return;
+    removeTemplate(id);
+    toast.success(t('generator.templates.deleted'), {
+      action: {
+        label: t('generator.templates.undo'),
+        onClick: () => addTemplate(template.name, template.config)
+      }
+    });
+  };
+
+  const startRename = (id: string, currentName: string) => {
+    setRenamingId(id);
+    setRenameValue(currentName);
+  };
+
+  const confirmRename = () => {
+    if (renamingId) {
+      renameTemplate(renamingId, renameValue);
+      toast.success(t('generator.templates.renamed'));
     }
+    setRenamingId(null);
   };
 
   const handleImportFromMarketplace = (id: string) => {
     const marketplaceTemplate = MARKETPLACE_TEMPLATES.find((item) => item.id === id);
     if (!marketplaceTemplate) return;
-
     addTemplate(t(marketplaceTemplate.nameKey), marketplaceTemplate.config);
     toast.success(t('generator.templates.imported'));
   };
@@ -58,8 +96,6 @@ export function TemplateConfig() {
   const handlePreviewMarketplace = (id: string) => {
     const marketplaceTemplate = MARKETPLACE_TEMPLATES.find((item) => item.id === id);
     if (!marketplaceTemplate) return;
-
-    // 预览前保存当前设计，提供「撤销」以避免破坏用户正在编辑的内容
     const previousConfig = getCurrentTemplateConfig();
     applyTemplateConfig(marketplaceTemplate.config);
     toast.success(t('generator.templates.previewed'), {
@@ -79,7 +115,6 @@ export function TemplateConfig() {
       const inCategory = activeCategory === 'all' || item.category === activeCategory;
       if (!inCategory) return false;
       if (!search) return true;
-
       const name = t(item.nameKey).toLowerCase();
       const description = t(item.descriptionKey).toLowerCase();
       return name.includes(search) || description.includes(search);
@@ -87,55 +122,147 @@ export function TemplateConfig() {
   }, [activeCategory, keyword, t]);
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <h3 className="flex items-center gap-2 text-xs lg:text-sm font-medium text-white/90 uppercase tracking-wide">
-          <BookmarkPlus className="h-3.5 w-3.5 text-white/70" />
-          {t('generator.templates.title')}
-        </h3>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={handleSaveAs}
-          className="h-8 border-white/10 bg-white/5 text-white hover:bg-white/10 text-xs"
-        >
-          <BookmarkPlus className="mr-1.5 h-3.5 w-3.5" />
-          {t('generator.templates.saveAs')}
-        </Button>
-      </div>
-      <div className="space-y-2">
-        <p className="text-[11px] text-white/50 uppercase tracking-wide">{t('generator.templates.myTemplates')}</p>
+    <div className="space-y-4">
+      {/* 我的模板 */}
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="flex items-center gap-2 text-xs lg:text-sm font-medium text-white/90 uppercase tracking-wide">
+            <BookmarkPlus className="h-3.5 w-3.5 text-white/70" />
+            {t('generator.templates.title')}
+            <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[10px] font-normal text-white/50 tabular-nums">
+              {templates.length}/{MAX_TEMPLATES}
+            </span>
+          </h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={openSave}
+            disabled={saving}
+            className="h-8 border-white/10 bg-white/5 text-white hover:bg-white/10 text-xs"
+          >
+            <BookmarkPlus className="mr-1.5 h-3.5 w-3.5" />
+            {t('generator.templates.saveAs')}
+          </Button>
+        </div>
+
+        {/* 内联保存表单 */}
+        {saving && (
+          <div className="space-y-2 rounded-lg border border-white/15 bg-white/[0.06] p-2.5">
+            <p className="text-[11px] text-white/60">{t('generator.templates.saveTitle')}</p>
+            <div className="flex items-center gap-1.5">
+              <Input
+                ref={saveInputRef}
+                value={saveName}
+                onChange={(e) => setSaveName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') confirmSave();
+                  if (e.key === 'Escape') setSaving(false);
+                }}
+                placeholder={t('generator.templates.namePlaceholder')}
+                className="h-8 flex-1 border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-white/20"
+              />
+              <Button
+                type="button"
+                size="sm"
+                onClick={confirmSave}
+                className="h-8 bg-white text-black hover:bg-white/90 text-xs"
+              >
+                <Check className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setSaving(false)}
+                className="h-8 w-8 p-0 text-white/50 hover:text-white hover:bg-white/10"
+              >
+                <X className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+            {atCapacity && <p className="text-[11px] text-amber-300/80">{t('generator.templates.capacityHint')}</p>}
+          </div>
+        )}
+
         {templates.length === 0 ? (
-          <p className="text-xs text-white/40 py-2">{t('generator.templates.noTemplates')}</p>
+          <div className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] px-3 py-6 text-center">
+            <p className="text-xs text-white/40">{t('generator.templates.noTemplates')}</p>
+          </div>
         ) : (
           <ul className="space-y-2">
             {templates.map((template) => (
               <li
                 key={template.id}
-                className="flex items-center justify-between gap-2 rounded-lg bg-white/5 border border-white/10 px-3 py-2"
+                className="rounded-lg border border-white/10 bg-white/5 p-2.5 transition-colors hover:border-white/20 hover:bg-white/[0.07]"
               >
-                <span className="text-sm text-white/90 truncate flex-1 min-w-0">{template.name}</span>
-                <div className="flex items-center gap-1 flex-shrink-0">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 px-2 text-white/70 hover:text-white hover:bg-white/10 text-xs"
-                    onClick={() => handleApply(template.id)}
-                  >
-                    {t('generator.templates.apply')}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 w-7 p-0 text-white/40 hover:text-red-400 hover:bg-white/10"
-                    onClick={() => removeTemplate(template.id)}
-                    aria-label={t('generator.templates.remove')}
-                  >
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </Button>
+                <div className="flex gap-3">
+                  <TemplateThumb
+                    config={template.config}
+                    fontSize={11}
+                    className="h-14 w-24 flex-shrink-0 rounded-md border border-white/10"
+                  />
+                  <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
+                    {renamingId === template.id ? (
+                      <div className="flex items-center gap-1">
+                        <Input
+                          autoFocus
+                          value={renameValue}
+                          onChange={(e) => setRenameValue(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') confirmRename();
+                            if (e.key === 'Escape') setRenamingId(null);
+                          }}
+                          placeholder={t('generator.templates.namePlaceholder')}
+                          className="h-7 flex-1 border-white/10 bg-white/5 text-white text-xs placeholder:text-white/30 focus-visible:ring-white/20"
+                        />
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={confirmRename}
+                          className="h-7 w-7 p-0 bg-white text-black hover:bg-white/90"
+                        >
+                          <Check className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <p className="truncate text-sm font-medium text-white/90">{template.name}</p>
+                    )}
+
+                    {renamingId !== template.id && (
+                      <div className="flex items-center gap-1">
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={() => handleApply(template.id)}
+                          className="h-7 flex-1 bg-white/10 text-white hover:bg-white/20 text-xs"
+                        >
+                          {t('generator.templates.apply')}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-7 w-7 p-0 text-white/50 hover:text-white hover:bg-white/10"
+                          onClick={() => startRename(template.id, template.name)}
+                          aria-label={t('generator.templates.rename')}
+                          title={t('generator.templates.rename')}
+                        >
+                          <Pencil className="h-3.5 w-3.5" />
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-7 w-7 p-0 text-white/40 hover:text-red-400 hover:bg-white/10"
+                          onClick={() => handleDelete(template.id)}
+                          aria-label={t('generator.templates.remove')}
+                          title={t('generator.templates.remove')}
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </li>
             ))}
@@ -143,7 +270,8 @@ export function TemplateConfig() {
         )}
       </div>
 
-      <div className="space-y-2 pt-1">
+      {/* 模板市场 */}
+      <div className="space-y-2.5 border-t border-white/10 pt-3">
         <p className="flex items-center gap-1.5 text-[11px] text-white/50 uppercase tracking-wide">
           <Store className="h-3 w-3" />
           {t('generator.templates.marketplace.title')}
@@ -156,14 +284,14 @@ export function TemplateConfig() {
           className="h-8 border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-white/20"
         />
         <div className="flex flex-wrap gap-1.5">
-          {marketplaceCategories.map((category) => (
+          {MARKETPLACE_CATEGORIES.map((category) => (
             <Button
               key={category}
               type="button"
               variant="ghost"
               size="sm"
               onClick={() => setActiveCategory(category)}
-              className={`h-7 px-2 text-xs ${
+              className={`h-7 px-2.5 text-xs ${
                 activeCategory === category
                   ? 'bg-white/15 text-white hover:bg-white/20'
                   : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
@@ -173,53 +301,50 @@ export function TemplateConfig() {
             </Button>
           ))}
         </div>
+
         {filteredMarketplaceTemplates.length === 0 ? (
-          <p className="text-xs text-white/40 py-2">{t('generator.templates.marketplace.empty')}</p>
+          <div className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] px-3 py-6 text-center">
+            <p className="text-xs text-white/40">{t('generator.templates.marketplace.empty')}</p>
+          </div>
         ) : (
           <ul className="space-y-2">
             {filteredMarketplaceTemplates.map((item) => (
               <li
                 key={item.id}
-                className="rounded-lg bg-white/5 border border-white/10 px-3 py-3 space-y-2 transition-colors hover:border-white/20 hover:bg-white/[0.07]"
+                className="rounded-lg border border-white/10 bg-white/5 p-2.5 transition-colors hover:border-white/20 hover:bg-white/[0.07]"
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="h-10 w-16 flex-shrink-0 rounded-md border border-white/10 flex items-center justify-center overflow-hidden"
-                    style={getThumbnailStyle(item.config)}
-                    aria-hidden
-                  >
-                    <span
-                      className="text-[9px] font-semibold leading-none px-1 text-center truncate"
-                      style={{ color: item.config.textColor }}
-                    >
-                      Aa
-                    </span>
+                <div className="flex gap-3">
+                  <TemplateThumb
+                    config={item.config}
+                    fontSize={11}
+                    className="h-14 w-24 flex-shrink-0 rounded-md border border-white/10"
+                  />
+                  <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium text-white/90">{t(item.nameKey)}</p>
+                      <p className="line-clamp-2 text-xs text-white/50">{t(item.descriptionKey)}</p>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 flex-1 text-white/70 hover:text-white hover:bg-white/10 text-xs"
+                        onClick={() => handlePreviewMarketplace(item.id)}
+                      >
+                        {t('generator.templates.preview')}
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        className="h-7 bg-white/10 text-white hover:bg-white/20 text-xs"
+                        onClick={() => handleImportFromMarketplace(item.id)}
+                      >
+                        <Download className="mr-1 h-3 w-3" />
+                        {t('generator.templates.import')}
+                      </Button>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-sm text-white/90 truncate">{t(item.nameKey)}</p>
-                    <p className="text-xs text-white/50 line-clamp-2">{t(item.descriptionKey)}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 px-2 text-white/70 hover:text-white hover:bg-white/10 text-xs"
-                    onClick={() => handlePreviewMarketplace(item.id)}
-                  >
-                    {t('generator.templates.preview')}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    className="h-7 px-2 border-white/15 bg-white/10 text-white hover:bg-white/15 text-xs"
-                    onClick={() => handleImportFromMarketplace(item.id)}
-                  >
-                    <Download className="mr-1 h-3 w-3" />
-                    {t('generator.templates.import')}
-                  </Button>
                 </div>
               </li>
             ))}
