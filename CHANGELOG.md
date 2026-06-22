@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/guizimo/cova/compare/v1.6.0...v1.7.0) (2026-06-22)
+
+
+### Features
+
+* **templates:** add public template gallery page ([971a17f](https://github.com/guizimo/cova/commit/971a17f18fa6ba6591b94689a51b73fb2b767db4))
+
 ## [1.6.0](https://github.com/guizimo/cova/compare/v1.5.0...v1.6.0) (2026-06-21)
 
 
