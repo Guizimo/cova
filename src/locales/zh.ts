@@ -1,5 +1,6 @@
 export default {
   nav: {
+    templates: '模板',
     features: '特性',
     about: '关于',
     faq: 'FAQ',
@@ -7,6 +8,21 @@ export default {
     contact: '联系我们',
     docs: '文档',
     getStarted: '开始使用'
+  },
+  templatesPage: {
+    badge: '公共模板平台',
+    title: '从精选模板开始创作',
+    subtitle: '浏览社区精选的封面模板，一键应用到编辑器，或收藏到「我的模板」随时取用。',
+    searchPlaceholder: '搜索模板名称或用途',
+    count: '共 {{count}} 个模板',
+    use: '使用模板',
+    save: '收藏到我的模板',
+    usedToast: '已应用模板，开始编辑吧',
+    cta: {
+      title: '没有合适的？从空白开始',
+      description: '进入编辑器，自由设计你的专属封面，并保存为模板复用。',
+      action: '打开编辑器'
+    }
   },
   hero: {
     badge: '专为创作者',
@@ -301,9 +317,30 @@ export default {
           social: '社媒',
           minimal: '极简',
           vibrant: '活力',
-          dark: '深色'
+          dark: '深色',
+          basic: '基础'
         },
         items: {
+          basicWhite: {
+            name: '基础 · 纯白',
+            description: '白底黑字，干净通用的起点'
+          },
+          basicDark: {
+            name: '基础 · 纯黑',
+            description: '黑底白字，沉稳百搭'
+          },
+          basicBlue: {
+            name: '基础 · 蓝色',
+            description: '经典蓝底，醒目清爽'
+          },
+          basicGradient: {
+            name: '基础 · 渐变',
+            description: '靛紫渐变，简约有质感'
+          },
+          basicPaper: {
+            name: '基础 · 纸质',
+            description: '米白衬线，适合文字内容'
+          },
           techDark: {
             name: '科技深色',
             description: '适合技术文章、发布日志与产品更新'

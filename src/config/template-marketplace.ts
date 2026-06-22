@@ -1,6 +1,6 @@
 import type { TemplateConfig } from '@/store/generator';
 
-export type MarketplaceCategory = 'tech' | 'social' | 'minimal' | 'vibrant' | 'dark';
+export type MarketplaceCategory = 'basic' | 'tech' | 'social' | 'minimal' | 'vibrant' | 'dark';
 export type MarketplaceFilter = 'all' | MarketplaceCategory;
 
 export interface MarketplaceTemplate {
@@ -11,9 +11,114 @@ export interface MarketplaceTemplate {
   config: TemplateConfig;
 }
 
-export const MARKETPLACE_CATEGORIES: MarketplaceFilter[] = ['all', 'tech', 'social', 'minimal', 'vibrant', 'dark'];
+export const MARKETPLACE_CATEGORIES: MarketplaceFilter[] = [
+  'all',
+  'basic',
+  'tech',
+  'social',
+  'minimal',
+  'vibrant',
+  'dark'
+];
 
 export const MARKETPLACE_TEMPLATES: MarketplaceTemplate[] = [
+  {
+    id: 'basic-white',
+    category: 'basic',
+    nameKey: 'generator.templates.marketplace.items.basicWhite.name',
+    descriptionKey: 'generator.templates.marketplace.items.basicWhite.description',
+    config: {
+      title: 'Your Title Here',
+      subtitle: 'Add a subtitle',
+      fontFamily: 'sans-serif',
+      fontSize: 80,
+      fontWeight: 700,
+      letterSpacing: -1,
+      lineHeight: 1.2,
+      textColor: '#111827',
+      backgroundType: 'solid',
+      backgroundColor: '#FFFFFF',
+      borderRadius: 16
+    }
+  },
+  {
+    id: 'basic-dark',
+    category: 'basic',
+    nameKey: 'generator.templates.marketplace.items.basicDark.name',
+    descriptionKey: 'generator.templates.marketplace.items.basicDark.description',
+    config: {
+      title: 'Your Title Here',
+      subtitle: 'Add a subtitle',
+      fontFamily: 'sans-serif',
+      fontSize: 80,
+      fontWeight: 700,
+      letterSpacing: -1,
+      lineHeight: 1.2,
+      textColor: '#FFFFFF',
+      backgroundType: 'solid',
+      backgroundColor: '#0A0A0A',
+      borderRadius: 16
+    }
+  },
+  {
+    id: 'basic-blue',
+    category: 'basic',
+    nameKey: 'generator.templates.marketplace.items.basicBlue.name',
+    descriptionKey: 'generator.templates.marketplace.items.basicBlue.description',
+    config: {
+      title: 'Your Title Here',
+      subtitle: 'Add a subtitle',
+      fontFamily: 'sans-serif',
+      fontSize: 80,
+      fontWeight: 700,
+      letterSpacing: -1,
+      lineHeight: 1.2,
+      textColor: '#FFFFFF',
+      backgroundType: 'solid',
+      backgroundColor: '#2563EB',
+      borderRadius: 16
+    }
+  },
+  {
+    id: 'basic-gradient',
+    category: 'basic',
+    nameKey: 'generator.templates.marketplace.items.basicGradient.name',
+    descriptionKey: 'generator.templates.marketplace.items.basicGradient.description',
+    config: {
+      title: 'Your Title Here',
+      subtitle: 'Add a subtitle',
+      fontFamily: 'sans-serif',
+      fontSize: 80,
+      fontWeight: 700,
+      letterSpacing: -1,
+      lineHeight: 1.2,
+      textColor: '#FFFFFF',
+      backgroundType: 'gradient',
+      gradientStart: '#6366F1',
+      gradientEnd: '#8B5CF6',
+      gradientAngle: 135,
+      borderRadius: 16
+    }
+  },
+  {
+    id: 'basic-paper',
+    category: 'basic',
+    nameKey: 'generator.templates.marketplace.items.basicPaper.name',
+    descriptionKey: 'generator.templates.marketplace.items.basicPaper.description',
+    config: {
+      title: 'Your Title Here',
+      subtitle: 'Add a subtitle',
+      fontFamily: 'serif',
+      fontSize: 76,
+      fontWeight: 500,
+      letterSpacing: 0,
+      lineHeight: 1.3,
+      textColor: '#1C1917',
+      backgroundType: 'solid',
+      backgroundColor: '#F5F5F4',
+      borderRadius: 12
+    }
+  },
   {
     id: 'tech-dark',
     category: 'tech',

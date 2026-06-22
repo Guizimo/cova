@@ -1,5 +1,6 @@
 export default {
   nav: {
+    templates: 'Templates',
     features: 'Features',
     about: 'About',
     faq: 'FAQ',
@@ -7,6 +8,22 @@ export default {
     contact: 'Contact',
     docs: 'Docs',
     getStarted: 'Get Started'
+  },
+  templatesPage: {
+    badge: 'Public template gallery',
+    title: 'Start from a curated template',
+    subtitle:
+      'Browse community-curated cover templates, apply one to the editor in a click, or save it to “My templates” for later.',
+    searchPlaceholder: 'Search by name or use case',
+    count: '{{count}} templates',
+    use: 'Use template',
+    save: 'Save to my templates',
+    usedToast: 'Template applied. Start editing!',
+    cta: {
+      title: 'Nothing fits? Start from scratch',
+      description: 'Open the editor, design your own cover, and save it as a reusable template.',
+      action: 'Open editor'
+    }
   },
   hero: {
     badge: 'For Creators',
@@ -303,9 +320,30 @@ export default {
           social: 'Social',
           minimal: 'Minimal',
           vibrant: 'Vibrant',
-          dark: 'Dark'
+          dark: 'Dark',
+          basic: 'Basic'
         },
         items: {
+          basicWhite: {
+            name: 'Basic · White',
+            description: 'White background, dark text — a clean universal start'
+          },
+          basicDark: {
+            name: 'Basic · Black',
+            description: 'Black background, white text — sleek and versatile'
+          },
+          basicBlue: {
+            name: 'Basic · Blue',
+            description: 'Classic blue background, bold and clear'
+          },
+          basicGradient: {
+            name: 'Basic · Gradient',
+            description: 'Indigo-violet gradient, simple yet refined'
+          },
+          basicPaper: {
+            name: 'Basic · Paper',
+            description: 'Off-white serif, great for text-heavy covers'
+          },
           techDark: {
             name: 'Tech Dark',
             description: 'Great for engineering posts, release notes, and product updates'

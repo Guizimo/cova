@@ -34,6 +34,10 @@ export function Navbar({ items = [] }: NavbarProps) {
 
   const defaultItems: NavItem[] = [
     {
+      label: t('nav.templates'),
+      href: '/templates'
+    },
+    {
       label: t('nav.features'),
       href: '/features'
     },

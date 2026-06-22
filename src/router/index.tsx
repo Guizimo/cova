@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react';
 
 const Home = lazy(() => import('@/pages/home'));
 const Generator = lazy(() => import('@/pages/generator'));
+const Templates = lazy(() => import('@/pages/templates'));
 const Features = lazy(() => import('@/pages/features'));
 const Contact = lazy(() => import('@/pages/contact'));
 const FAQ = lazy(() => import('@/pages/faq'));
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
   {
     path: '/faq',
     element: withSuspense(<FAQ />)
+  },
+  {
+    path: '/templates',
+    element: withSuspense(<Templates />)
   },
   {
     path: '/generator',
