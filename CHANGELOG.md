@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/guizimo/cova/compare/v1.7.0...v1.8.0) (2026-06-23)
+
+
+### Features
+
+* **theme:** add light mode support ([774f9f4](https://github.com/guizimo/cova/commit/774f9f43e0d20a8c28a77b228e8c98f3693addc5))
+
 ## [1.7.0](https://github.com/guizimo/cova/compare/v1.6.0...v1.7.0) (2026-06-22)
 
 
