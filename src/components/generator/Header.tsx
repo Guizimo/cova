@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.png';
 import pkg from '../../../package.json';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
 
 const IS_MAC = typeof navigator !== 'undefined' && navigator.platform.toUpperCase().includes('MAC');
 const SHORTCUT_EXPORT = IS_MAC ? '⌘S' : 'Ctrl+S';
@@ -104,6 +105,11 @@ export function Header() {
 
                 <DropdownMenuSeparator className="bg-white/[0.08]" />
 
+                <ThemeToggle
+                  showLabel
+                  className="w-full h-8 justify-start px-2 text-white hover:text-white hover:bg-white/[0.08]"
+                />
+
                 <DropdownMenuItem
                   onClick={() => i18n.changeLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
                   className="text-white hover:bg-white/[0.08]"
@@ -159,6 +165,9 @@ export function Header() {
             </svg>
             {stars > 0 && <span className="text-sm">{stars} ⭐</span>}
           </Button>
+
+          {/* 桌面端：主题切换 */}
+          <ThemeToggle className="hidden lg:flex text-white/50 hover:text-white hover:bg-white/[0.08] h-8" />
 
           {/* 桌面端：语言切换 */}
           <DropdownMenu>

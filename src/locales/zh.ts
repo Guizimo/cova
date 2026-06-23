@@ -9,6 +9,13 @@ export default {
     docs: '文档',
     getStarted: '开始使用'
   },
+  theme: {
+    light: '白天模式',
+    dark: '夜间模式',
+    toggle: '切换主题',
+    switchToLight: '切换到白天模式',
+    switchToDark: '切换到夜间模式'
+  },
   templatesPage: {
     badge: '公共模板平台',
     title: '从精选模板开始创作',

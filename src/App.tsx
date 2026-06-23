@@ -4,13 +4,24 @@ import i18n from './utils/i18n';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import { Toaster } from 'sonner';
+import { ThemeProvider, useTheme } from '@/components/theme/theme-provider';
 
-function App() {
+function AppContent() {
+  const { theme } = useTheme();
+
   return (
     <I18nextProvider i18n={i18n}>
       <RouterProvider router={router} />
-      <Toaster position="top-right" theme="dark" richColors closeButton duration={3000} />
+      <Toaster position="top-right" theme={theme} richColors closeButton duration={3000} />
     </I18nextProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

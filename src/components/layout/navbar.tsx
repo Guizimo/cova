@@ -10,6 +10,7 @@ import logo from '@/assets/logo.png';
 import { Menu, X, Globe, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
 
 interface NavItem {
   label: string;
@@ -104,6 +105,7 @@ export function Navbar({ items = [] }: NavbarProps) {
             </button>
 
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -158,6 +160,10 @@ export function Navbar({ items = [] }: NavbarProps) {
                 </a>
               ))}
               <div className="pt-4 space-y-2">
+                <ThemeToggle
+                  showLabel
+                  className="w-full h-10 text-white/50 hover:text-white hover:bg-white/[0.08] justify-start"
+                />
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

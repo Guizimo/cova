@@ -9,6 +9,13 @@ export default {
     docs: 'Docs',
     getStarted: 'Get Started'
   },
+  theme: {
+    light: 'Light mode',
+    dark: 'Dark mode',
+    toggle: 'Toggle theme',
+    switchToLight: 'Switch to light mode',
+    switchToDark: 'Switch to dark mode'
+  },
   templatesPage: {
     badge: 'Public template gallery',
     title: 'Start from a curated template',

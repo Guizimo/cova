@@ -2,6 +2,7 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -116,18 +117,13 @@
   }
   
   html {
-    @apply bg-black;
-    /* 防止在移动设备上拖拉时出现白色背景 */
-    background-color: #000000 !important;
+    @apply bg-background text-foreground;
     /* 启用平滑滚动 */
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-black text-white;
-    /* 确保整个body都是深色背景 */
-    background-color: #000000 !important;
-    /* 防止页面边界出现白色 */
+    @apply bg-background text-foreground;
     min-height: 100vh;
     overflow-x: hidden;
     /* 移动端滚动优化 */
@@ -135,10 +131,9 @@
     overscroll-behavior: none;
   }
   
-  /* 确保根容器也有深色背景 */
+  /* 确保根容器跟随系统主题背景 */
   #root {
-    @apply bg-black min-h-screen;
-    background-color: #000000 !important;
+    @apply bg-background min-h-screen;
   }
   
   /* 移动端滚动容器优化 */
@@ -306,5 +301,176 @@
     .generator-container {
       touch-action: pan-y;
     }
+  }
+}
+
+@layer utilities {
+  /* 白天模式兼容层：项目早期大量直接使用暗色 Tailwind 工具类，这里集中做语义化覆写。 */
+  html.light {
+    background-color: #f8fafc;
+  }
+
+  html.light body,
+  html.light #root,
+  html.light .bg-black {
+    background-color: #f8fafc !important;
+    color: #0f172a;
+  }
+
+  html.light .bg-\[\#0a0a0a\],
+  html.light .bg-\[\#121214\],
+  html.light .bg-\[\#161618\] {
+    background-color: #eef2f7 !important;
+  }
+
+  html.light .bg-black\/50,
+  html.light .bg-black\/65,
+  html.light .bg-black\/80,
+  html.light .bg-black\/90 {
+    background-color: rgba(255, 255, 255, 0.86) !important;
+  }
+
+  html.light .text-white,
+  html.light .text-white\/95,
+  html.light .text-white\/90 {
+    color: #0f172a !important;
+  }
+
+  html.light .text-white\/80,
+  html.light .text-white\/70 {
+    color: rgba(15, 23, 42, 0.74) !important;
+  }
+
+  html.light .text-white\/65,
+  html.light .text-white\/60,
+  html.light .text-white\/55,
+  html.light .text-white\/50 {
+    color: rgba(15, 23, 42, 0.6) !important;
+  }
+
+  html.light .text-white\/45,
+  html.light .text-white\/40,
+  html.light .text-white\/35,
+  html.light .text-white\/30 {
+    color: rgba(15, 23, 42, 0.42) !important;
+  }
+
+  html.light .bg-white,
+  html.light .hover\:bg-white\/90:hover,
+  html.light .hover\:bg-white\/95:hover {
+    background-color: #0f172a !important;
+  }
+
+  html.light .text-black {
+    color: #ffffff !important;
+  }
+
+  html.light .bg-white\/20,
+  html.light .bg-white\/15,
+  html.light .bg-white\/10,
+  html.light .bg-white\/5,
+  html.light .bg-white\/\[0\.12\],
+  html.light .bg-white\/\[0\.10\],
+  html.light .bg-white\/\[0\.08\],
+  html.light .bg-white\/\[0\.07\],
+  html.light .bg-white\/\[0\.06\],
+  html.light .bg-white\/\[0\.05\],
+  html.light .bg-white\/\[0\.04\],
+  html.light .bg-white\/\[0\.02\] {
+    background-color: rgba(15, 23, 42, 0.05) !important;
+  }
+
+  html.light .border-white\/20,
+  html.light .border-white\/15,
+  html.light .border-white\/12,
+  html.light .border-white\/10,
+  html.light .border-white\/\[0\.20\],
+  html.light .border-white\/\[0\.16\],
+  html.light .border-white\/\[0\.15\],
+  html.light .border-white\/\[0\.12\],
+  html.light .border-white\/\[0\.10\],
+  html.light .border-white\/\[0\.08\],
+  html.light .border-white\/\[0\.06\] {
+    border-color: rgba(15, 23, 42, 0.1) !important;
+  }
+
+  html.light .border-t,
+  html.light .border-b,
+  html.light .border-y {
+    border-color: rgba(15, 23, 42, 0.1);
+  }
+
+  html.light .from-white\/\[0\.12\],
+  html.light .from-white\/\[0\.08\],
+  html.light .from-white\/10,
+  html.light .from-white\/5 {
+    --tw-gradient-from: rgba(15, 23, 42, 0.07) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(15 23 42 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position)) !important;
+  }
+
+  html.light .to-white\/\[0\.04\],
+  html.light .to-white\/\[0\.02\],
+  html.light .to-white\/60,
+  html.light .to-white\/5 {
+    --tw-gradient-to: rgba(15, 23, 42, 0.03) var(--tw-gradient-to-position) !important;
+  }
+
+  html.light .via-white\/10,
+  html.light .via-white\/5 {
+    --tw-gradient-via: rgba(15, 23, 42, 0.05) var(--tw-gradient-via-position) !important;
+  }
+
+  html.light .placeholder\:text-white\/30::placeholder {
+    color: rgba(15, 23, 42, 0.36) !important;
+  }
+
+  html.light .focus-visible\:ring-white\/20:focus-visible {
+    --tw-ring-color: rgba(15, 23, 42, 0.2) !important;
+  }
+
+  html.light .hover\:text-white:hover,
+  html.light .hover\:text-white\/80:hover,
+  html.light .hover\:text-white\/60:hover {
+    color: #0f172a !important;
+  }
+
+  html.light .hover\:bg-white\/20:hover,
+  html.light .hover\:bg-white\/15:hover,
+  html.light .hover\:bg-white\/10:hover,
+  html.light .hover\:bg-white\/\[0\.12\]:hover,
+  html.light .hover\:bg-white\/\[0\.10\]:hover,
+  html.light .hover\:bg-white\/\[0\.08\]:hover,
+  html.light .hover\:bg-white\/\[0\.07\]:hover,
+  html.light .hover\:bg-white\/\[0\.04\]:hover {
+    background-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  html.light .hover\:border-white\/20:hover,
+  html.light .hover\:border-white\/\[0\.16\]:hover,
+  html.light .hover\:border-white\/\[0\.12\]:hover {
+    border-color: rgba(15, 23, 42, 0.16) !important;
+  }
+
+  html.light .text-gradient-hero {
+    background: linear-gradient(135deg, #0f172a 0%, rgba(15, 23, 42, 0.7) 55%, #334155 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  html.light .section-underline {
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.35), transparent);
+  }
+
+  html.light .scrollbar-thin {
+    scrollbar-color: rgba(15, 23, 42, 0.22) transparent;
+  }
+
+  html.light .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(15, 23, 42, 0.22);
+  }
+
+  html.light .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(15, 23, 42, 0.32);
   }
 }
