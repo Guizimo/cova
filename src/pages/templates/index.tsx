@@ -11,6 +11,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { PageAurora } from '@/components/layout/page-aurora';
 
 export default function Templates() {
   const { t } = useTranslation();
@@ -53,9 +54,9 @@ export default function Templates() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative w-full pt-32 pb-12">
-        <div className="absolute top-[-280px] left-1/2 h-[700px] w-[700px] -translate-x-1/2 bg-gradient-to-b from-indigo-500/15 via-fuchsia-500/10 to-transparent opacity-40 blur-3xl" />
-        <div className="relative mx-auto max-w-[1200px] px-6 text-center">
+      <section className="relative w-full overflow-hidden pt-32 pb-12">
+        <PageAurora fade />
+        <div className="page-in relative z-10 mx-auto max-w-[1200px] px-6 text-center">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-white/70">
             <Sparkles className="h-3.5 w-3.5" />
             {t('templatesPage.badge')}

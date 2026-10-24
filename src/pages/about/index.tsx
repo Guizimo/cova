@@ -1,18 +1,10 @@
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
-import { 
-  ArrowRight, 
-  Users, 
-  Code, 
-  Zap, 
-  Github,
-  Mail,
-  CheckCircle,
-  Circle
-} from 'lucide-react';
+import { ArrowRight, Users, Code, Zap, Github, Mail, CheckCircle, Circle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PageAurora } from '@/components/layout/page-aurora';
 
 export default function About() {
   const { t } = useTranslation();
@@ -27,33 +19,33 @@ export default function About() {
   ];
 
   const milestones = [
-    { 
-      version: 'v1.0.0', 
-      title: t('aboutPage.roadmap.v1.title'), 
+    {
+      version: 'v1.0.0',
+      title: t('aboutPage.roadmap.v1.title'),
       status: 'completed',
       date: '2024-01'
     },
-    { 
-      version: 'v1.1.0', 
-      title: t('aboutPage.roadmap.v1_1.title'), 
+    {
+      version: 'v1.1.0',
+      title: t('aboutPage.roadmap.v1_1.title'),
       status: 'in-progress',
       date: '2024-03'
     },
-    { 
-      version: 'v1.2.0', 
-      title: t('aboutPage.roadmap.v1_2.title'), 
+    {
+      version: 'v1.2.0',
+      title: t('aboutPage.roadmap.v1_2.title'),
       status: 'planned',
       date: '2024-06'
     },
-    { 
-      version: 'v1.3.0', 
-      title: t('aboutPage.roadmap.v1_3.title'), 
+    {
+      version: 'v1.3.0',
+      title: t('aboutPage.roadmap.v1_3.title'),
       status: 'planned',
       date: '2024-09'
     },
-    { 
-      version: 'v2.0.0', 
-      title: t('aboutPage.roadmap.v2.title'), 
+    {
+      version: 'v2.0.0',
+      title: t('aboutPage.roadmap.v2.title'),
       status: 'planned',
       date: '2024-12'
     }
@@ -75,10 +67,11 @@ export default function About() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-24">
-        <div className="mx-auto max-w-4xl px-6">
+      <section className="relative w-full overflow-hidden pt-32 pb-24">
+        <PageAurora fade />
+        <div className="page-in relative z-10 mx-auto max-w-4xl px-6">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.02em] leading-[1.1] mb-6">
               {t('aboutPage.hero.title')}
@@ -88,18 +81,13 @@ export default function About() {
             </p>
           </div>
         </div>
-        
-        {/* Background decoration */}
-        <div className="absolute top-[-300px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-30 blur-3xl" />
       </section>
 
       {/* Mission Section */}
       <section className="relative py-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">
-              {t('aboutPage.mission.title')}
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">{t('aboutPage.mission.title')}</h2>
             <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
               {t('aboutPage.mission.description')}
             </p>
@@ -156,7 +144,10 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {techStack.map((tech, index) => (
-              <div key={index} className="p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300">
+              <div
+                key={index}
+                className="p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300"
+              >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium">{tech.name}</h3>
                   <span className="text-sm text-white/40 bg-white/10 px-2 py-1 rounded">v{tech.version}</span>
@@ -172,12 +163,8 @@ export default function About() {
       <section className="relative py-24">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">
-              {t('aboutPage.team.title')}
-            </h2>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-              {t('aboutPage.team.description')}
-            </p>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">{t('aboutPage.team.title')}</h2>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">{t('aboutPage.team.description')}</p>
           </div>
 
           <div className="flex justify-center">
@@ -193,10 +180,18 @@ export default function About() {
                 <p className="text-white/60 mb-2">{member.role}</p>
                 <p className="text-white/40 text-sm mb-4 max-w-sm">{member.description}</p>
                 <div className="flex justify-center gap-4">
-                  <a href={member.social.github} target="_blank" rel="noreferrer" className="text-white/40 hover:text-white transition-colors">
+                  <a
+                    href={member.social.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white/40 hover:text-white transition-colors"
+                  >
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href={`mailto:${member.social.email}`} className="text-white/40 hover:text-white transition-colors">
+                  <a
+                    href={`mailto:${member.social.email}`}
+                    className="text-white/40 hover:text-white transition-colors"
+                  >
                     <Mail className="h-5 w-5" />
                   </a>
                 </div>
@@ -210,9 +205,7 @@ export default function About() {
       <section className="relative py-24 bg-white/5">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">
-              {t('aboutPage.roadmap.title')}
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">{t('aboutPage.roadmap.title')}</h2>
             <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
               {t('aboutPage.roadmap.description')}
             </p>
@@ -220,7 +213,10 @@ export default function About() {
 
           <div className="space-y-6">
             {milestones.map((milestone, index) => (
-              <div key={index} className="flex items-start gap-6 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300">
+              <div
+                key={index}
+                className="flex items-start gap-6 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300"
+              >
                 <div className="flex-shrink-0 mt-1">
                   {milestone.status === 'completed' ? (
                     <CheckCircle className="h-6 w-6 text-green-500" />
@@ -236,11 +232,15 @@ export default function About() {
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-medium">{milestone.version}</h3>
                     <span className="text-xs text-white/40 bg-white/10 px-2 py-1 rounded">{milestone.date}</span>
-                    <span className={`text-xs px-2 py-1 rounded ${
-                      milestone.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                      milestone.status === 'in-progress' ? 'bg-blue-500/20 text-blue-400' :
-                      'bg-white/10 text-white/40'
-                    }`}>
+                    <span
+                      className={`text-xs px-2 py-1 rounded ${
+                        milestone.status === 'completed'
+                          ? 'bg-green-500/20 text-green-400'
+                          : milestone.status === 'in-progress'
+                            ? 'bg-blue-500/20 text-blue-400'
+                            : 'bg-white/10 text-white/40'
+                      }`}
+                    >
                       {t(`aboutPage.roadmap.status.${milestone.status}`)}
                     </span>
                   </div>
@@ -255,9 +255,7 @@ export default function About() {
       {/* CTA Section */}
       <section className="relative py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">
-            {t('aboutPage.cta.title')}
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-6">{t('aboutPage.cta.title')}</h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8 leading-relaxed">
             {t('aboutPage.cta.description')}
           </p>
@@ -285,4 +283,4 @@ export default function About() {
       <Footer />
     </div>
   );
-} 
+}

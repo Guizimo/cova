@@ -32,7 +32,8 @@ export function Features() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full border-t border-white/[0.06] py-20 md:py-28">
+    <section className="relative w-full py-20 md:py-28">
+      <div className="hairline-aurora absolute inset-x-0 top-0" aria-hidden />
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="mb-14 flex flex-col gap-4">
           <div className="flex flex-col gap-3">
@@ -62,6 +63,7 @@ export function Features() {
                   to={index === 0 ? '/generator' : '/features'}
                   className={`group relative block overflow-hidden rounded-2xl border border-white/[0.08] bg-[#121214] p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-[#161618] ${theme.ring}`}
                 >
+                  <div className={`absolute inset-x-0 top-0 h-px ${theme.accent} opacity-80`} aria-hidden />
                   {/* 角落彩色光晕 */}
                   <div
                     className={`pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-gradient-to-br ${theme.glow} to-transparent opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100`}

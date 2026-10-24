@@ -44,6 +44,8 @@
 
 :root {
   --radius: 0.625rem;
+  --page: #000000;
+  --stage: #0a0a0a;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -95,7 +97,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.72 0.11 300);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -115,13 +117,20 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     @apply bg-background text-foreground;
-    /* 启用平滑滚动 */
     scroll-behavior: smooth;
+    font-family: 'Outfit', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
-  
+
+  ::selection {
+    background: color-mix(in oklab, #c084fc 42%, transparent);
+  }
+
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
@@ -130,19 +139,19 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
   }
-  
+
   /* 确保根容器跟随系统主题背景 */
   #root {
     @apply bg-background min-h-screen;
   }
-  
+
   /* 移动端滚动容器优化 */
   .mobile-scroll-container {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     transform: translate3d(0, 0, 0); /* 启用硬件加速 */
   }
-  
+
   /* 自定义滚动条样式 */
   .scrollbar-thin {
     scrollbar-width: thin;
@@ -151,29 +160,36 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar {
     width: 6px;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     transition: background-color 0.2s ease;
   }
-  
+
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.3);
   }
-  
+
   /* Hero 背景光晕动效：仅动画 opacity/scale，保留元素自身的 -translate-x-1/2（用 translate(-50%, 0) 与 left-1/2 配合） */
   @keyframes hero-glow-drift {
-    0%, 100% { opacity: 0.2; transform: translate(-50%, 0) scale(1); }
-    50% { opacity: 0.28; transform: translate(-50%, 0) scale(1.05); }
+    0%,
+    100% {
+      opacity: 0.2;
+      transform: translate(-50%, 0) scale(1);
+    }
+    50% {
+      opacity: 0.28;
+      transform: translate(-50%, 0) scale(1.05);
+    }
   }
   .hero-glow-animate {
     animation: hero-glow-drift 12s ease-in-out infinite;
@@ -181,7 +197,7 @@
 
   /* 宣传页：标题渐变高亮 */
   .text-gradient-hero {
-    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.9) 100%);
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.9) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -192,7 +208,7 @@
     width: 2.5rem;
     height: 3px;
     border-radius: 2px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent);
   }
 
   /* ===== 极光渐变色彩系统（落地页创新视觉） ===== */
@@ -204,20 +220,47 @@
     will-change: transform, opacity;
   }
   @keyframes aurora-drift-1 {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
-    50% { transform: translate3d(6%, 8%, 0) scale(1.15); opacity: 0.8; }
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(6%, 8%, 0) scale(1.15);
+      opacity: 0.8;
+    }
   }
   @keyframes aurora-drift-2 {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); opacity: 0.5; }
-    50% { transform: translate3d(-8%, -6%, 0) scale(0.95); opacity: 0.75; }
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1.1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate3d(-8%, -6%, 0) scale(0.95);
+      opacity: 0.75;
+    }
   }
   @keyframes aurora-drift-3 {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.4; }
-    50% { transform: translate3d(4%, -10%, 0) scale(1.2); opacity: 0.65; }
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translate3d(4%, -10%, 0) scale(1.2);
+      opacity: 0.65;
+    }
   }
-  .aurora-1 { animation: aurora-drift-1 16s ease-in-out infinite; }
-  .aurora-2 { animation: aurora-drift-2 20s ease-in-out infinite; }
-  .aurora-3 { animation: aurora-drift-3 24s ease-in-out infinite; }
+  .aurora-1 {
+    animation: aurora-drift-1 16s ease-in-out infinite;
+  }
+  .aurora-2 {
+    animation: aurora-drift-2 20s ease-in-out infinite;
+  }
+  .aurora-3 {
+    animation: aurora-drift-3 24s ease-in-out infinite;
+  }
 
   /* 文本渐变（彩色版本，用于落地页关键字） */
   .text-gradient-aurora {
@@ -229,20 +272,34 @@
     animation: aurora-text-pan 8s linear infinite;
   }
   @keyframes aurora-text-pan {
-    to { background-position: 200% center; }
+    to {
+      background-position: 200% center;
+    }
   }
 
   /* 旋转的锥形渐变描边（用于展示件外框） */
   @keyframes conic-spin {
-    to { transform: rotate(1turn); }
+    to {
+      transform: rotate(1turn);
+    }
   }
   .conic-border {
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: conic-gradient(from 0deg, transparent 0deg, rgba(165,180,252,0.9) 60deg, rgba(240,171,252,0.9) 140deg, transparent 200deg, rgba(103,232,249,0.8) 300deg, transparent 360deg);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(165, 180, 252, 0.9) 60deg,
+      rgba(240, 171, 252, 0.9) 140deg,
+      transparent 200deg,
+      rgba(103, 232, 249, 0.8) 300deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: conic-spin 6s linear infinite;
@@ -251,34 +308,121 @@
 
   /* 展示件浮动 */
   @keyframes float-soft {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
-  .float-soft { animation: float-soft 7s ease-in-out infinite; }
+  .float-soft {
+    animation: float-soft 7s ease-in-out infinite;
+  }
 
   /* 跑马灯 */
   @keyframes marquee-x {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
   .marquee-track {
     display: flex;
     width: max-content;
     animation: marquee-x 40s linear infinite;
   }
-  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* 页面底色渐隐：跟随 --page，浅色模式不会露出一条黑边 */
+  .fade-to-page {
+    background: linear-gradient(to bottom, transparent, var(--page));
+  }
+  .fade-edge-left {
+    background: linear-gradient(to right, var(--page), transparent);
+  }
+  .fade-edge-right {
+    background: linear-gradient(to left, var(--page), transparent);
+  }
+
+  .hairline-aurora {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(165, 180, 252, 0.85),
+      rgba(240, 171, 252, 0.9),
+      rgba(103, 232, 249, 0.75),
+      transparent
+    );
+  }
+
+  .aurora-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, #000 30%, transparent);
+  }
+
+  /* 编辑器画布：角落色光在内容之下，暗角用页面舞台色收边 */
+  .canvas-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(820px 380px at 18% -10%, rgba(99, 102, 241, 0.22), transparent 60%),
+      radial-gradient(680px 360px at 92% 110%, rgba(217, 70, 239, 0.16), transparent 55%),
+      radial-gradient(520px 280px at 70% 20%, rgba(34, 211, 238, 0.1), transparent 60%);
+  }
+  .canvas-vignette {
+    background: radial-gradient(ellipse at center, transparent 46%, var(--stage) 100%);
+  }
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .page-in {
+    animation: page-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 
   /* 进入动画 */
   @keyframes rise-in {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  .rise-in { animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .rise-in {
+    animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-1, .aurora-2, .aurora-3,
-    .text-gradient-aurora, .conic-border,
-    .float-soft, .marquee-track, .rise-in,
+    .aurora-1,
+    .aurora-2,
+    .aurora-3,
+    .text-gradient-aurora,
+    .conic-border,
+    .float-soft,
+    .marquee-track,
+    .rise-in,
+    .page-in,
     .hero-glow-animate {
       animation: none !important;
     }
@@ -291,12 +435,12 @@
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-y: contain;
     }
-    
+
     /* 确保容器高度正确计算 */
     .flex-1 {
       min-height: 0;
     }
-    
+
     /* 防止选择文本时出现滚动问题 */
     .generator-container {
       touch-action: pan-y;
@@ -406,7 +550,12 @@
   html.light .from-white\/5 {
     --tw-gradient-from: rgba(15, 23, 42, 0.07) var(--tw-gradient-from-position) !important;
     --tw-gradient-to: rgb(15 23 42 / 0) var(--tw-gradient-to-position) !important;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position)) !important;
+    --tw-gradient-stops: var(
+      --tw-gradient-via-stops,
+      var(--tw-gradient-position),
+      var(--tw-gradient-from) var(--tw-gradient-from-position),
+      var(--tw-gradient-to) var(--tw-gradient-to-position)
+    ) !important;
   }
 
   html.light .to-white\/\[0\.04\],
@@ -473,4 +622,65 @@
   html.light .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background-color: rgba(15, 23, 42, 0.32);
   }
+
+  html.light .aurora-blob {
+    mix-blend-mode: multiply;
+  }
+
+  html.light .aurora-grid {
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  }
+
+  html.light .text-gradient-aurora {
+    background-image: linear-gradient(110deg, #4f46e5 0%, #c026d3 40%, #0e7490 78%, #4f46e5 100%);
+  }
+
+  /* 标志是黑底白标，浅色页面下反相后用正片叠底，让方底融进背景 */
+  html.light .brand-mark {
+    filter: invert(1);
+    mix-blend-mode: multiply;
+  }
+
+  html.light .to-black {
+    --tw-gradient-to: #f8fafc var(--tw-gradient-to-position) !important;
+  }
+
+  html.light .from-black {
+    --tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(248 250 252 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(
+      --tw-gradient-via-stops,
+      var(--tw-gradient-position),
+      var(--tw-gradient-from) var(--tw-gradient-from-position),
+      var(--tw-gradient-to) var(--tw-gradient-to-position)
+    ) !important;
+  }
+
+  button.bg-white.text-black,
+  a.bg-white.text-black {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 10px 28px -12px rgba(168, 85, 247, 0.7);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  button.bg-white.text-black:hover,
+  a.bg-white.text-black:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 0 32px rgba(217, 180, 255, 0.4);
+  }
+}
+
+/* 放在层外，才能盖过 :root 上的同名变量 */
+html.light {
+  --page: #f8fafc;
+  --stage: #eef2f7;
+  --ring: oklch(0.52 0.14 285);
 }

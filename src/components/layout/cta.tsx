@@ -7,7 +7,8 @@ export function CTA() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full border-t border-white/[0.06] py-24 md:py-32">
+    <section className="relative w-full py-24 md:py-32">
+      <div className="hairline-aurora absolute inset-x-0 top-0" aria-hidden />
       <div className="mx-auto max-w-[1120px] px-6">
         <div className="group/cta relative flex flex-col items-center overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-14 transition-all duration-300 hover:border-white/[0.16] md:p-16">
           {/* 极光彩色光晕 */}

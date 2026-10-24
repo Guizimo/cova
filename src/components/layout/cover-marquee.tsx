@@ -18,10 +18,14 @@ const THUMBS: Thumb[] = [
 function ThumbCard({ thumb }: { thumb: Thumb }) {
   return (
     <div
-      className="flex aspect-[1.6] w-[220px] shrink-0 flex-col justify-end overflow-hidden rounded-xl border border-white/10 p-4 shadow-lg"
+      className="relative flex aspect-[1.6] w-[220px] shrink-0 flex-col justify-end overflow-hidden rounded-2xl border border-white/15 p-4 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)]"
       style={{ background: thumb.background }}
     >
-      <span className="text-base font-semibold tracking-tight" style={{ color: thumb.textColor }}>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white/25 to-transparent"
+        aria-hidden
+      />
+      <span className="relative text-base font-semibold tracking-tight" style={{ color: thumb.textColor }}>
         {thumb.label}
       </span>
     </div>
@@ -30,11 +34,11 @@ function ThumbCard({ thumb }: { thumb: Thumb }) {
 
 export function CoverMarquee() {
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/[0.06] py-14 md:py-16">
+    <section className="relative w-full overflow-hidden py-14 md:py-16">
+      <div className="hairline-aurora absolute inset-x-0 top-0" aria-hidden />
       <div className="relative">
-        {/* 两侧渐隐遮罩 */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-black to-transparent md:w-40" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-black to-transparent md:w-40" />
+        <div className="fade-edge-left pointer-events-none absolute inset-y-0 left-0 z-10 w-24 md:w-40" />
+        <div className="fade-edge-right pointer-events-none absolute inset-y-0 right-0 z-10 w-24 md:w-40" />
 
         <div className="marquee-track gap-5">
           {[...THUMBS, ...THUMBS].map((thumb, index) => (

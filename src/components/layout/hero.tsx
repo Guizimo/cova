@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CoverShowcase } from '@/components/layout/cover-showcase';
+import { PageAurora } from '@/components/layout/page-aurora';
 
 export function Hero() {
   const { t } = useTranslation();
@@ -12,14 +13,7 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
-      {/* 极光彩色背景 */}
-      <div className="pointer-events-none absolute inset-0 -z-0 overflow-hidden" aria-hidden>
-        <div className="aurora-blob aurora-1 left-[-10%] top-[-15%] h-[480px] w-[480px] bg-indigo-500/40" />
-        <div className="aurora-blob aurora-2 right-[-8%] top-[-5%] h-[420px] w-[420px] bg-fuchsia-500/30" />
-        <div className="aurora-blob aurora-3 left-[30%] top-[20%] h-[420px] w-[420px] bg-cyan-400/25" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px] opacity-40" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black" />
-      </div>
+      <PageAurora intense grid fade />
 
       <div className="relative z-10 mx-auto max-w-[1120px] px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-10">

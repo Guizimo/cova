@@ -51,7 +51,7 @@ export function FloatingConfigPanel() {
   return (
     <div
       ref={panelRef}
-      className="absolute z-30 flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-black/65 shadow-2xl shadow-black/50 backdrop-blur-xl"
+      className="absolute z-30 flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-black/65 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.75)] backdrop-blur-xl"
       style={{
         left: pos.x,
         top: pos.y,
@@ -59,6 +59,7 @@ export function FloatingConfigPanel() {
         maxHeight: `calc(100% - ${pos.y + MARGIN}px)`
       }}
     >
+      <div className="hairline-aurora pointer-events-none absolute inset-x-4 top-0" aria-hidden />
       {/* 标题栏 / 拖动手柄 */}
       <div
         onPointerDown={startDrag}

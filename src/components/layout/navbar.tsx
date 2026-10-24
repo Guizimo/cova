@@ -65,18 +65,21 @@ export function Navbar({ items = [] }: NavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? 'border-white/[0.12] bg-black/90 backdrop-blur-md' : 'border-white/[0.08] bg-black'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'border-b border-white/[0.08] bg-black/80 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.65)] backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-[1000px] px-6">
+      {scrolled && <div className="hairline-aurora pointer-events-none absolute inset-x-0 bottom-0" aria-hidden />}
+      <div className="mx-auto max-w-[1120px] px-6">
         <nav className="relative flex h-16 items-center justify-between">
           <Link
             to="/"
             className="flex items-center gap-2 shrink-0 text-white/95 hover:text-white transition-colors duration-200 rounded-lg p-1 -m-1"
           >
-            <img src={logo} alt="Cova Logo" className="h-[22px] w-[22px]" />
-            <span className="text-lg font-medium">Cova</span>
+            <img src={logo} alt="Cova Logo" className="brand-mark h-[22px] w-[22px]" />
+            <span className="text-lg font-medium tracking-[-0.03em]">Cova</span>
           </Link>
 
           {/* 桌面端菜单 */}

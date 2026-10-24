@@ -8,7 +8,10 @@
       name="description"
       content="Cova is a free, open-source cover image generator with real-time preview, template management, and multi-format export — all running locally in your browser."
     />
-    <meta name="keywords" content="cover, cover generator, 封面, 封面生成器, blog cover, social media cover, OG image" />
+    <meta
+      name="keywords"
+      content="cover, cover generator, 封面, 封面生成器, blog cover, social media cover, OG image"
+    />
     <meta name="author" content="Guizimo" />
 
     <!-- Open Graph -->
@@ -33,6 +36,11 @@
 
     <link rel="canonical" href="https://cova.guizimo.com" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Great+Vibes&family=Satisfy&display=swap"
       rel="stylesheet"
       crossorigin="anonymous"
@@ -43,7 +51,7 @@
       crossorigin="anonymous"
     />
     <title>Cova — The new standard for cover design</title>
-    
+
     <!-- GitHub Pages SPA redirect script -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
@@ -56,16 +64,18 @@
       // When the single page app is loaded further down in this file,
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
-      }(window.location))
+      })(window.location);
     </script>
   </head>
   <body>

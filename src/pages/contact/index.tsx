@@ -1,18 +1,10 @@
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
-import { 
-  Mail, 
-  Github, 
-  Twitter, 
-  ArrowRight, 
-  MessageCircle, 
-  Book, 
-  Users, 
-  Play
-} from 'lucide-react';
+import { Mail, Github, Twitter, ArrowRight, MessageCircle, Book, Users, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PageAurora } from '@/components/layout/page-aurora';
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -71,25 +63,21 @@ export default function Contact() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-24">
-        <div className="mx-auto max-w-[1000px] px-6">
+      <section className="relative w-full overflow-hidden pt-32 pb-24">
+        <PageAurora fade />
+        <div className="page-in relative z-10 mx-auto max-w-[1000px] px-6">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.02em] leading-[1.1] mb-6">
               {t('contactPage.hero.title')}
             </h1>
-            <p className="text-2xl text-white/60 mb-4">
-              {t('contactPage.hero.subtitle')}
-            </p>
+            <p className="text-2xl text-white/60 mb-4">{t('contactPage.hero.subtitle')}</p>
             <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
               {t('contactPage.hero.description')}
             </p>
           </div>
         </div>
-        
-        {/* Background decoration */}
-        <div className="absolute top-[-300px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-30 blur-3xl" />
       </section>
 
       {/* Contact Methods */}
@@ -101,7 +89,9 @@ export default function Contact() {
                 key={index}
                 className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] hover:from-white/[0.12] hover:to-white/[0.04] transition-all duration-300 p-8 border border-white/[0.08]"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${method.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${method.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                />
                 <div className="relative z-10">
                   <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 group-hover:bg-white/20 transition-colors mb-6">
                     <method.icon className="w-8 h-8 text-white" />
@@ -138,9 +128,7 @@ export default function Contact() {
             <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-4">
               {t('contactPage.faqQuickLink.title')}
             </h2>
-            <p className="text-lg text-white/60 mb-8 max-w-2xl mx-auto">
-              {t('contactPage.faqQuickLink.description')}
-            </p>
+            <p className="text-lg text-white/60 mb-8 max-w-2xl mx-auto">{t('contactPage.faqQuickLink.description')}</p>
             <Link to="/faq">
               <Button size="lg" className="h-12 px-8 bg-white text-black hover:bg-white/90 rounded-lg">
                 {t('contactPage.faqQuickLink.viewFaq')}
@@ -158,11 +146,9 @@ export default function Contact() {
             <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-4">
               {t('contactPage.support.title')}
             </h2>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {t('contactPage.support.description')}
-            </p>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">{t('contactPage.support.description')}</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {supportChannels.map((channel, index) => (
               <Link
@@ -192,12 +178,8 @@ export default function Contact() {
       <section className="w-full py-24">
         <div className="mx-auto max-w-[1000px] px-6">
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-6">
-              {t('contactPage.cta.title')}
-            </h2>
-            <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8">
-              {t('contactPage.cta.description')}
-            </p>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-6">{t('contactPage.cta.title')}</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8">{t('contactPage.cta.description')}</p>
             <Link to="/generator">
               <Button size="lg" className="h-12 px-8 bg-white text-black hover:bg-white/90 rounded-lg">
                 {t('contactPage.cta.getStarted')}
@@ -211,4 +193,4 @@ export default function Contact() {
       <Footer />
     </div>
   );
-} 
+}

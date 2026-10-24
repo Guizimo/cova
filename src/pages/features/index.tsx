@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Palette, Download, Smartphone, Globe, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PageAurora } from '@/components/layout/page-aurora';
 
 export default function Features() {
   const { t } = useTranslation();
@@ -53,16 +54,16 @@ export default function Features() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-24">
-        <div className="mx-auto max-w-[1000px] px-6">
+      <section className="relative w-full overflow-hidden pt-32 pb-24">
+        <PageAurora fade />
+        <div className="page-in relative z-10 mx-auto max-w-[1000px] px-6">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.02em] leading-[1.1] mb-6">
-              {t('featuresPage.hero.title').split('\n')[0]}<br />
-              <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-                {t('featuresPage.hero.subtitle')}
-              </span>
+              {t('featuresPage.hero.title').split('\n')[0]}
+              <br />
+              <span className="text-gradient-aurora">{t('featuresPage.hero.subtitle')}</span>
             </h1>
             <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8 leading-relaxed">
               {t('featuresPage.hero.description')}
@@ -86,9 +87,6 @@ export default function Features() {
             </div>
           </div>
         </div>
-        
-        {/* Background decoration */}
-        <div className="absolute top-[-300px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-white/10 via-white/5 to-transparent opacity-30 blur-3xl" />
       </section>
 
       {/* Core Features */}
@@ -100,6 +98,10 @@ export default function Features() {
                 key={index}
                 className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] hover:from-white/[0.12] hover:to-white/[0.04] transition-all duration-300 p-8 border border-white/[0.08]"
               >
+                <div
+                  className={`absolute inset-x-0 top-0 h-px ${['bg-indigo-400', 'bg-fuchsia-400', 'bg-cyan-300'][index]} opacity-80`}
+                  aria-hidden
+                />
                 <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors">
                     <feature.icon className="w-6 h-6 text-white" />
@@ -127,34 +129,24 @@ export default function Features() {
             <h2 className="text-3xl md:text-4xl font-medium tracking-[-0.02em] mb-4">
               {t('featuresPage.performance.title')}
             </h2>
-            <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              {t('featuresPage.performance.description')}
-            </p>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">{t('featuresPage.performance.description')}</p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-2">
-                50ms
-              </div>
+              <div className="text-gradient-aurora mb-2 text-4xl font-semibold md:text-5xl">50ms</div>
               <p className="text-sm text-white/60">{t('featuresPage.performance.stats.responseTime')}</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-2">
-                4
-              </div>
+              <div className="text-gradient-aurora mb-2 text-4xl font-semibold md:text-5xl">4</div>
               <p className="text-sm text-white/60">{t('featuresPage.performance.stats.exportFormats')}</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-2">
-                100%
-              </div>
+              <div className="text-gradient-aurora mb-2 text-4xl font-semibold md:text-5xl">100%</div>
               <p className="text-sm text-white/60">{t('featuresPage.performance.stats.localProcessing')}</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-2">
-                ∞
-              </div>
+              <div className="text-gradient-aurora mb-2 text-4xl font-semibold md:text-5xl">∞</div>
               <p className="text-sm text-white/60">{t('featuresPage.performance.stats.customizations')}</p>
             </div>
           </div>
@@ -172,7 +164,7 @@ export default function Features() {
               {t('featuresPage.additionalFeatures.description')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {additionalFeatures.map((feature, index) => (
               <div
@@ -198,12 +190,8 @@ export default function Features() {
       <section className="w-full py-24">
         <div className="mx-auto max-w-[1000px] px-6">
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-6">
-              {t('featuresPage.cta.title')}
-            </h2>
-            <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8">
-              {t('featuresPage.cta.description')}
-            </p>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-6">{t('featuresPage.cta.title')}</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8">{t('featuresPage.cta.description')}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/generator">
                 <Button size="lg" className="h-12 px-8 bg-white text-black hover:bg-white/90 rounded-lg">
@@ -227,4 +215,4 @@ export default function Features() {
       <Footer />
     </div>
   );
-} 
+}

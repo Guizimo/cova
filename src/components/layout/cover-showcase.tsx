@@ -84,9 +84,8 @@ export function CoverShowcase() {
     <div className="relative w-full max-w-[460px] mx-auto">
       {/* 浮动的封面卡片 */}
       <div className="float-soft relative">
-        <div className="relative rounded-2xl p-[1px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
-          <div className="conic-border rounded-2xl" aria-hidden />
-          <div className="relative aspect-[1.6] w-full overflow-hidden rounded-2xl bg-black">
+        <div className="relative rounded-2xl bg-gradient-to-br from-indigo-300/80 via-fuchsia-300/45 to-cyan-300/70 p-px shadow-[0_30px_70px_-28px_rgba(99,102,241,0.65)]">
+          <div className="relative aspect-[1.6] w-full overflow-hidden rounded-[15px] bg-black">
             {DESIGNS.map((design, index) => (
               <div
                 key={index}
@@ -140,11 +139,9 @@ export function CoverShowcase() {
                 key={index}
                 onClick={() => setActive(index)}
                 aria-label={`Preview design ${index + 1}`}
-                className="h-1.5 rounded-full transition-all duration-300"
-                style={{
-                  width: index === active ? 20 : 6,
-                  background: index === active ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.25)'
-                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === active ? 'w-5 bg-foreground' : 'w-1.5 bg-foreground/30'
+                }`}
               />
             ))}
           </div>

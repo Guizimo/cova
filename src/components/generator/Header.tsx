@@ -58,12 +58,13 @@ export function Header() {
   }, []);
 
   return (
-    <header className="h-16 border-b border-white/[0.08] bg-black">
+    <header className="relative h-16 border-b border-white/[0.08] bg-black/80 backdrop-blur-xl">
+      <div className="hairline-aurora pointer-events-none absolute inset-x-0 bottom-0" aria-hidden />
       <div className="flex h-full items-center justify-between px-4 lg:px-6">
         {/* 左侧Logo和标题 */}
         <div className="flex items-center gap-2 lg:gap-4 min-w-0 flex-1">
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
-            <img src={logo} alt="Cova Logo" className="h-6 w-6" />
+            <img src={logo} alt="Cova Logo" className="brand-mark h-6 w-6" />
             <span className="text-lg font-medium hidden sm:inline">Cova</span>
           </Link>
           <div className="text-sm text-white/60 hidden md:block">

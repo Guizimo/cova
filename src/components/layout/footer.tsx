@@ -9,15 +9,16 @@ export function Footer() {
   const groupClass = 'flex flex-col gap-3';
 
   return (
-    <footer className="w-full border-t border-white/[0.08] py-14 md:py-16">
-      <div className="mx-auto max-w-[1000px] px-6">
+    <footer className="relative w-full py-14 md:py-16">
+      <div className="hairline-aurora absolute inset-x-0 top-0" aria-hidden />
+      <div className="mx-auto max-w-[1120px] px-6">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col gap-4">
             <Link
               to="/"
               className="flex items-center gap-2 w-fit text-white/90 hover:text-white transition-colors duration-200"
             >
-              <img src={logo} alt="Cova Logo" className="h-6 w-6 opacity-95" />
+              <img src={logo} alt="Cova Logo" className="brand-mark h-6 w-6 opacity-95" />
               <span className="font-medium">Cova</span>
             </Link>
             <p className="text-sm text-white/40 max-w-xs leading-relaxed">{t('footer.builtBy')}</p>

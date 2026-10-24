@@ -1,3 +1,4 @@
+import { useTheme } from '@/components/theme/theme-provider';
 import { useGeneratorStore } from '@/store/generator';
 import { computeBackgroundStyle } from '@/utils/generator';
 import { Loader2, ZoomIn, ZoomOut, Maximize2, Grid3x3 } from 'lucide-react';
@@ -10,6 +11,7 @@ const GRID_BASE = 24;
 
 export function Preview() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
   const {
     title,
     subtitle,
@@ -189,17 +191,18 @@ export function Preview() {
         ref={containerRef}
         onWheel={handleWheel}
         onPointerDown={startPan}
-        className={`relative flex-1 overflow-hidden bg-[#0a0a0a] ${panning ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`canvas-stage relative flex-1 overflow-hidden bg-[#0a0a0a] ${panning ? 'cursor-grabbing' : 'cursor-grab'}`}
         style={{
           touchAction: 'none',
           backgroundImage: showGrid
-            ? `linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)`
+            ? `radial-gradient(circle, ${theme === 'light' ? 'rgba(15,23,42,0.22)' : 'rgba(255,255,255,0.32)'} 1px, transparent 1.2px)`
             : undefined,
           backgroundSize: showGrid ? `${GRID_BASE * zoom}px ${GRID_BASE * zoom}px` : undefined,
           backgroundPosition: showGrid ? `calc(50% + ${pan.x}px) calc(50% + ${pan.y}px)` : undefined
         }}
       >
-        <div className="flex h-full min-h-full items-center justify-center p-4 lg:p-6">
+        <div className="canvas-vignette pointer-events-none absolute inset-0 z-0" aria-hidden />
+        <div className="relative z-10 flex h-full min-h-full items-center justify-center p-4 lg:p-6">
           {/* 导出加载层 */}
           {isExporting && (
             <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
@@ -215,8 +218,10 @@ export function Preview() {
             className="relative flex flex-col items-center"
             style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
           >
-            {/* 背景装饰 */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-2xl blur-xl opacity-20" />
+            <div
+              className="pointer-events-none absolute -inset-10 rounded-[2rem] bg-gradient-to-br from-indigo-500/30 via-fuchsia-500/20 to-cyan-400/25 blur-2xl"
+              aria-hidden
+            />
 
             {/* 透明背景时的棋盘格 */}
             {showCheckerboard && (
@@ -242,7 +247,7 @@ export function Preview() {
 
             <div
               id="cover-preview"
-              className="border border-white/10 relative overflow-hidden shadow-2xl"
+              className="relative overflow-hidden border border-white/15 shadow-[0_28px_80px_-24px_rgba(0,0,0,0.72)]"
               style={{
                 width: coverWidth,
                 height: coverHeight,
